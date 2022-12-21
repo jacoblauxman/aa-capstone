@@ -12,8 +12,14 @@ const loadReviews = (reviews, itemId) => ({
   itemId
 })
 
+const addReview = review => ({
+  type: ADD_REVIEW,
+  review
+})
+
 
 // --- THUNKS --- //
+
 
 export const fetchReviews = itemId => async dispatch => {
   const response = await fetch(`/api/items/${itemId}/reviews`)
@@ -27,6 +33,23 @@ export const fetchReviews = itemId => async dispatch => {
 }
 
 
+export const createReview = (itemId, review) => async dispatch => {
+  const response = await fetch(`/api/items/${itemId}/reviews`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(review)
+  })
+
+  if (response.ok) {
+    const newReview = await response.json()
+    dispatch(addReview(newReview))
+
+    return newReview
+  }
+}
+
 // --- INITIAL STATE --- //
 
 
@@ -39,14 +62,25 @@ const initialState = { oneItem: {} }
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_REVIEWS: {
-      const loadState = {...state, oneItem: { ...state.oneItem }}
+      console.log('LOAD_REVIEWS ACTION!!!', action)
+      const loadState = { ...state, oneItem: { ...state.oneItem } }
       action.reviews.itemReviews.forEach(review => {
         loadState.oneItem[review.id] = review;
       })
+
       return loadState
     }
 
+    case ADD_REVIEW: {
+      console.log("ADD_REVIEW ACTION!!", action)
+      const addState = { ...state, oneItem: { ...state.oneItem } }
+      addState.oneItem[action.review.id] = action.review
+    }
+
+      return addState
+
     default: {
+
       return state
     }
   }

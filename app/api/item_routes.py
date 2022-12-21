@@ -43,7 +43,7 @@ def get_one_item(id):
 
 
 # POST review by item id
-@item_routes.route('/<int:id>', methods=["POST"])
+@item_routes.route('/<int:id>/reviews', methods=["POST"])
 @login_required
 def post_review_to_item(id):
 
