@@ -24,15 +24,35 @@ export default function Reviews() {
   useEffect(() => (
     dispatch(fetchReviews(itemId))
       .then(dispatch(fetchOneItem(itemId)))
-      // .catch(async res => {
-      //   const ans = await res.json()
-      //   if (ans && ans.errors.length > 0) {
-      //     history.push('/404')
-      //   }
-      // })
       .then(() => setIsLoaded(true))
 
   ), [dispatch, itemId])
+
+
+
+  // helper funcs
+  const timeFormatter = (date) => {
+    let now = new Date()
+    let then = new Date(date)
+    // console.log(typeof now, "NOOOOOOOOWWWWWWWW", typeof then, "THEEEEEEEEEENNNNNN!")
+    let timeElapsed = now - then
+    // console.log(timeElapsed, ' DOES THIS WORK??')
+    let oneDay = (1000 * 3600 * 24)
+    let daysSince = (timeElapsed / oneDay)
+    if (daysSince < 1) {
+      return `less than 1 day ago...`
+    } else if (daysSince > 14) {
+      return `more than 2 week ago...`
+    } else if (daysSince > 31) {
+      return `over a month ago...`
+    } else if (daysSince > 365) {
+      return `over a year ago...`
+    } else {
+      return daysSince
+    }
+  }
+
+
 
   if (!itemId) return null;
 
@@ -87,7 +107,7 @@ export default function Reviews() {
                   Verified Purchaser
                 </div>
                 <div className='reviews-page-single-review-ago-container'>
-                  --- TO DO --- RANDOMIZER FOR "weeks ago..."
+                  {timeFormatter(review?.createdAt)}
                 </div>
                 <div className='reviews-page-single-review-review'>
                   {review?.review}
