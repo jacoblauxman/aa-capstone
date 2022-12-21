@@ -66,3 +66,17 @@ def post_review_to_item(id):
     return return_review, 201
 
   return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
+
+
+# GET all reviews by spot id
+@item_routes.route('/<int:id>/reviews')
+@login_required
+def get_item_reviews(id):
+
+  item = Item.query.get(id)
+  item = item.to_dict()
+
+  item_reviews = Review.query.filter(Review.item_id == id).all()
+  item_reviews = [review.to_dict() for review in item_reviews]
+
+  return {'itemReviews': item_reviews, 'item': item}, 200
