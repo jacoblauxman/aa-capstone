@@ -63,8 +63,8 @@ def update_review(id):
     updated_review.update({"rating": json.dumps(updated_review["rating"])})
 
     return updated_review, 200
-  else:
-    return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
+  # else:
+  #   return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
 
 
 
