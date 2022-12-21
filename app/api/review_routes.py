@@ -8,6 +8,7 @@ import simplejson as json
 review_routes = Blueprint('reviews', __name__)
 
 
+
 # GET reviews by user id
 @review_routes.route('/user')
 @login_required
@@ -18,10 +19,11 @@ def get_all_user_reviews():
   return_reviews = []
   for r in user_reviews:
     r = r.to_dict()
-    r.update({"rating": json.dumps(r['rating'])})
+    # r.update({"rating": json.dumps(r['rating'])})
     return_reviews.append(r)
 
   return jsonify(return_reviews), 200
+
 
 
 # GET review by id
@@ -40,6 +42,7 @@ def get_review_by_id(id):
     return {"errors": ["NOT FOUND: RESOURCE NOT FOUND"]}
 
 
+
 # EDIT review by id
 @review_routes.route('/<int:id>', methods=["PUT"])
 @login_required
@@ -51,8 +54,6 @@ def update_review(id):
   # form validations are currently erroring out send
 
     updated_review = Review.query.get(id)
-    print(updated_review.to_dict(), "FOUND THAT REVIEW!!!!!")
-    print(form.data, "HERE IS OUR FORM DATA !!!!!!!!!!")
     updated_review.title = form.title.data
     updated_review.review = form.review.data
     updated_review.rating = form.rating.data
@@ -80,3 +81,27 @@ def delete_review(id):
 
   else:
     return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
+
+
+
+
+
+# ADD ONE YES VOTE TO REVIEW -- BONUS
+@review_routes.route('/<int:id>/yes', methods=["GET"])
+@login_required
+def update_review_yes(id):
+  update_review = Review.query.get(id)
+  # update_review2 = update_review
+  # update_review2 = update_review2.to_dict()
+  # update_review2['yes'] = update_review2['yes'] + 1
+  update_review = update_review.to_dict()
+  update_review.update({"rating": json.dumps(update_review["rating"])})
+
+  update_review['yes'] = update_review['yes'] =+ 1
+
+  # db.session.add(update_review2)
+  # db.session.commit()
+  print(update_review, "UPDATED OUR YES VALUE HERE !~!!!!!! !!! ----------")
+  # print(jsonify(update_review2, 'ONE LAST ATTEMPT !!!!!!!!!!!!'))
+
+  return update_review, 200
