@@ -5,7 +5,7 @@ from datetime import datetime
 
 @declarative_mixin
 class TimestampMixin:
-  created_at = db.Column(db.DateTime, default=datetime.date())
+  created_at = db.Column(db.DateTime, default=datetime.date(datetime.now()))
 
 class Review(db.Model, TimestampMixin):
   __tablename__ = 'reviews'
@@ -24,7 +24,7 @@ class Review(db.Model, TimestampMixin):
 
 
   user = db.relationship("User", back_populates='reviews')
-  item = db.relationship("Item", back_populates='items')
+  item = db.relationship("Item", back_populates='reviews')
 
   def to_dict(self):
     return {
