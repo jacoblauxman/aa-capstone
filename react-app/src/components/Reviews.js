@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchReviews } from '../store/review';
 // import "../css/Reviews.css"
-
+import { fetchOneItem } from '../store/item';
 
 
 
@@ -20,19 +20,16 @@ export default function Reviews() {
   const reviews = useSelector(state => state.reviews.oneItem)
   const reviewsArr = Object.values(reviews)
 
-  console.log(currentItem, 'CURRENT ITEM in REVIEWS COMPONENT!!')
-  console.log(reviews, 'REVIEWS in REVIEWS COMPONENT')
-  console.log(reviewsArr, 'REVIEWS ARR TO CHECK!!!!')
-
 
   useEffect(() => (
     dispatch(fetchReviews(itemId))
-      .catch(async res => {
-        const ans = await res.json()
-        if (ans && ans.errors.length > 0) {
-          history.push('/404')
-        }
-      })
+      .then(dispatch(fetchOneItem(itemId)))
+      // .catch(async res => {
+      //   const ans = await res.json()
+      //   if (ans && ans.errors.length > 0) {
+      //     history.push('/404')
+      //   }
+      // })
       .then(() => setIsLoaded(true))
 
   ), [dispatch, itemId])
@@ -47,18 +44,57 @@ export default function Reviews() {
             <div className='reviews-page-reviews-header-container'>
               <div className='reviews-page-reviews-header-info-container'>
                 <div className='reviews-page-reviews-title'>
-                  Custom Ratings & Reviews
+                  Customer Ratings & Reviews
                 </div>
                 <div className='reviews-page-reviews-avg-rating'>
                   <div className='reviews-page-reviews-big-avg-rating'>
-                    !!! HELPER FUNC BEING BUILT NOW !!!
+                    <span className='reviews-page-reviews-big-num'>
+                      !!! HELPER FUNC BEING BUILT NOW !!!
+                    </span>
+                    <span className='reviews-page-reviews-ratings-amount'>
+                      {reviewsArr?.length}
+                    </span>
                   </div>
                 </div>
-
+                <div>
+                  <div className='reviews-page-reviews-bought'>
+                    Bought this product?
+                  </div>
+                  <div className='reviews-page-reviews-share'>
+                    Share your thought with the community.
+                  </div>
+                  <div className='reviews-page-reviews-add-button'>
+                    <button className='reviews-page-add-a-review'>
+                      Write a Review
+                    </button>
+                  </div>
+                </div>
               </div>
               <div className='reviews-page-reviews-stars-breakdown-container'>
                 !!! STARS BREAKDOWN COMING SOON !!!
               </div>
+            </div>
+            {reviewsArr && reviewsArr.map(review => (
+              <div key={review?.id} className='reviews-page-single-review-container'>
+                <div className='reviews-page-single-review-title'>
+                  {review?.title}
+                </div>
+                {/* <div className='reviews-page-single-review-star-display'></div> */}
+                <div className='reviews-page-single-review-username'>
+                  {review?.userId} -- 'TO DO -- UPDATE REVIEW TO HAVE FULL USER OBJECT'
+                </div>
+                <div className='reviews-page-single-review-verified'>
+                  Verified Purchaser
+                </div>
+                <div className='reviews-page-single-review-ago-container'>
+                  --- TO DO --- RANDOMIZER FOR "weeks ago..."
+                </div>
+                <div className='reviews-page-single-review-review'>
+                  {review?.review}
+                </div>
+              </div>
+            ))}
+            <div className='reviews-page-all-reviews-container'>
             </div>
           </div>
 

@@ -26,6 +26,7 @@ export const fetchReviews = itemId => async dispatch => {
 
   if (response.ok) {
     const reviews = await response.json()
+    console.log(reviews, '!!!! REVIEWS in FETCH !!!!')
     dispatch(loadReviews(reviews, itemId))
 
     return reviews
@@ -75,9 +76,9 @@ const reviewsReducer = (state = initialState, action) => {
       console.log("ADD_REVIEW ACTION!!", action)
       const addState = { ...state, oneItem: { ...state.oneItem } }
       addState.oneItem[action.review.id] = action.review
-    }
 
       return addState
+    }
 
     default: {
 
