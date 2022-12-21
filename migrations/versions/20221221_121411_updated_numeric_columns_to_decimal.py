@@ -1,8 +1,8 @@
-"""create items and reviews tables
+"""updated numeric columns to DECIMAL
 
-Revision ID: 06a053f268f8
+Revision ID: d8ebaa371374
 Revises: ffdc0a98111c
-Create Date: 2022-12-20 19:44:51.915423
+Create Date: 2022-12-21 12:14:11.179234
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '06a053f268f8'
+revision = 'd8ebaa371374'
 down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=False),
-    sa.Column('price', sa.Numeric(precision=5, scale=2), nullable=False),
+    sa.Column('price', sa.DECIMAL(precision=5, scale=2), nullable=False),
     sa.Column('category', sa.String(length=255), nullable=True),
     sa.Column('platform', sa.String(length=255), nullable=True),
     sa.Column('creator', sa.String(length=255), nullable=True),
@@ -36,7 +36,7 @@ def upgrade():
     sa.Column('item_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('review', sa.String(length=255), nullable=False),
-    sa.Column('rating', sa.Numeric(precision=2, scale=1), nullable=False),
+    sa.Column('rating', sa.DECIMAL(precision=2, scale=1), nullable=False),
     sa.Column('yes', sa.Integer(), nullable=True),
     sa.Column('no', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),

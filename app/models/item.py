@@ -1,5 +1,6 @@
 from sqlalchemy.orm import relationship
-from sqlalchemy.types import Integer, String, Numeric
+from sqlalchemy.schema import Column, ForeignKey
+from sqlalchemy.types import Integer, String, Numeric, DECIMAL
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Item(db.Model):
@@ -8,23 +9,23 @@ class Item(db.Model):
   if environment == "production":
     __table_args__ = {'schema': SCHEMA}
 
-  id = db.Column(db.Integer, primary_key=True)
-  title = db.Column(db.String(255), nullable=False)
-  description = db.Column(db.String(500), nullable=False)
-  price = db.Column(db.Numeric(5,2), nullable=False)
-  category = db.Column(db.String(255))
-  platform = db.Column(db.String(255))
-  creator = db.Column(db.String(255))
-  image_url = db.Column(db.String(255))
+  id = Column(Integer, primary_key=True)
+  title = Column(String(255), nullable=False)
+  description = Column(String(500), nullable=False)
+  price = Column(DECIMAL(5,2), nullable=False)
+  category = Column(String(255))
+  platform = Column(String(255))
+  creator = Column(String(255))
+  image_url = Column(String(255))
 
-  reviews = db.relationship("Review", back_populates="item", cascade="all, delete")
+  reviews = relationship("Review", back_populates="item", cascade="all, delete")
 
   def to_dict(self):
     return {
       'id': self.id,
       'title': self.title,
       'description': self.description,
-      'price': self.price,
+      'price': float(self.price),
       'category': self.category,
       'platform': self.platform,
       'creator': self.creator,

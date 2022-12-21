@@ -11,11 +11,11 @@ item_routes = Blueprint('items', __name__)
 @item_routes.route("/")
 @login_required
 def get_all_items():
+
   all_items = Item.query.all()
   res = [item.to_dict() for item in all_items]
-  # print(res, 'RES HERE IN THE BACKEND')
 
-  return {'items': json.dumps(res)}, 200
+  return {'items': res}, 200
 
 
 
@@ -33,15 +33,12 @@ def get_one_item(id):
     user = user.to_dict()
     r = r.to_dict()
     r['user'] = user
-    r.update({"rating": json.dumps(r['rating'])})
-
-    # reviews_and_user.append({r['id']: r})
     reviews_and_user.append(r)
 
-  item = found_item.to_dict()
-  item.update({"price": json.dumps(item['price'])})
 
+  item = found_item.to_dict()
   item['reviews'] = reviews_and_user
+
   return {"item": item}, 200
 
 
@@ -65,7 +62,6 @@ def post_review_to_item(id):
     db.session.commit()
 
     return_review = new_review.to_dict()
-    return_review.update({"rating": json.dumps(return_review["rating"])})
 
     return return_review, 201
 

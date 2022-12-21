@@ -15,11 +15,9 @@ review_routes = Blueprint('reviews', __name__)
 def get_all_user_reviews():
 
   user_reviews = Review.query.filter(Review.user_id==current_user.id).all()
-  # print(user_reviews, "USER REVIEWS USER REVIEWS USER REVIEWS")
   return_reviews = []
   for r in user_reviews:
     r = r.to_dict()
-    # r.update({"rating": json.dumps(r['rating'])})
     return_reviews.append(r)
 
   return jsonify(return_reviews), 200
@@ -33,7 +31,6 @@ def get_review_by_id(id):
   review = Review.query.get(id)
 
   review = review.to_dict()
-  review.update({"rating": json.dumps(review['rating'])})
 
   if review:
     return jsonify(review), 200
@@ -61,7 +58,6 @@ def update_review(id):
     db.session.add(updated_review)
     db.session.commit()
     updated_review = updated_review.to_dict()
-    updated_review.update({"rating": json.dumps(updated_review["rating"])})
 
     return updated_review, 200
   # else:
@@ -72,6 +68,7 @@ def update_review(id):
 @review_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_review(id):
+
   delete_review = Review.query.get(id)
 
   if delete_review.user_id == current_user.id:
@@ -90,18 +87,13 @@ def delete_review(id):
 @review_routes.route('/<int:id>/yes', methods=["GET"])
 @login_required
 def update_review_yes(id):
+
   update_review = Review.query.get(id)
-  # update_review2 = update_review
-  # update_review2 = update_review2.to_dict()
-  # update_review2['yes'] = update_review2['yes'] + 1
   update_review = update_review.to_dict()
-  update_review.update({"rating": json.dumps(update_review["rating"])})
+  update_review['yes'] = update_review['yes'] + 1
 
-  update_review['yes'] = update_review['yes'] =+ 1
-
-  # db.session.add(update_review2)
-  # db.session.commit()
+  db.session.add(update_review)
+  db.session.commit()
   print(update_review, "UPDATED OUR YES VALUE HERE !~!!!!!! !!! ----------")
-  # print(jsonify(update_review2, 'ONE LAST ATTEMPT !!!!!!!!!!!!'))
 
   return update_review, 200
