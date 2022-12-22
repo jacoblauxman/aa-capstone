@@ -56,7 +56,7 @@ export default function CreateReviewModal({ setShowModal }) {
   return (
     <div className='create-review-container'>
       <div className='exit-button'>
-        <button type='button' onClick={handleCancle} classname='create-review-exit-button'>
+        <button type='button' onClick={handleCancel} className='create-review-exit-button'>
         X - exit coming soon
         </button>
       </div>
