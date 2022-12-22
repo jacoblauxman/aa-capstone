@@ -16,7 +16,6 @@ export default function Main() {
   const user = useSelector(state => state.session.user)
   const allItems = useSelector(state => state.items.items)
   const itemsArr = Object?.values(allItems)
-  console.log(itemsArr, 'ALL ITEMS OFF USE SELECTOR!!!!!!!!')
 
   useEffect(() => (
     dispatch(fetchItems())

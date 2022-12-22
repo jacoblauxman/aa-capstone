@@ -2,8 +2,7 @@ from flask import Blueprint, redirect, session, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Item, Review
 from app.forms import ReviewForm
-import json as simplejson
-import simplejson as json
+import json
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -94,6 +93,5 @@ def update_review_yes(id):
 
   db.session.add(update_review)
   db.session.commit()
-  print(update_review, "UPDATED OUR YES VALUE HERE !~!!!!!! !!! ----------")
 
   return update_review, 200

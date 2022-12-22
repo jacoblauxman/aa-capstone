@@ -26,7 +26,6 @@ export const fetchReviews = itemId => async dispatch => {
 
   if (response.ok) {
     const reviews = await response.json()
-    // console.log(reviews, '!!!! REVIEWS in FETCH !!!!')
     dispatch(loadReviews(reviews, itemId))
 
     return reviews
@@ -63,7 +62,6 @@ const initialState = { oneItem: {} }
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_REVIEWS: {
-      // console.log('LOAD_REVIEWS ACTION!!!', action)
       const loadState = { ...state, oneItem: { ...state.oneItem } }
       action.reviews?.itemReviews.forEach(review => {
         loadState.oneItem[review.id] = review;
@@ -73,7 +71,6 @@ const reviewsReducer = (state = initialState, action) => {
     }
 
     case ADD_REVIEW: {
-      // console.log("ADD_REVIEW ACTION!!", action)
       const addState = { ...state, oneItem: { ...state.oneItem } }
       addState.oneItem[action.review.id] = action.review
 

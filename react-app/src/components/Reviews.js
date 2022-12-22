@@ -52,13 +52,13 @@ export default function Reviews() {
   }
 
   const avgRating = (arr) => {
+
     const avg = arr?.reduce((a, c) => {
       console.log(a.rating, 'A in REDUCE!')
       console.log(c.rating, 'C in REDUCE !!!')
       return a + c.rating
     }, 0) / arr.length
 
-    console.log(avg, 'AVG IN THE RATING REDUCER!!')
     return avg.toFixed(2)
   }
 
@@ -121,12 +121,10 @@ export default function Reviews() {
             </div>
             {reviewsArr && reviewsArr.map(review => (
               < div key={review?.id} className='reviews-page-single-review-container'>
-                {/* {console.log(review, 'REVIEW SHAPE IN MAP!!!')} */}
                 <div className='reviews-page-single-review-title'>
                   {review?.title}
                 </div>
                 <div className='reviews-page-single-review-star-display'>
-                  {/* {review?.rating && starConverter(review.rating)} */}
                   {review?.rating && [...Array(review.rating)].map((star, i) => (
                     <img key={i} src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671671732/aa-capstone-gamebaux/svgs/solid-star_zc14zs.svg' alt='Reviews Stars' className='reviews-review-single-stars' />
                   ))}

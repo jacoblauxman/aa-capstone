@@ -2,8 +2,7 @@ from flask import Blueprint, redirect, session, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Item, Review
 from app.forms import ReviewForm
-import json as simplejson
-import simplejson as json
+import json
 
 item_routes = Blueprint('items', __name__)
 
