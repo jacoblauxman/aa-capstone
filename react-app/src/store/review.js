@@ -17,6 +17,15 @@ const addReview = review => ({
   review
 })
 
+const updateReview = review => ({
+  type: UPDATE_REVIEW,
+  review
+})
+
+const deleteReview = reviewId => ({
+  type: DELETE_REVIEW,
+  reviewId
+})
 
 // --- THUNKS --- //
 
@@ -37,7 +46,7 @@ export const createReview = (itemId, review) => async dispatch => {
   const response = await fetch(`/api/items/${itemId}/reviews`, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(review)
   })
@@ -47,6 +56,37 @@ export const createReview = (itemId, review) => async dispatch => {
     dispatch(addReview(newReview))
 
     return newReview
+  }
+}
+
+
+export const fetchUpdateReview = review => async dispatch => {
+  const response = await fetch(`/api/reviews/${review.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(review)
+  })
+
+  if (response.ok) {
+    const updateReview = await response.json()
+    dispatch(updateReview(updateReview))
+
+    return updateReview
+  }
+}
+
+
+export const removeReview = reviewId => async dispatch => {
+  const response = await fetch(`/api/review/${reviewId}`, {
+    method: "DELETE"
+  })
+
+  if (response.ok) {
+    dispatch(deleteReview(reviewId))
+
+    return response
   }
 }
 
@@ -75,6 +115,21 @@ const reviewsReducer = (state = initialState, action) => {
       addState.oneItem[action.review.id] = action.review
 
       return addState
+    }
+
+    case UPDATE_REVIEW: {
+      console.log(action, 'UPDATE REVIEW ACTION IN REDUCER!')
+      const updateState = { ...state, oneItem: { ...state.oneItem, ...action.review } }
+
+      return updateState
+    }
+
+    case DELETE_REVIEW: {
+      console.log(action, 'DELETE REVIEW ACTION IN REDUCER!')
+      const deleteState = { ...state, oneItem: { ...state.oneItem } }
+      delete deleteState.oneItem[action.reviewId]
+
+      return deleteState
     }
 
     default: {

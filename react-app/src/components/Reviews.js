@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchReviews } from '../store/review';
-// import "../css/Reviews.css"
+import "../css/Reviews.css"
 import { fetchOneItem } from '../store/item';
 
 
@@ -38,8 +38,11 @@ export default function Reviews() {
     let timeElapsed = now - then
     let oneDay = (1000 * 3600 * 24)
     let daysSince = (timeElapsed / oneDay)
+    daysSince = Math.round(daysSince)
     if (daysSince < 1) {
       return `less than 1 day ago...`
+    } else if (daysSince === 1) {
+      return `Just 1 day ago...`
     } else if (daysSince > 14) {
       return `more than 2 week ago...`
     } else if (daysSince > 31) {
@@ -47,7 +50,7 @@ export default function Reviews() {
     } else if (daysSince > 365) {
       return `over a year ago...`
     } else {
-      return daysSince
+      return `About ${daysSince} ago...`
     }
   }
 

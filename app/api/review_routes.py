@@ -89,9 +89,13 @@ def update_review_yes(id):
 
   update_review = Review.query.get(id)
   update_review = update_review.to_dict()
-  update_review['yes'] = update_review['yes'] + 1
+  update_review['yes'] = update_review['yes']+1
+  print(update_review, 'HERE IS OUR UPDATE REVIEW!!!! ---------')
+  # update_review.update({update_review['yes']: update_review['yes'] + 1})
 
-  db.session.add(update_review)
-  db.session.commit()
+  # TO DO -- right now errors out when trying to update/'add' to DB
+  # db.session.add(update_review)
+  # db.session.commit()
+  # print(update_review, "UPDATED OUR YES VALUE HERE !~!!!!!! !!! ----------")
 
   return update_review, 200
