@@ -75,8 +75,12 @@ def get_item_reviews(id):
 
   item = Item.query.get(id)
   item = item.to_dict()
-
   item_reviews = Review.query.filter(Review.item_id == id).all()
-  item_reviews = [review.to_dict() for review in item_reviews]
+  item_reviews_users = []
 
-  return {'itemReviews': item_reviews, 'item': item}, 200
+  for i in item_reviews:
+    user = i.user.to_dict()
+    i = i.to_dict()
+    item_reviews_users.append({**i, 'user': user})
+
+  return {'itemReviews': item_reviews_users, 'item': item}, 200
