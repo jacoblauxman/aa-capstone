@@ -30,13 +30,12 @@ export default function Reviews() {
 
 
 
-  // helper funcs
+  // --- helper funcs --- //
+
   const timeFormatter = (date) => {
     let now = new Date()
     let then = new Date(date)
-    // console.log(typeof now, "NOOOOOOOOWWWWWWWW", typeof then, "THEEEEEEEEEENNNNNN!")
     let timeElapsed = now - then
-    // console.log(timeElapsed, ' DOES THIS WORK??')
     let oneDay = (1000 * 3600 * 24)
     let daysSince = (timeElapsed / oneDay)
     if (daysSince < 1) {
@@ -52,6 +51,32 @@ export default function Reviews() {
     }
   }
 
+  const avgRating = (arr) => {
+    const avg = arr?.reduce((a, c) => {
+      console.log(a.rating, 'A in REDUCE!')
+      console.log(c.rating, 'C in REDUCE !!!')
+      return a + c.rating
+    }, 0) / arr.length
+    
+    console.log(avg, 'AVG IN THE RATING REDUCER!!')
+    return avg.toFixed(2)
+  }
+
+
+  // --- NOT NEEDED : to delete? ---
+  // const starConverter = (rating) => {
+  //   let count = 0;
+  //   let starArr = []
+  //   while (count < rating) {
+  //     starArr.push(<img src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671671732/aa-capstone-gamebaux/svgs/solid-star_zc14zs.svg' alt='Reviews Stars' className='reviews-review-single-stars' />)
+  //     count++;
+  //   }
+  //   return (
+  //     starArr?.map(star => (
+  //       star
+  //     ))
+  //   )
+  // }
 
 
   if (!itemId) return null;
@@ -68,12 +93,12 @@ export default function Reviews() {
                 </div>
                 <div className='reviews-page-reviews-avg-rating'>
                   <div className='reviews-page-reviews-big-avg-rating'>
-                    <span className='reviews-page-reviews-big-num'>
-                      !!! HELPER FUNC BEING BUILT NOW !!!
-                    </span>
-                    <span className='reviews-page-reviews-ratings-amount'>
-                      {reviewsArr?.length}
-                    </span>
+                    <div className='reviews-page-reviews-big-num'>
+                      {reviewsArr && avgRating(reviewsArr)}
+                    </div>
+                    <div className='reviews-page-reviews-ratings-amount'>
+                      {reviewsArr?.length} product ratings
+                    </div>
                   </div>
                 </div>
                 <div>
@@ -95,13 +120,19 @@ export default function Reviews() {
               </div>
             </div>
             {reviewsArr && reviewsArr.map(review => (
-              <div key={review?.id} className='reviews-page-single-review-container'>
+              < div key={review?.id} className='reviews-page-single-review-container'>
+                {/* {console.log(review, 'REVIEW SHAPE IN MAP!!!')} */}
                 <div className='reviews-page-single-review-title'>
                   {review?.title}
                 </div>
-                {/* <div className='reviews-page-single-review-star-display'></div> */}
+                <div className='reviews-page-single-review-star-display'>
+                  {/* {review?.rating && starConverter(review.rating)} */}
+                  {review?.rating && [...Array(review.rating)].map((star, i) => (
+                    <img key={i} src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671671732/aa-capstone-gamebaux/svgs/solid-star_zc14zs.svg' alt='Reviews Stars' className='reviews-review-single-stars' />
+                  ))}
+                </div>
                 <div className='reviews-page-single-review-username'>
-                  {review?.userId} -- 'TO DO -- UPDATE REVIEW TO HAVE FULL USER OBJECT'
+                  {review?.user?.username}
                 </div>
                 <div className='reviews-page-single-review-verified'>
                   Verified Purchaser
