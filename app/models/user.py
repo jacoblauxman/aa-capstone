@@ -1,7 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from sqlalchemy.schema import Column
+from sqlalchemy.orm import relationship
+from sqlalchemy.types import String, Integer
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -13,6 +15,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    reviews = db.relationship("Review", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
