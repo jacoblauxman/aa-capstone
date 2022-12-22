@@ -9,13 +9,15 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Reviews from './components/Reviews';
+import Main from './components/Main';
+import Item from './components/Item';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -36,16 +38,19 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/items/:itemId/reviews'>
+        <ProtectedRoute path='/items/:itemId' exact={true}>
+          <Item />
+        </ProtectedRoute>
+        <ProtectedRoute path='/items/:itemId/reviews' exact={true}>
           <Reviews />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>GameBaux</h1>
+          <Main />
         </Route>
       </Switch>
     </BrowserRouter>

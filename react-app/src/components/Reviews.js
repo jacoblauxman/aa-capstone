@@ -18,7 +18,7 @@ export default function Reviews() {
   const user = useSelector(state => state.session.user)
   const currentItem = useSelector(state => state.items.oneItem)
   const reviews = useSelector(state => state.reviews.oneItem)
-  const reviewsArr = Object.values(reviews)
+  const reviewsArr = Object?.values(reviews)
 
 
   useEffect(() => (
@@ -57,7 +57,7 @@ export default function Reviews() {
       console.log(c.rating, 'C in REDUCE !!!')
       return a + c.rating
     }, 0) / arr.length
-    
+
     console.log(avg, 'AVG IN THE RATING REDUCER!!')
     return avg.toFixed(2)
   }

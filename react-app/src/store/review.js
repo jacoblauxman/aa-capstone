@@ -65,7 +65,7 @@ const reviewsReducer = (state = initialState, action) => {
     case LOAD_REVIEWS: {
       // console.log('LOAD_REVIEWS ACTION!!!', action)
       const loadState = { ...state, oneItem: { ...state.oneItem } }
-      action.reviews.itemReviews.forEach(review => {
+      action.reviews?.itemReviews.forEach(review => {
         loadState.oneItem[review.id] = review;
       })
 

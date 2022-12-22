@@ -25,7 +25,7 @@ export const fetchItems = () => async dispatch => {
 
   if (response.ok) {
     const items = await response.json()
-    // console.log(items, '!!!!!!!!! ITEMS in FETCH !!!!!!!')
+    console.log(items, '!!!!!!!!! ITEMS in FETCH !!!!!!!')
     dispatch(loadItems(items))
 
     return items
@@ -57,7 +57,7 @@ const initialState = { items: {}, oneItem: {} }
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ITEMS: {
-      // console.log('LOAD_ITEMS ACTION', action)
+      console.log('LOAD_ITEMS ACTION', action)
       const loadState = { ...state, items: { ...state.items }, oneItem: { ...state.oneItem } }
       action.items?.items?.forEach(item => {
         loadState.items[item.id] = item;
