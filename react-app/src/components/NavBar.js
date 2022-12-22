@@ -1,37 +1,91 @@
 
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
 import LogoutButton from './auth/LogoutButton';
+import User from './User'
 
 const NavBar = () => {
+
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const [searchInput, setSearchInput] = useState('')
+
+  const user = useSelector(state => state?.session?.user)
+
+
   return (
-    <nav>
-      <ul>
-        <li>
+    <div className='navbar-nav-container'>
+      <nav className='navbar-nav'>
+        <div className='navbar-menu-button-container'>
+          <div className='navbar-menu-hamburger-icon-container'>
+            <img className='navbar-menu-hamburger-icon' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653252/aa-capstone-gamebaux/svgs/menu-icon_e4nbox.svg' alt='Menu Icon' />
+          </div>
+          <div className='navbar-menu-menu-text'>
+            Menu
+          </div>
+        </div>
+        <div className='navbar-site-title-container'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            GameBaux
           </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
+        </div>
+        <div className='navbar-search-bar-container'>
+          <form className='navbar-search-bar-form-container'>
+
+            <button type='submit' className='navbar-search-bar-search-button-container'>
+              <div className='navbar-search-bar-magnifying-glass-container'>
+                <img className='navbar-search-bar-magnifying-glass' src="https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653254/aa-capstone-gamebaux/svgs/search-icon_okqpr5.svg" alt='Send Search' />
+              </div>
+            </button>
+            <input
+              className='navbar-search-bar-input-field'
+              value={searchInput}
+              onChange={e => setSearchInput(e.target.value)}
+            />
+            <button type='button' className='navbar-search-bar-search-cancel-container'>
+              <img className='navbar-search-bar-cancel-x' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653253/aa-capstone-gamebaux/svgs/cancel-icon_xw1xvb.svg' alt='Search Cancel' />
+            </button>
+          </form>
+        </div>
+        <div className='navbar-user-info-login-info'>
+          {user && user?.id && (
+            <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active'>
+              <div className='navbar-user-info-short-username'>
+                {user?.username[0]}
+              </div>
+              <div className='navbar-user-info-account'>
+                Account
+              </div>
+            </NavLink>
+          )}
+          {!user && (
+            <>
+              <div>
+                <NavLink to='/login' exact={true} activeClassName='active'>
+                  Login
+                </NavLink>
+              </div>
+              <div>
+                <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                  Sign Up
+                </NavLink>
+              </div>
+            </>
+          )}
+        </div>
+        {/* <div>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
-        </li>
-        <li>
+        </div> */}
+        <div>
+          {/* TO DO -- move logout to user profile page */}
           <LogoutButton />
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </nav>
+    </div>
   );
 }
 
