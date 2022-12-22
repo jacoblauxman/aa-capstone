@@ -1,0 +1,159 @@
+.navbar-nav-container {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  /* position: fixed; */
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  /* z-index: 0; */
+  /* margin-bottom: 100px; */
+  box-sizing: border-box;
+  padding-right: 15%;
+  padding-left: 15%;
+  border-bottom: 1px solid #E0E0E0;
+  box-shadow: 0px 1px 4px 0.5px #E0E0E0;
+  background-color: white;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+
+.navbar-menu-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-menu-hamburger-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.navbar-menu-hamburger-icon {
+  height: 40px;
+  width: 45px;
+}
+
+.navbar-menu-menu-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .8rem;
+}
+
+.navbar-site-title-container {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.navbar-navlink-title-text {
+
+  font-size: 2.5rem;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-search-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 780px;
+}
+
+.navbar-search-bar-form-container {
+  display: flex;
+  justify-content: center;
+  /* width: 780px; */
+}
+
+.navbar-search-bar-search-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #F0F0F0
+}
+
+.navbar-search-bar-magnifying-glass-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-search-bar-magnifying-glass {
+  height: 20px;
+  width: 20px;
+}
+
+.navbar-search-bar-input-field {
+  width: 700px;
+  border: none;
+  font-size: 1.2rem;
+  background-color: #F0F0F0;
+  padding: 8px;
+}
+
+.navbar-search-bar-input-field::placeholder {
+  font-weight: 250;
+  color: #5B6167;
+}
+
+.navbar-search-bar-input-field:focus {
+  outline: none;
+}
+
+/* .navbar-search-bar-search-cancel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center
+} */
+
+.navbar-search-bar-search-cancel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #F0F0F0
+}
+
+.navbar-search-bar-cancel-x {
+  height: 15px;
+  width: 15px;
+}
+
+.navbar-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-login-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-login-icon {
+  height: 35px;
+  width: 33px;
+  padding: .2rem;
+}
+
+.navbar-login-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: .8rem;
+  color: black;
+}

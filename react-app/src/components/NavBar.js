@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import LogoutButton from './auth/LogoutButton';
 import User from './User'
+import '../css/NavBar.css'
 
 const NavBar = () => {
 
@@ -27,7 +28,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className='navbar-site-title-container'>
-          <NavLink to='/' exact={true} activeClassName='active'>
+          <NavLink to='/' exact={true} activeClassName='active' className='navbar-navlink-title-text'>
             GameBaux
           </NavLink>
         </div>
@@ -43,6 +44,7 @@ const NavBar = () => {
               className='navbar-search-bar-input-field'
               value={searchInput}
               onChange={e => setSearchInput(e.target.value)}
+              placeholder='Search games, consoles & more'
             />
             <button type='button' className='navbar-search-bar-search-cancel-container'>
               <img className='navbar-search-bar-cancel-x' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653253/aa-capstone-gamebaux/svgs/cancel-icon_xw1xvb.svg' alt='Search Cancel' />
@@ -62,16 +64,19 @@ const NavBar = () => {
           )}
           {!user && (
             <>
-              <div>
-                <NavLink to='/login' exact={true} activeClassName='active'>
-                  Login
+              <div className='navbar-login-container'>
+                <NavLink to='/login' exact={true} activeClassName='active' className='navbar-login-link'>
+                <div className='navbar-login-icon-container'>
+                  <img className='navbar-login-icon' alt='Login Icon' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671736422/aa-capstone-gamebaux/svgs/icons8-user-48_vbhniw.png' />
+                </div>
+                  Sign In
                 </NavLink>
               </div>
-              <div>
+              {/* <div>
                 <NavLink to='/sign-up' exact={true} activeClassName='active'>
                   Sign Up
                 </NavLink>
-              </div>
+              </div> */}
             </>
           )}
         </div>
