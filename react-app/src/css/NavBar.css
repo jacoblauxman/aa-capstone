@@ -2,13 +2,11 @@
   top: 0;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  /* position: fixed; */
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 80px;
-  /* z-index: 0; */
-  /* margin-bottom: 100px; */
+  height: 90px;
+
   box-sizing: border-box;
   padding-right: 5%;
   padding-left: 5%;
@@ -72,7 +70,6 @@
 .navbar-search-bar-form-container {
   display: flex;
   justify-content: center;
-  /* width: 780px; */
 }
 
 .navbar-search-bar-search-button-container {
@@ -110,12 +107,6 @@
 .navbar-search-bar-input-field:focus {
   outline: none;
 }
-
-/* .navbar-search-bar-search-cancel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center
-} */
 
 .navbar-search-bar-search-cancel-container {
   display: flex;
@@ -157,4 +148,41 @@
   text-decoration: none;
   font-size: .8rem;
   color: black;
+}
+
+
+
+
+.navbar-user-info-login-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  width: 75px;
+}
+
+.navbar-user-info-profile-navlink {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+}
+
+.navbar-user-info-short-username {
+  background-color: #DBDBDB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.navbar-user-info-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }

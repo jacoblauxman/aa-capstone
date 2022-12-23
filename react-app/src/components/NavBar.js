@@ -53,7 +53,7 @@ const NavBar = () => {
         </div>
         <div className='navbar-user-info-login-info'>
           {user && user?.id && (
-            <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active'>
+            <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active' className='navbar-user-info-profile-navlink'>
               <div className='navbar-user-info-short-username'>
                 {user?.username[0]}
               </div>
