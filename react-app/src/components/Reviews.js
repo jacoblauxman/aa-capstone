@@ -104,7 +104,7 @@ export default function Reviews() {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className='reviews-page-reviews-prompt-container'>
                   <div className='reviews-page-reviews-bought'>
                     Bought this product?
                   </div>
@@ -153,10 +153,13 @@ export default function Reviews() {
           {currentItem && (
             <div className='reviews-page-item-container'>
               <div className='reviews-page-item-preview-container'>
+                <div className='reviews-page-all-item-container'>
+
                 <div className='reviews-page-item-image-container'>
                   <img src={currentItem?.image} alt='Reviews Single Item Preview' className='reviews-page-item-image' />
                 </div>
                 <div className='reviews-page-item-info-container'>
+                </div>
                   <div className='reviews-page-item-title'>
                     {currentItem?.title}
                   </div>
@@ -164,11 +167,11 @@ export default function Reviews() {
                     {currentItem?.creator}
                   </div>
                 </div>
-              </div>
               <div className='reviews-page-item-back-container'>
-                <button>
+                <button className='reviews-page-back-button'>
                   Return to Product Details
                 </button>
+              </div>
               </div>
             </div>
           )}
