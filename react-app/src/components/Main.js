@@ -13,8 +13,8 @@ export default function Main() {
 
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const user = useSelector(state => state.session.user)
-  const allItems = useSelector(state => state.items.items)
+  const user = useSelector(state => state.session?.user)
+  const allItems = useSelector(state => state.items?.items)
   const itemsArr = Object?.values(allItems)
 
   useEffect(() => (
@@ -31,7 +31,7 @@ export default function Main() {
       <div>Temp Links</div>
       {itemsArr?.length > 0 && itemsArr.map(item => (
         <li key={item.id}>
-          <NavLink to={`/items/${item.id}`}>
+          <NavLink to={`/items/${item?.id}`}>
             {item?.title}
           </NavLink>
         </li>

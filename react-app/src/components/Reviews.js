@@ -18,7 +18,7 @@ export default function Reviews() {
   const [showCreate, setShowCreate] = useState(false)
 
 
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session?.user)
   const currentItem = useSelector(state => state.items?.oneItem)
   const reviews = useSelector(state => state.reviews?.oneItem)
   const reviewsArr = Object?.values(reviews)
@@ -60,8 +60,6 @@ export default function Reviews() {
   const avgRating = (arr) => {
 
     const avg = arr?.reduce((a, c) => {
-      console.log(a.rating, 'A in REDUCE!')
-      console.log(c.rating, 'C in REDUCE !!!')
       return a + c.rating
     }, 0) / arr.length
 

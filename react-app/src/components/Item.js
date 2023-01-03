@@ -13,7 +13,7 @@ export default function Item() {
 
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session?.user)
   const currentItem = useSelector(state => state.items?.oneItem)
   const itemReviews = useSelector(state => state.reviews?.oneItem)
   const reviewsArr = Object?.values(itemReviews)
