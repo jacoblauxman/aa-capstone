@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import Reviews from './components/Reviews';
 import Main from './components/Main';
 import Item from './components/Item';
+import CreateReviewModal from './components/CreateReview/CreateReviewForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,23 +39,26 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-        <NavBar />
+          <NavBar />
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-        <NavBar />
+          <NavBar />
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/items/:itemId' exact={true}>
-        <NavBar />
+        <Route path='/items/:itemId' exact={true}>
+          <NavBar />
           <Item />
-        </ProtectedRoute>
-        <ProtectedRoute path='/items/:itemId/reviews' exact={true}>
-        <NavBar />
+        </Route>
+        <Route path='/items/:itemId/reviews' exact={true}>
+          <NavBar />
           <Reviews />
+        </Route>
+        <ProtectedRoute path='/create-review'>
+          <CreateReviewModal />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-        <NavBar />
+          <NavBar />
           <Main />
         </Route>
       </Switch>

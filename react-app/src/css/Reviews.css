@@ -101,6 +101,16 @@
   margin-bottom: 25px;
 }
 
+button .create-a-review-modal {
+  background-color: black;
+  color: white;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 550;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
 
 .reviews-page-single-review-container {
   display: flex;
@@ -233,4 +243,8 @@
   border-radius: 5px;
   border: 3px solid black;
   margin: 15px;
+}
+
+.reviews-page-back-button:hover {
+  cursor: pointer;
 }

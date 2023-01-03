@@ -4,15 +4,16 @@ import { useHistory, useParams } from 'react-router-dom';
 import { createReview } from '../../store/review';
 
 
-export default function CreateReviewModal({ setShowModal }) {
+export default function CreateReviewForm({ setShowModal }) {
 
   const { itemId } = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
 
   const user = useSelector(state => state.session.user)
-  const currentItem = useSelector(state => state.items.oneItem)
-  const reviews = useSelector(state => state.reviews.oneItem)
+  const currentItem = useSelector(state => state.items?.oneItem)
+  const reviews = useSelector(state => state.reviews?.oneItem)
+  console.log(currentItem.image, 'HERE IS A CURRENT ITEM MAYBE????')
 
   const [title, setTitle] = useState('')
   const [review, setReview] = useState('')
@@ -29,16 +30,21 @@ export default function CreateReviewModal({ setShowModal }) {
     }
 
     const response = await dispatch(createReview(itemId, newReview))
-    .then(() => setShowModal(false))
-    .catch(async res => {
-      const badData = await res.json()
-      if (badData && badData.errors) {
-        setErrors([badData.errors])
-      }
-    })
+      .then(() => {
+        setShowModal(false)
+        setErrors([])
+      })
+      .catch(async res => {
+        const badData = await res.json()
+        if (badData && badData.errors) {
+          setErrors([badData.errors])
+        }
+      })
     setTitle('')
     setReview('')
     setRating('')
+
+    // history.push(`/items/${itemId}/reviews`)
   }
 
   const handleCancel = async (e) => {
@@ -51,19 +57,28 @@ export default function CreateReviewModal({ setShowModal }) {
     history.push(`/items/${itemId}/reviews`)
   }
 
-  if (!user) history.push('/')
+  if (!user) history.push(`/items/${itemId}`)
+
+  console.log('current ITEM IMAGE URL!! in REVIEW', currentItem?.image)
+
+  // if (!showModal) return null
 
   return (
     <div className='create-review-container'>
       <div className='exit-button'>
         <button type='button' onClick={handleCancel} className='create-review-exit-button'>
-        X - exit coming soon
+          X
         </button>
       </div>
       <div className='create-review-image-container'>
-        <img scr={currentItem?.image} alt='A Small Product Preview' className='create-review-item-image' />
+        <img src={currentItem?.image} alt='A Small Product Preview' className='create-review-item-image' />
       </div>
-      <div>
+      {errors.length > 0 && errors[0](
+        <ul className="errors">
+          <li>{errors[0]}</li>
+        </ul>
+      )}
+      <div className='create-review-form-header'>
         Write a Review
       </div>
       <div className='create-review-follow-up'>
@@ -80,7 +95,7 @@ export default function CreateReviewModal({ setShowModal }) {
           </div>
           <div className='create-review-form-rating-container'>
             <div className='create-review-form-rating-header'>
-              Overall Rating
+              Overall Rating?
             </div>
             <input
               type='number'
@@ -99,7 +114,7 @@ export default function CreateReviewModal({ setShowModal }) {
             </div>
             <div className='create-review-form-recommend-button-container'>
               <div className='create-review=form-recommend-button'>
-                <button type='checkbox' className='create-review-form-recommend-button' />
+                <input type='checkbox' className='create-review-form-recommend-button' />
               </div>
               <div className='create-review-form-recommend-confirm-message'>
                 Yes, I would recommend this item.
@@ -117,8 +132,8 @@ export default function CreateReviewModal({ setShowModal }) {
               minLength={5}
               maxLength={25}
             />
-            <div className='create-review-form-email-message'>
-              This will not be shared publicly.
+            <div className='create-review-form-review-message'>
+              Tell Us:
             </div>
           </div>
           <input
@@ -139,7 +154,7 @@ export default function CreateReviewModal({ setShowModal }) {
               Add Video
             </button>
           </div>
-          <button type='submit' class='create-review-form-submit-button'>
+          <button type='submit' className='create-review-form-submit-button'>
             Share Review
           </button>
         </form>

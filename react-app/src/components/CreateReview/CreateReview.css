@@ -1,0 +1,131 @@
+#modal-content .create-review-image-container {
+  max-height: 175px;
+  max-width: 175px;
+  display: flex;
+  justify-content: left;
+}
+
+#modal-content .create-review-item-image {
+  max-height: 175px;
+  max-width: 175px;
+}
+
+#modal-content .exit-button {
+  justify-content: right;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+#modal-content .create-review-exit-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 2px 5px;
+  margin: 2px;
+}
+
+#modal-content .create-review-exit-button:hover {
+  background-color: #d7d7d7;
+  border-radius: 6px;
+  /* padding: 2px; */
+
+}
+
+#modal-content .create-review-form-header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.7rem;
+  font-weight: 475;
+  padding: 5px 0px;
+  margin: 10px 0px;
+}
+
+/*
+#modal-content .create-review-form-add-video-button {
+  background-color: black;
+}
+
+#modal-content .create-review-form-add-video-button {
+  background-color: black;
+}
+
+#modal-content .create-review-form-add-video-button {
+  background-color: black;
+}
+
+#modal-content .create-review-form-add-video-button {
+  background-color: black;
+} */
+
+
+#modal-content .create-review-form-rating-container {
+  /* display: flex; */
+  /* padding: 4px; */
+  margin: 4px 0px;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  width: 100%;
+}
+
+#modal-content .create-review-form-rating-header {
+  display: flex;
+  /* justify-content: left; */
+  margin: 5px 0px;
+  font-weight: 475;
+}
+
+#modal-content input {
+  display: flex;
+  justify-content: center;
+  width: 96%;
+  border-radius: 5px;
+  padding: 10px 5px;
+  margin: 5px 0px;
+  border: 2px solid rgba(128, 128, 128, 0.868);
+}
+
+#modal-content .create-review-form-recommend-button {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+
+#modal-content input[type='checkbox']:checked {
+  background-color: black;
+}
+
+
+#modal-content input:focus {
+  outline: none;
+  border: 2px solid rgba(128, 128, 128, 0.478);
+  box-shadow: 0px 2px 2px 1px rgba(128, 128, 128, 0.478);
+
+}
+
+/* to attempt hiding / deleting the arrows in int selection */
+/*
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+
+ .create-review-modal {
+  background-color: black;
+  color: white;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 550;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
+.create-review-modal:hover {
+  cursor: pointer;
+}

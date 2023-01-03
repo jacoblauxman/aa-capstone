@@ -16,10 +16,16 @@ def get_all_user_reviews():
   user_reviews = Review.query.filter(Review.user_id==current_user.id).all()
   return_reviews = []
   for r in user_reviews:
+    r_item = r.item
+    r_item = r_item.to_dict()
     r = r.to_dict()
+    r['item'] = r_item
     return_reviews.append(r)
 
-  return jsonify(return_reviews), 200
+  print(return_reviews,'-------- JUST CHECKING THE SHAPE -------')
+
+  # return jsonify(return_reviews), 200
+  return {"userReviews": return_reviews}, 200
 
 
 
@@ -43,9 +49,10 @@ def get_review_by_id(id):
 @review_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def update_review(id):
-    form = ReviewForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-  # if form.validate_on_submit():
+  form = ReviewForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  print(form.data, '---------- CHECKING ON FORM DATA BACKEND ------------')
+  if form.validate_on_submit():
 
   # form validations are currently erroring out send
 
@@ -57,6 +64,10 @@ def update_review(id):
     db.session.add(updated_review)
     db.session.commit()
     updated_review = updated_review.to_dict()
+
+    # updated_review = Review.query.get(id)
+
+    # print(updated_review, '----------- TEST IN BACKEND - REVIEW UPDATE -------------')
 
     return updated_review, 200
   # else:

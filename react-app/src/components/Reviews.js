@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { fetchReviews } from '../store/review';
 import "../css/Reviews.css"
 import { fetchOneItem } from '../store/item';
 
+import CreateReviewFormModal from './CreateReview';
 
 
 export default function Reviews() {
@@ -14,10 +15,12 @@ export default function Reviews() {
   const history = useHistory()
 
   const [isLoaded, setIsLoaded] = useState(false)
+  const [showCreate, setShowCreate] = useState(false)
+
 
   const user = useSelector(state => state.session.user)
-  const currentItem = useSelector(state => state.items.oneItem)
-  const reviews = useSelector(state => state.reviews.oneItem)
+  const currentItem = useSelector(state => state.items?.oneItem)
+  const reviews = useSelector(state => state.reviews?.oneItem)
   const reviewsArr = Object?.values(reviews)
 
 
@@ -50,7 +53,7 @@ export default function Reviews() {
     } else if (daysSince > 365) {
       return `over a year ago...`
     } else {
-      return `About ${daysSince} ago...`
+      return `About ${daysSince} days ago...`
     }
   }
 
@@ -65,21 +68,6 @@ export default function Reviews() {
     return avg.toFixed(2)
   }
 
-
-  // --- NOT NEEDED : to delete? ---
-  // const starConverter = (rating) => {
-  //   let count = 0;
-  //   let starArr = []
-  //   while (count < rating) {
-  //     starArr.push(<img src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671671732/aa-capstone-gamebaux/svgs/solid-star_zc14zs.svg' alt='Reviews Stars' className='reviews-review-single-stars' />)
-  //     count++;
-  //   }
-  //   return (
-  //     starArr?.map(star => (
-  //       star
-  //     ))
-  //   )
-  // }
 
 
   if (!itemId) return null;
@@ -97,7 +85,7 @@ export default function Reviews() {
                 <div className='reviews-page-reviews-avg-rating'>
                   <div className='reviews-page-reviews-big-avg-rating'>
                     <div className='reviews-page-reviews-big-num'>
-                      {reviewsArr && avgRating(reviewsArr)}
+                      {reviewsArr?.length > 0 ? avgRating(reviewsArr) : 'N/A'}
                     </div>
                     <div className='reviews-page-reviews-ratings-amount'>
                       {reviewsArr?.length} product ratings
@@ -112,9 +100,7 @@ export default function Reviews() {
                     Share your thought with the community.
                   </div>
                   <div className='reviews-page-reviews-add-button'>
-                    <button className='reviews-page-add-a-review'>
-                      Write a Review
-                    </button>
+                    <CreateReviewFormModal />
                   </div>
                 </div>
               </div>
@@ -155,11 +141,11 @@ export default function Reviews() {
               <div className='reviews-page-item-preview-container'>
                 <div className='reviews-page-all-item-container'>
 
-                <div className='reviews-page-item-image-container'>
-                  <img src={currentItem?.image} alt='Reviews Single Item Preview' className='reviews-page-item-image' />
-                </div>
-                <div className='reviews-page-item-info-container'>
-                </div>
+                  <div className='reviews-page-item-image-container'>
+                    <img src={currentItem?.image} alt='Reviews Single Item Preview' className='reviews-page-item-image' />
+                  </div>
+                  <div className='reviews-page-item-info-container'>
+                  </div>
                   <div className='reviews-page-item-title'>
                     {currentItem?.title}
                   </div>
@@ -167,11 +153,13 @@ export default function Reviews() {
                     {currentItem?.creator}
                   </div>
                 </div>
-              <div className='reviews-page-item-back-container'>
-                <button className='reviews-page-back-button'>
-                  Return to Product Details
-                </button>
-              </div>
+                <div className='reviews-page-item-back-container'>
+                  <NavLink to={`/items/${itemId}`}>
+                    <button className='reviews-page-back-button'>
+                      Return to Product Details
+                    </button>
+                  </NavLink>
+                </div>
               </div>
             </div>
           )}

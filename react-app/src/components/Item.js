@@ -15,15 +15,19 @@ export default function Item() {
 
   const user = useSelector(state => state.session.user)
   const currentItem = useSelector(state => state.items?.oneItem)
-  const itemReviews = useSelector(state => state.reviews.oneItem)
+  const itemReviews = useSelector(state => state.reviews?.oneItem)
   const reviewsArr = Object?.values(itemReviews)
 
-  useEffect(() => (
+  const test = useSelector(state => state.items?.oneItem?.reviews)
+  // console.log(Object?.values(test), 'TEST TEST EST')
+
+  useEffect(() => {
     dispatch(fetchOneItem(itemId))
-      .then(dispatch(fetchReviews(itemId)))
+    dispatch(fetchReviews(itemId))
+      // .then(dispatch(fetchReviews(itemId)))
       .then(() => setIsLoaded(true))
 
-  ), [dispatch, itemId])
+  }, [dispatch, itemId])
 
 
   // --- helper funcs --- //
@@ -42,8 +46,11 @@ export default function Item() {
     let timeElapsed = now - then
     let oneDay = (1000 * 3600 * 24)
     let daysSince = (timeElapsed / oneDay)
+    daysSince = Math.round(daysSince)
     if (daysSince < 1) {
       return `less than 1 day ago...`
+    } else if (daysSince === 1) {
+      return `Just 1 day ago...`
     } else if (daysSince > 14) {
       return `more than 2 week ago...`
     } else if (daysSince > 31) {
@@ -51,10 +58,11 @@ export default function Item() {
     } else if (daysSince > 365) {
       return `over a year ago...`
     } else {
-      return daysSince
+      return `About ${daysSince} days ago...`
     }
   }
 
+  if (!isLoaded) return "Loading..."
 
   return (
     <div className='single-item-container'>
@@ -65,7 +73,7 @@ export default function Item() {
         <img src={currentItem?.image} alt='Current Item Display Preview' className='single-item-image' />
       </div>
       <div className='single-item-reviews-sample'>
-        {reviewsArr?.length > 0 && reviewSample(reviewsArr).map(review => (
+        {test?.length > 0 && reviewSample(test).map(review => (
           < div key={review?.id} className='reviews-page-single-review-container'>
             <div className='reviews-page-single-review-title'>
               {review?.title}

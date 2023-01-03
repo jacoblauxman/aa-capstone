@@ -3,6 +3,7 @@ const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
+const LOAD_USER_REVIEWS = 'reviews/LOAD_USER_REVIEWS'
 
 // --- CREATORS --- //
 
@@ -25,6 +26,11 @@ const updateReview = review => ({
 const deleteReview = reviewId => ({
   type: DELETE_REVIEW,
   reviewId
+})
+
+const loadUserReviews = (reviews) => ({
+  type: LOAD_USER_REVIEWS,
+  reviews
 })
 
 // --- THUNKS --- //
@@ -61,6 +67,7 @@ export const createReview = (itemId, review) => async dispatch => {
 
 
 export const fetchUpdateReview = review => async dispatch => {
+  // console.log(review, 'REVIEW IN FETCH JUST A CHECK!')
   const response = await fetch(`/api/reviews/${review.id}`, {
     method: "PUT",
     headers: {
@@ -70,8 +77,9 @@ export const fetchUpdateReview = review => async dispatch => {
   })
 
   if (response.ok) {
-    const updateReview = await response.json()
-    dispatch(updateReview(updateReview))
+    // console.log('RES OK! ----', response)
+    const updatedReview = await response.json()
+    dispatch(updateReview(updatedReview))
 
     return updateReview
   }
@@ -79,7 +87,7 @@ export const fetchUpdateReview = review => async dispatch => {
 
 
 export const removeReview = reviewId => async dispatch => {
-  const response = await fetch(`/api/review/${reviewId}`, {
+  const response = await fetch(`/api/reviews/${reviewId}`, {
     method: "DELETE"
   })
 
@@ -90,10 +98,23 @@ export const removeReview = reviewId => async dispatch => {
   }
 }
 
+
+export const fetchUserReviews = () => async dispatch => {
+  const response = await fetch(`/api/reviews/user`)
+
+  if (response.ok) {
+    const userReviews = await response.json()
+    // console.log('userREVIEWS in FETCH!!!', userReviews)
+    dispatch(loadUserReviews(userReviews))
+
+    return userReviews
+  }
+}
+
 // --- INITIAL STATE --- //
 
 
-const initialState = { oneItem: {} }
+const initialState = { oneItem: {}, user: {} }
 
 
 // --- REDUCER --- //
@@ -102,7 +123,7 @@ const initialState = { oneItem: {} }
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_REVIEWS: {
-      const loadState = { ...state, oneItem: { ...state.oneItem } }
+      const loadState = { ...state, oneItem: {} }
       action.reviews?.itemReviews.forEach(review => {
         loadState.oneItem[review.id] = review;
       })
@@ -118,18 +139,33 @@ const reviewsReducer = (state = initialState, action) => {
     }
 
     case UPDATE_REVIEW: {
-      console.log(action, 'UPDATE REVIEW ACTION IN REDUCER!')
-      const updateState = { ...state, oneItem: { ...state.oneItem, ...action.review } }
+      // console.log(action, 'UPDATE REVIEW ACTION IN REDUCER!')
+      const updateState = { ...state, oneItem: { ...state.oneItem, ...action.review }, user: { ...state.user } }
+      updateState.user[action.review.id] = action.review
 
       return updateState
     }
 
     case DELETE_REVIEW: {
-      console.log(action, 'DELETE REVIEW ACTION IN REDUCER!')
-      const deleteState = { ...state, oneItem: { ...state.oneItem } }
+      // console.log(action, 'DELETE REVIEW ACTION IN REDUCER!')
+      const deleteState = { ...state, oneItem: { ...state.oneItem }, user: { ...state.user } }
       delete deleteState.oneItem[action.reviewId]
+      delete deleteState.user[action.reviewId]
 
       return deleteState
+    }
+
+    case LOAD_USER_REVIEWS: {
+      // console.log(action, 'OUR ACTION LOADING USER REVIEWS!!')
+      const loadUserState = { ...state, oneItem: { ...state.oneItem }, user: { ...state.user } }
+      action.reviews?.userReviews?.forEach(review => {
+        // console.log('EACH REVIEW SHAPE IN LOAD USER,', review.id)
+        loadUserState.user[review.id] = review;
+      })
+
+      console.log('LOADED', loadUserState.user)
+
+      return loadUserState
     }
 
     default: {

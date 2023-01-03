@@ -1,0 +1,14 @@
+.edit-review-modal {
+  background-color: black;
+  color: white;
+  width: 150px;
+  font-size: 1rem;
+  font-weight: 550;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin: 25px 0px;
+}
+
+.edit-review-modal:hover {
+  cursor: pointer;
+}

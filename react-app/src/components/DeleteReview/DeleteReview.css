@@ -1,0 +1,99 @@
+/* #modal-content {
+  min-width: 200px;
+  min-height: 150px;
+} */
+
+.delete-review-modal {
+  background-color: white;
+  color: black;
+  outline: none;
+  border-radius: 10px;
+  height: 30px;
+  width: 30px;
+  border: none;
+  position: absolute;
+  right: 0;
+  font-size: 1.3rem;
+  font-weight: 320;
+}
+
+.delete-review-modal:hover {
+  cursor: pointer;
+  background-color: #d7d7d7
+}
+
+#modal-content .delete-review-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-around;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+#modal-content {
+  justify-content: space-evenly;
+}
+
+.delete-review-header {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.delete-review-subheader {
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+  color: red;
+  font-weight: 320;
+}
+
+
+#modal-content .delete-review-confirm-container-button {
+  border: none;
+  /* background-color: #FE5A62; */
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  border-radius: .3rem;
+  /* padding-top: 1rem; */
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: white;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  /* padding: .5rem; */
+  padding: 12px 10px;
+}
+
+#modal-content .delete-review-confirm-container-button:hover {
+  cursor: pointer;
+  background-color: red;
+  color: black;
+  border: 3px solid black;
+}
+
+#modal-content .delete-review-cancel-container-button {
+  background-color: black;
+  color: white;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 550;
+  padding: 12px 10px;
+  border-radius: 5px;
+}
+
+#modal-content .delete-review-cancel-container-button:hover {
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  border: 3px solid black;
+}

@@ -30,7 +30,7 @@ export default function Main() {
       </div>
       <div>Temp Links</div>
       {itemsArr?.length > 0 && itemsArr.map(item => (
-        <li>
+        <li key={item.id}>
           <NavLink to={`/items/${item.id}`}>
             {item?.title}
           </NavLink>

@@ -57,11 +57,17 @@ def post_review_to_item(id):
       rating=form.data['rating']
     )
 
+    # print(current_user.to_dict(), 'NEW REVIEW IN BACKEND CHECKING FOR USER INFO ---------------')
+
     db.session.add(new_review)
     db.session.commit()
 
     return_review = new_review.to_dict()
 
+    # return return_review, 201
+
+    user = current_user.to_dict()
+    return_review['user'] = user
     return return_review, 201
 
   return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
