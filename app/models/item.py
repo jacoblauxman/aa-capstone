@@ -1,7 +1,7 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Numeric, DECIMAL
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA, add_prefix_for_prod, carts_items
 
 class Item(db.Model):
   __tablename__ = 'items'
@@ -19,6 +19,7 @@ class Item(db.Model):
   image_url = Column(String(255))
 
   reviews = relationship("Review", back_populates="item", cascade="all, delete")
+  carts = relationship("Cart", secondary=carts_items, back_populates="items")
 
   def to_dict(self):
     return {

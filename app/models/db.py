@@ -13,3 +13,20 @@ def add_prefix_for_prod(attr):
         return f"{SCHEMA}.{attr}"
     else:
         return attr
+
+
+# many-to-many relationship tables #
+
+carts_items = db.Table(
+    "carts_items",
+    db.Model.metadata,
+    db.Column(
+        "cart_id", db.Integer, db.ForeignKey(add_prefix_for_prod("carts.id")), primary_key=True
+    ),
+    db.Column(
+        "item_id", db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")), primary_key=True
+    )
+)
+
+if environment == "production":
+    carts_items.schema = SCHEMA

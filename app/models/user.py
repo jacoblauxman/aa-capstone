@@ -11,12 +11,13 @@ class User(db.Model, UserMixin):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    id = Column(Integer, primary_key=True)
+    username = Column(String(40), nullable=False, unique=True)
+    email = Column(String(255), nullable=False, unique=True)
+    hashed_password = Column(String(255), nullable=False)
 
-    reviews = db.relationship("Review", back_populates="user", cascade="all, delete")
+    reviews = relationship("Review", back_populates="user", cascade="all, delete")
+    cart = relationship("Cart", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
