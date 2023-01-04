@@ -9,4 +9,3 @@ class ReviewForm(FlaskForm):
   submit = SubmitField("add review")
 
 
-# do we need to add in a decimal field - or change the backend to float??

@@ -6,7 +6,6 @@ from datetime import datetime
 
 @declarative_mixin
 class TimestampMixin:
-  # created_at = Column(DateTime, default=datetime.date(datetime.now()))
   created_at = Column(DateTime, default=datetime.now())
 
 class Review(db.Model, TimestampMixin):

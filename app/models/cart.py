@@ -16,17 +16,7 @@ class Cart(db.Model):
   user_id = Column(Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 
   user = relationship("User", back_populates="cart")
-
-  # items = relationship("Item", secondary="carts_items", backref="carts")
-
-  # items = relationship("Carts_Items", back_populates="cart")
-
-  # items = association_proxy(
-  #   "items_cart_association", "item", creator=lambda i: CartItem(item=i)
-  # )
-
   items_association = relationship("CartItem", back_populates="cart")
-  # items = association_proxy("items_association", "item")
   items = association_proxy("items_association", "item", creator=lambda i: CartItem(item=i))
 
   def to_dict(self):

@@ -21,17 +21,7 @@ class Item(db.Model):
   image_url = Column(String(255))
 
   reviews = relationship("Review", back_populates="item", cascade="all, delete")
-
-  # carts = relationship("Cart", secondary="carts_items")
-  # carts = relationship("Cart", secondary=carts_items, back_populates="items")
-  # carts = relationship("Carts_Items", back_populates="item")
-
-  # carts = association_proxy(
-  #   "carts_item_association", "cart", creator=lambda c: CartItem(cart=c)
-  # )
-
   carts_association = relationship("CartItem", back_populates="item")
-  # carts = association_proxy("carts_association", "cart")
   carts = association_proxy("carts_association", "cart", creator=lambda c: CartItem(cart=c))
 
   def to_dict(self):

@@ -17,12 +17,8 @@ class CartItem(db.Model):
   item_id = Column(Integer, ForeignKey(add_prefix_for_prod("items.id")))
   quantity = Column(Integer, default=1)
 
-  # cart = relationship("Cart", back_populates="items_cart_association")
-  # item = relationship("Item", back_populates="carts_item_association")
-
   cart = relationship("Cart", back_populates="items_association")
   item = relationship("Item", back_populates="carts_association")
-  # cart = relationship("Cart", back_populates="items", passive_deletes="all")
 
   def to_dict(self):
     return {
