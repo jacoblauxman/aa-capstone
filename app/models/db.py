@@ -17,16 +17,22 @@ def add_prefix_for_prod(attr):
 
 # many-to-many relationship tables #
 
-carts_items = db.Table(
-    "carts_items",
-    db.Model.metadata,
-    db.Column(
-        "cart_id", db.Integer, db.ForeignKey(add_prefix_for_prod("carts.id")), primary_key=True
-    ),
-    db.Column(
-        "item_id", db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")), primary_key=True
-    )
-)
+# carts_items = db.Table(
+#     "carts_items",
+#     db.Model.metadata,
+#     # db.Column(
+#     #     "id", db.Integer, primary_key=True
+#     # ),
+#     db.Column(
+#         "cart_id", db.Integer, db.ForeignKey(add_prefix_for_prod("carts.id")), primary_key=True
+#     ),
+#     db.Column(
+#         "item_id", db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")), primary_key=True
+#     ),
+#     db.Column(
+#         "quantity", db.Integer, default=1
+#     )
+# )
 
-if environment == "production":
-    carts_items.schema = SCHEMA
+# if environment == "production":
+#     carts_items.schema = SCHEMA

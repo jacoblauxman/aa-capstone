@@ -1,8 +1,8 @@
-"""creating_all_tables_with_cart_assoc_added
+"""creating_all_tables_with_cart_assoc_added_plus_seeding
 
-Revision ID: eb9a5f2f27a0
+Revision ID: 847cddf11b4a
 Revises: 
-Create Date: 2023-01-03 11:33:05.498734
+Create Date: 2023-01-03 18:30:26.224576
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'eb9a5f2f27a0'
+revision = '847cddf11b4a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -59,11 +59,13 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('carts_items',
-    sa.Column('cart_id', sa.Integer(), nullable=False),
-    sa.Column('item_id', sa.Integer(), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('cart_id', sa.Integer(), nullable=True),
+    sa.Column('item_id', sa.Integer(), nullable=True),
+    sa.Column('quantity', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['cart_id'], ['carts.id'], ),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
-    sa.PrimaryKeyConstraint('cart_id', 'item_id')
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 

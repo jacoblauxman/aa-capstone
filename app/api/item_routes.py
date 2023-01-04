@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, session, request, jsonify
 from flask_login import login_required, current_user
-from app.models import db, Item, Review
+from app.models import db, Item, Review, Cart, CartItem
 from app.forms import ReviewForm
 import json
 
@@ -57,14 +57,12 @@ def post_review_to_item(id):
       rating=form.data['rating']
     )
 
-    # print(current_user.to_dict(), 'NEW REVIEW IN BACKEND CHECKING FOR USER INFO ---------------')
 
     db.session.add(new_review)
     db.session.commit()
 
     return_review = new_review.to_dict()
 
-    # return return_review, 201
 
     user = current_user.to_dict()
     return_review['user'] = user
@@ -73,7 +71,7 @@ def post_review_to_item(id):
   return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
 
 
-# GET all reviews by spot id
+# GET all reviews by item id
 @item_routes.route('/<int:id>/reviews')
 @login_required
 def get_item_reviews(id):
@@ -89,3 +87,53 @@ def get_item_reviews(id):
     item_reviews_users.append({**i, 'user': user})
 
   return {'itemReviews': item_reviews_users, 'item': item}, 200
+
+
+
+# POST item to cart by item id
+@item_routes.route('/<int:id>/cart')
+@login_required
+def add_item_to_cart(id):
+
+  item = Item.query.get(id)
+  # print(item.to_dict(), '!! ----- FOUND ITEM -------- !!!! ------')
+  cart = Cart.query.filter(Cart.user_id==current_user.id).first()
+  cart_items = cart.items_association
+  for i in cart_items:
+    pass
+    # print('\n', i.to_dict(),  'HERE IS ITEM!!!!! \n')
+  for i in cart.items_association:
+    print('\n TESTING!! ----', "\n", i.item_id, item.id, "\n")
+
+    if i.item_id==item.id and i.quantity <= 10:
+      i.quantity = i.quantity+1
+      db.session.commit()
+      return {'items': [item.to_dict() for item in cart_items]}, 200
+      # print(i.to_dict(), '--- ATTEMPT TO UPDATE ITEM QUANTITY FOR CART ITEM!! ----')
+
+
+    else:
+      return {"errors": ["VALIDATION: Item quantity in cart cannot exceed an amount greater than 10"]}
+  new_cart_item = CartItem(cart=cart, item=item)
+
+  db.session.commit()
+
+  return {"items": [item.to_dict() for item in cart_items]}
+
+    # db.session.commit()
+
+
+  # cart_items = [i for i in cart.items_association if i.id==item.id]
+
+  # item_id = item.to_dict()['id']
+  # print(item_id, '\n TARGET ID!')
+
+  # if not any(item["id"]==item_id for item in cart_items):
+  #   new_cart_item = CartItem(cart=cart, item=item)
+
+  #   db.session.commit()
+
+  # else:
+  #   db.session.commit()
+
+  return {'test': [item.to_dict() for item in cart_items]}, 200

@@ -47,7 +47,7 @@ export default function Reviews() {
     } else if (daysSince === 1) {
       return `Just 1 day ago...`
     } else if (daysSince > 14) {
-      return `more than 2 week ago...`
+      return `more than 2 weeks ago...`
     } else if (daysSince > 31) {
       return `over a month ago...`
     } else if (daysSince > 365) {
