@@ -1,37 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-// import { removeReview } from '../store/review';
-// import DeleteReviewForm from './DeleteReview/DeleteReviewForm';
+import { useHistory, useParams } from 'react-router-dom';
 import DeleteReviewFormModal from './DeleteReview';
 import { fetchUserReviews } from '../store/review';
 import EditReviewFormModal from './EditReview';
 
 function User() {
+
   const [user, setUser] = useState({});
   const { userId } = useParams();
 
-
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [userReviews, setUserReviews] = useState([])
   const reviews = useSelector(state => state.reviews?.user)
   const reviewsArr = Object?.values(reviews)
-
   const myfriendjson = JSON.stringify(reviewsArr)
-  // console.log(reviewsArr, 'HERE IS USER REVIEWS IN THE MAIN USER PAGE!!')
-
 
   useEffect(() => {
-    if (!user) return
+    if (!user) history.push('/')
     dispatch(fetchUserReviews())
       .then((res) => {
-        console.log(res, 'RES RES RES RES RES')
         setUserReviews(res.userReviews)
       })
   }, [dispatch, userId, myfriendjson])
-
-
 
   useEffect(() => {
     if (!userId) {
@@ -44,10 +37,7 @@ function User() {
     })()
   }, [userId, dispatch]);
 
-
-
-
-  // --- helper funcs --- //
+  // -- Format Review dates -- //
   const timeFormatter = (date) => {
     let now = new Date()
     let then = new Date(date)
@@ -70,13 +60,9 @@ function User() {
     }
   }
 
-
-
   // --- check for user / page returns --- //
-
-
   if (!user) {
-    return null;
+    return null
   }
 
   return (
@@ -118,7 +104,6 @@ function User() {
             </div>
             <div className='reviews-page-single-review-edit-container'>
               <EditReviewFormModal reviewEdit={review}
-
               />
             </div>
           </div>

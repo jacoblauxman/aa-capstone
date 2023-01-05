@@ -17,20 +17,20 @@ export default function CartItem({ cartItem }) {
   const user = useSelector(state => state.session?.user)
   const cartItems = useSelector(state => state.cart?.allItems)
 
-
-
   if (!cartItem) return null
 
   if (!user) history.push("/")
 
+
+  // -- Update state of quantity of cart item -- //
   const handleChange = async (e) => {
     e.preventDefault()
     setQuantity(e.target.value)
   }
 
+  // -- Submit cart item update -- //
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(cartItem, 'HERE IS OUR CART ITEM IN SUBMIT, BEFORE DISPATCH!!')
 
     const updatedCartItem = {
       id: cartItem.id,
@@ -40,6 +40,7 @@ export default function CartItem({ cartItem }) {
     dispatch(updateCartItem(updatedCartItem))
   }
 
+  // -- Delete cart item -- //
   const handleDelete = async (e) => {
     e.preventDefault()
 

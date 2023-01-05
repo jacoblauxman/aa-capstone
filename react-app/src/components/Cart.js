@@ -16,8 +16,6 @@ export default function Cart() {
   const cartItemsArr = Object?.values(cartItems)
   const myfriendjson = JSON?.stringify(cartItemsArr)
 
-  console.log()
-
   useEffect(() => {
     dispatch(fetchCart())
   }, [dispatch, myfriendjson])
@@ -26,7 +24,7 @@ export default function Cart() {
     history.push(`/login`)
   }
 
-  // Cart Purchase //
+  // -- Cart Purchase -- //
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -38,17 +36,14 @@ export default function Cart() {
       .then(() => history.push('/'))
   }
 
-
+  // -- Cart Total -- //
   const cartTotal = (cartItems) => {
-    // console.log(cartItems, 'HERE IN CART TOTAL!!!')
     const prices = cartItems.map(item => [item.item.price, item.quantity])
     console.log(prices)
     const total = prices.reduce((a, c) => a += (c[0] *= c[1]), 0)
-    console.log(total, "TOTAL!!!!!!")
 
     return total
   }
-
 
   return (
     <div className='user-cart-page-container'>
@@ -91,5 +86,4 @@ export default function Cart() {
       )}
     </div>
   )
-
 }

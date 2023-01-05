@@ -4,7 +4,6 @@ import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { fetchReviews } from '../store/review';
 import "../css/Reviews.css"
 import { fetchOneItem } from '../store/item';
-
 import CreateReviewFormModal from './CreateReview';
 
 
@@ -17,12 +16,10 @@ export default function Reviews() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [showCreate, setShowCreate] = useState(false)
 
-
   const user = useSelector(state => state.session?.user)
   const currentItem = useSelector(state => state.items?.oneItem)
   const reviews = useSelector(state => state.reviews?.oneItem)
   const reviewsArr = Object?.values(reviews)
-
 
   useEffect(() => (
     dispatch(fetchReviews(itemId))
@@ -31,10 +28,7 @@ export default function Reviews() {
 
   ), [dispatch, itemId])
 
-
-
-  // --- helper funcs --- //
-
+  // -- Format Review dates -- //
   const timeFormatter = (date) => {
     let now = new Date()
     let then = new Date(date)
@@ -57,6 +51,7 @@ export default function Reviews() {
     }
   }
 
+  // -- Create Average Rating from all reviews -- //
   const avgRating = (arr) => {
 
     const avg = arr?.reduce((a, c) => {
@@ -65,8 +60,6 @@ export default function Reviews() {
 
     return avg.toFixed(2)
   }
-
-
 
   if (!itemId) return null;
 

@@ -5,7 +5,6 @@ import { fetchItems } from "../store/item";
 
 // import "../css/Main.css"
 
-
 export default function Main() {
 
   const dispatch = useDispatch()

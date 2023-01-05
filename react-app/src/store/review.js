@@ -159,8 +159,6 @@ const reviewsReducer = (state = initialState, action) => {
         loadUserState.user[review.id] = review;
       })
 
-      console.log('LOADED', loadUserState.user)
-
       return loadUserState
     }
 

@@ -6,13 +6,11 @@ import { fetchUserReviews } from '../../store/review';
 
 export default function EditReviewForm({ setShowModal, reviewEdit }) {
 
-  const { itemId } = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
 
 
   const user = useSelector(state => state.session?.user)
-  // const currentItem = useSelector(state => state.items.oneItem)
   const reviews = useSelector(state => state.reviews?.user)
 
   const [title, setTitle] = useState(reviewEdit?.title)
@@ -38,7 +36,6 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
         setShowModal(false)
         setErrors([])
       })
-      // .then(() => dispatch(fetchUserReviews())
       .catch(async res => {
         console.log(res, 'BAD RES????')
         const badData = await res.json()
@@ -60,7 +57,6 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
     setRating(review?.rating)
     setShowModal(false)
 
-    // history.push(`/items/${itemId}/reviews`)
   }
 
   if (!user) history.push(`/`)
@@ -78,7 +74,6 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
         </button>
       </div>
       <div className='create-review-image-container'>
-        {/* {reviewEdit?.item?.title} */}
         <img src={reviewEdit?.item?.image} alt='A Small Product Preview' className='create-review-item-image' />
       </div>
       {errors.length > 0 && errors[0](

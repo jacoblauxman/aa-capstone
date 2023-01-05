@@ -18,11 +18,6 @@ export default function Item() {
   const user = useSelector(state => state.session?.user)
   const userCart = useSelector(state => state.cart?.allItems)
   const cartItem = Object?.values(userCart).filter(item => item.itemId === +itemId)[0]
-  console.log(cartItem, 'ARRAY OF CART ITEMS')
-  // const existingQuant = cartArr.filter(x => x.itemId === itemId)
-
-  // console.log(existingQuant, 'HERE IS OUR ITEM')
-
 
   const currentItem = useSelector(state => state.items?.oneItem)
   const itemReviews = useSelector(state => state.reviews?.oneItem)
@@ -33,15 +28,12 @@ export default function Item() {
   useEffect(() => {
     dispatch(fetchOneItem(itemId))
     dispatch(fetchReviews(itemId))
-      // dispatch(fetchCart())
-      // .then(dispatch(fetchReviews(itemId)))
       .then(() => setIsLoaded(true))
 
   }, [dispatch, itemId])
 
 
-  // --- helper funcs --- //
-
+  // -- First Review for display -- //
   const reviewSample = reviews => {
     const firstFew = [...reviews]
     const selected = firstFew.slice(0, 1)
@@ -49,7 +41,7 @@ export default function Item() {
     return selected
   }
 
-
+  // -- Format Review dates -- //
   const timeFormatter = (date) => {
     let now = new Date()
     let then = new Date(date)
@@ -73,7 +65,7 @@ export default function Item() {
     }
   }
 
-
+  // -- Add Item to user's cart -- //
   const addToCart = async (e) => {
     e.preventDefault()
 
@@ -89,11 +81,7 @@ export default function Item() {
     }
   }
 
-
-
-
   // --- check for load --- //
-
   if (!isLoaded) return "Loading..."
 
   return (

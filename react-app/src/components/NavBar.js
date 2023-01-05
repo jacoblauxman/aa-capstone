@@ -72,21 +72,10 @@ const NavBar = () => {
                   Sign In
                 </NavLink>
               </div>
-              {/* <div>
-                <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                  Sign Up
-                </NavLink>
-              </div> */}
             </>
           )}
         </div>
-        {/* <div>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </div> */}
         <div>
-          {/* TO DO -- move logout to user profile page */}
           <LogoutButton />
         </div>
         <div className='navbar-shopping-cart-container'>

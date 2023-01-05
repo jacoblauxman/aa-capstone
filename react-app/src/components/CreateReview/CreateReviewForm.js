@@ -13,7 +13,6 @@ export default function CreateReviewForm({ setShowModal }) {
   const user = useSelector(state => state.session.user)
   const currentItem = useSelector(state => state.items?.oneItem)
   const reviews = useSelector(state => state.reviews?.oneItem)
-  console.log(currentItem.image, 'HERE IS A CURRENT ITEM MAYBE????')
 
   const [title, setTitle] = useState('')
   const [review, setReview] = useState('')
@@ -59,7 +58,6 @@ export default function CreateReviewForm({ setShowModal }) {
 
   if (!user) history.push(`/login`)
 
-  console.log('current ITEM IMAGE URL!! in REVIEW', currentItem?.image)
 
   // if (!showModal) return null
 
