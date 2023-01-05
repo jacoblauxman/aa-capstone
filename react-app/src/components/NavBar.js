@@ -19,14 +19,14 @@ const NavBar = () => {
   return (
     <div className='navbar-nav-container'>
       <nav className='navbar-nav'>
-        <div className='navbar-menu-button-container'>
+        {/* <div className='navbar-menu-button-container'>
           <div className='navbar-menu-hamburger-icon-container'>
             <img className='navbar-menu-hamburger-icon' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653252/aa-capstone-gamebaux/svgs/menu-icon_e4nbox.svg' alt='Menu Icon' />
           </div>
           <div className='navbar-menu-menu-text'>
             Menu
           </div>
-        </div>
+        </div> */}
         <div className='navbar-site-title-container'>
           <NavLink to='/' exact={true} activeClassName='active' className='navbar-navlink-title-text'>
             GameBaux
