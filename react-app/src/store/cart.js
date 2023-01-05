@@ -61,7 +61,6 @@ export const createCartItem = (itemId) => async dispatch => {
     return {
       "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
     }
-
 }
 
 

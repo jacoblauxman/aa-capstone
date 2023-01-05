@@ -78,7 +78,6 @@ export const fetchUpdateReview = review => async dispatch => {
   })
 
   if (response.ok) {
-    // console.log('RES OK! ----', response)
     const updatedReview = await response.json()
     dispatch(updateReview(updatedReview))
 
@@ -105,7 +104,6 @@ export const fetchUserReviews = () => async dispatch => {
 
   if (response.ok) {
     const userReviews = await response.json()
-    // console.log('userREVIEWS in FETCH!!!', userReviews)
     dispatch(loadUserReviews(userReviews))
 
     return userReviews

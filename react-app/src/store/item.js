@@ -30,6 +30,7 @@ export const fetchItems = () => async dispatch => {
   }
 }
 
+
 export const fetchOneItem = (itemId) => async dispatch => {
   const response = await fetch(`/api/items/${itemId}`)
 

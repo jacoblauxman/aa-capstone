@@ -21,7 +21,6 @@ export default function CartItem({ cartItem }) {
 
   if (!user) history.push("/")
 
-
   // -- Update state of quantity of cart item -- //
   const handleChange = async (e) => {
     e.preventDefault()
