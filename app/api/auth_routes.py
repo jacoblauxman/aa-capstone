@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Cart
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -69,7 +69,14 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
+
+
         login_user(user)
+        # print("\n", user.to_dict(), "--- NEW USER CART", "\n")
+        new_user_cart = Cart(user_id=user.id)
+        # print("\n", new_user_cart, "--- NEW USER CART", "\n")
+        db.session.add(new_user_cart)
+        db.session.commit()
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
