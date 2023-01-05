@@ -1,9 +1,11 @@
 // --- ACTIONS --- //
+
 const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 const LOAD_USER_REVIEWS = 'reviews/LOAD_USER_REVIEWS'
+
 
 // --- CREATORS --- //
 
@@ -33,8 +35,8 @@ const loadUserReviews = (reviews) => ({
   reviews
 })
 
-// --- THUNKS --- //
 
+// --- THUNKS --- //
 
 export const fetchReviews = itemId => async dispatch => {
   const response = await fetch(`/api/items/${itemId}/reviews`)
@@ -67,7 +69,6 @@ export const createReview = (itemId, review) => async dispatch => {
 
 
 export const fetchUpdateReview = review => async dispatch => {
-  // console.log(review, 'REVIEW IN FETCH JUST A CHECK!')
   const response = await fetch(`/api/reviews/${review.id}`, {
     method: "PUT",
     headers: {
@@ -111,14 +112,13 @@ export const fetchUserReviews = () => async dispatch => {
   }
 }
 
-// --- INITIAL STATE --- //
 
+// --- INITIAL STATE --- //
 
 const initialState = { oneItem: {}, user: {} }
 
 
 // --- REDUCER --- //
-
 
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -139,7 +139,6 @@ const reviewsReducer = (state = initialState, action) => {
     }
 
     case UPDATE_REVIEW: {
-      // console.log(action, 'UPDATE REVIEW ACTION IN REDUCER!')
       const updateState = { ...state, oneItem: { ...state.oneItem, ...action.review }, user: { ...state.user } }
       updateState.user[action.review.id] = action.review
 
@@ -147,7 +146,6 @@ const reviewsReducer = (state = initialState, action) => {
     }
 
     case DELETE_REVIEW: {
-      // console.log(action, 'DELETE REVIEW ACTION IN REDUCER!')
       const deleteState = { ...state, oneItem: { ...state.oneItem }, user: { ...state.user } }
       delete deleteState.oneItem[action.reviewId]
       delete deleteState.user[action.reviewId]
@@ -156,10 +154,8 @@ const reviewsReducer = (state = initialState, action) => {
     }
 
     case LOAD_USER_REVIEWS: {
-      // console.log(action, 'OUR ACTION LOADING USER REVIEWS!!')
       const loadUserState = { ...state, oneItem: { ...state.oneItem }, user: { ...state.user } }
       action.reviews?.userReviews?.forEach(review => {
-        // console.log('EACH REVIEW SHAPE IN LOAD USER,', review.id)
         loadUserState.user[review.id] = review;
       })
 

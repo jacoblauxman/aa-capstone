@@ -19,12 +19,12 @@ def get_user_cart():
   user_cart['items'] = []
   cart_items = cart.items_association
 
+
   for i in cart_items:
     item = i.to_dict()
     user_cart['items'].append(item)
 
   return user_cart, 200
-
 
 
 # PUT users cart item
@@ -58,13 +58,17 @@ def delete_cart_item(id):
   cart = cart.to_dict()
   cart_item = CartItem.query.get(id)
 
+  if not cart_item:
+    return {"errors": ["404 NOT FOUND: Resource Not Found"]}, 401
+
+
   if cart_item.cart_id==cart['id']:
     db.session.delete(cart_item)
     db.session.commit()
     return {"message": "Item Successfully Removed from Cart"}, 200
 
-  else:
-    return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
+  # elif cart_item is None:
+  #   return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
 
 
 
@@ -77,4 +81,4 @@ def purchase_cart_items():
   cart.items_association = []
   db.session.commit()
 
-  return {"message": "Purchase successfully completed!"}, 200
+  return {"message": "Transaction successfully completed! Thank You for Your Purchase!"}, 200

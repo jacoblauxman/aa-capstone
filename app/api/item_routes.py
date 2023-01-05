@@ -116,7 +116,7 @@ def add_item_to_cart(id):
       db.session.commit()
       return {'items': [item.to_dict() for item in cart_items]}, 200
 
-    else:
+    elif i.item_id==item.id and i.quantity==10:
       return {"errors": ["VALIDATION: Item quantity in cart cannot exceed an amount greater than 10"]}
 
   new_cart_item = CartItem(cart=cart, item=item)

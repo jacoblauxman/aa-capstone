@@ -1,7 +1,7 @@
 // --- ACTIONS --- //
+
 const LOAD_ITEMS = 'reviews/LOAD_REVIEWS'
 const LOAD_ITEM = 'items/LOAD_ITEM'
-
 
 
 // --- CREATORS --- //
@@ -15,7 +15,6 @@ const loadItem = (item) => ({
   type: LOAD_ITEM,
   item
 })
-
 
 
 // --- THUNKS --- //
@@ -43,11 +42,9 @@ export const fetchOneItem = (itemId) => async dispatch => {
 }
 
 
-
 // --- INITIAL STATE --- //
 
 const initialState = { items: {}, oneItem: {} }
-
 
 
 // --- REDUCER --- //
