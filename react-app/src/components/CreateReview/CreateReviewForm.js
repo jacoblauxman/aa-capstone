@@ -57,7 +57,7 @@ export default function CreateReviewForm({ setShowModal }) {
     history.push(`/items/${itemId}/reviews`)
   }
 
-  if (!user) history.push(`/items/${itemId}`)
+  if (!user) history.push(`/login`)
 
   console.log('current ITEM IMAGE URL!! in REVIEW', currentItem?.image)
 

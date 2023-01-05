@@ -96,7 +96,6 @@ function User() {
         </div>
         {userReviews.length > 0 && userReviews?.map(review => (
           <div key={review?.id} className='reviews-page-single-review-container'>
-            {/* {console.log('here is a single REVIEW IN OUR MAP!!!', review)} */}
             <div className='reviews-page-single-review-delete-container'>
               <DeleteReviewFormModal review={review} />
             </div>
@@ -118,7 +117,6 @@ function User() {
               {review?.review}
             </div>
             <div className='reviews-page-single-review-edit-container'>
-              {/* {console.log('review in EDIT REVIEW BEFORE PASS OFF', review)} */}
               <EditReviewFormModal reviewEdit={review}
 
               />

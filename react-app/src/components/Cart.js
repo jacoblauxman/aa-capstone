@@ -24,7 +24,6 @@ export default function Cart() {
 
   if (!user) {
     history.push(`/login`)
-    // return null
   }
 
   // Cart Purchase //
@@ -37,6 +36,17 @@ export default function Cart() {
         if (data && data.errors.length > 0) setErrors(data.errors)
       })
       .then(() => history.push('/'))
+  }
+
+
+  const cartTotal = (cartItems) => {
+    // console.log(cartItems, 'HERE IN CART TOTAL!!!')
+    const prices = cartItems.map(item => [item.item.price, item.quantity])
+    console.log(prices)
+    const total = prices.reduce((a, c) => a += (c[0] *= c[1]), 0)
+    console.log(total, "TOTAL!!!!!!")
+
+    return total
   }
 
 
@@ -64,6 +74,12 @@ export default function Cart() {
       </div>
       {cartItemsArr.length > 0 && (
         <div className='user-cart-page-purchase-container'>
+          <div className='user-cart-page-total-container'>
+            <div className='user-cart-page-total'>
+              <span className='user-cart-total-estimate'>Estimated Total</span>
+              <span className='user-cart-total-value'>${cartTotal(cartItemsArr)}</span>
+            </div>
+          </div>
           <div className='user-cart-purchase-header'>
             Would you like to complete your purchase?
           </div>
