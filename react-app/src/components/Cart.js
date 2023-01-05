@@ -42,7 +42,7 @@ export default function Cart() {
     console.log(prices)
     const total = prices.reduce((a, c) => a += (c[0] *= c[1]), 0)
 
-    return total
+    return total.toFixed(2)
   }
 
   return (
