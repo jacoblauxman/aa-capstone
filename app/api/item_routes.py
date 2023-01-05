@@ -11,7 +11,7 @@ item_routes = Blueprint('items', __name__)
 # GET all items
 
 @item_routes.route("/")
-@login_required
+# @login_required
 def get_all_items():
 
   all_items = Item.query.all()
@@ -24,7 +24,7 @@ def get_all_items():
 # GET item by id
 
 @item_routes.route('/<int:id>')
-@login_required
+# @login_required
 def get_one_item(id):
   found_item = Item.query.get(id)
   reviews = found_item.reviews
@@ -81,7 +81,7 @@ def post_review_to_item(id):
 # GET all reviews by item id
 
 @item_routes.route('/<int:id>/reviews')
-@login_required
+# @login_required
 def get_item_reviews(id):
 
   item = Item.query.get(id)
@@ -117,7 +117,7 @@ def add_item_to_cart(id):
       return {'items': [item.to_dict() for item in cart_items]}, 200
 
     elif i.item_id==item.id and i.quantity==10:
-      return {"errors": ["VALIDATION: Item quantity in cart cannot exceed an amount greater than 10"]}
+      return {"errors": ["VALIDATION: Item quantity in cart cannot exceed an amount greater than 10"]}, 400
 
   new_cart_item = CartItem(cart=cart, item=item)
   db.session.commit()

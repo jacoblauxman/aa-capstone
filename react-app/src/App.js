@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -12,10 +12,14 @@ import Reviews from './components/Reviews';
 import Main from './components/Main';
 import Item from './components/Item';
 import CreateReviewModal from './components/CreateReview/CreateReviewForm';
+import Cart from './components/Cart';
+import { fetchCart } from './store/cart';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const user = useSelector(state => state.session?.user)
 
   useEffect(() => {
     (async () => {
@@ -28,6 +32,12 @@ function App() {
     return null;
   }
 
+  if (user) {
+    (async () => {
+      await dispatch(fetchCart());
+    })()
+  }
+
   return (
     <BrowserRouter>
       {/* <NavBar /> */}
@@ -38,9 +48,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        <ProtectedRoute path='/cart' exact={true} >
           <NavBar />
-          <UsersList />
+          <Cart />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <NavBar />

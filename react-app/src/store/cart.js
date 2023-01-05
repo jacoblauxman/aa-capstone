@@ -45,22 +45,38 @@ export const fetchCart = () => async dispatch => {
   }
 }
 
+
 export const createCartItem = (itemId) => async dispatch => {
-  const response = await fetch(`/api/items/${itemId}/cart`)
+  const response = await fetch(`/api/items/${itemId}/cart`).catch(err => {
+    return {
+      "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
+    }
+  })
 
   if (response.ok) {
     const newCartItem = await response.json()
     dispatch(updateCart(newCartItem))
   }
+
+    return {
+      "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
+    }
+    // { "errors": "VALIDATION: Item Quantity in cart must not exceed 10" }
+  
 }
 
-export const updateCartItem = (cartItemId, cartItem) => async dispatch => {
-  const response = await fetch(`/api/cart/user/${cartItemId}`, {
+
+export const updateCartItem = (cartItem) => async dispatch => {
+  const response = await fetch(`/api/cart/user/${cartItem.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(cartItem)
+  }).catch(err => {
+    return {
+      "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
+    }
   })
 
   if (response.ok) {
@@ -68,6 +84,7 @@ export const updateCartItem = (cartItemId, cartItem) => async dispatch => {
     dispatch(updateCart(updatedCart))
   }
 }
+
 
 export const deleteCartItem = (cartItemId) => async dispatch => {
   const response = await fetch(`/api/cart/user/${cartItemId}`, {
@@ -81,6 +98,7 @@ export const deleteCartItem = (cartItemId) => async dispatch => {
   }
 }
 
+
 export const purchaseCartItems = () => async dispatch => {
   const response = await fetch(`/api/cart/user`, {
     method: "DELETE"
@@ -89,10 +107,8 @@ export const purchaseCartItems = () => async dispatch => {
   if (response.ok) {
     dispatch(purchaseCart())
 
-    return {"message": "Thank You for Your Purchase!"}
+    return { "message": "Thank You for Your Purchase!" }
   }
-
-
 }
 
 
@@ -108,7 +124,7 @@ const cartReducer = (state = initialState, action) => {
 
     case LOAD_CART: {
       const loadState = { ...state, allItems: { ...state.allItems } }
-      action.items.forEach(item => {
+      action.cartItems.items.forEach(item => {
         loadState.allItems[item.id] = item;
       })
 
@@ -117,7 +133,7 @@ const cartReducer = (state = initialState, action) => {
 
     case UPDATE_CART: {
       const updateState = { ...state, allItems: { ...state.allItems } }
-      action.items.forEach(item => {
+      action.newCartItem.items.forEach(item => {
         updateState.allItems[item.id] = item;
       })
 

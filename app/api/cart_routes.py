@@ -45,7 +45,7 @@ def update_user_cart_item(id):
 
     return {"items": [item.to_dict() for item in cart_items]}
 
-  return {"errors": ["VALIDATION: Item quantity in cart must be greater than 1 but no more than 10"]}
+  return {"errors": ["VALIDATION: Item quantity in cart must be greater than 1 but no more than 10"]}, 400
 
 
 

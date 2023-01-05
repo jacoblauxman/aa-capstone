@@ -29,7 +29,7 @@ function User() {
         console.log(res, 'RES RES RES RES RES')
         setUserReviews(res.userReviews)
       })
-  }, [dispatch, userId, reviewsArr.length, setUserReviews, myfriendjson])
+  }, [dispatch, userId, myfriendjson])
 
 
 

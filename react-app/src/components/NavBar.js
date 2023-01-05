@@ -66,9 +66,9 @@ const NavBar = () => {
             <>
               <div className='navbar-login-container'>
                 <NavLink to='/login' exact={true} activeClassName='active' className='navbar-login-link'>
-                <div className='navbar-login-icon-container'>
-                  <img className='navbar-login-icon' alt='Login Icon' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671736422/aa-capstone-gamebaux/svgs/icons8-user-48_vbhniw.png' />
-                </div>
+                  <div className='navbar-login-icon-container'>
+                    <img className='navbar-login-icon' alt='Login Icon' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671736422/aa-capstone-gamebaux/svgs/icons8-user-48_vbhniw.png' />
+                  </div>
                   Sign In
                 </NavLink>
               </div>
@@ -88,6 +88,16 @@ const NavBar = () => {
         <div>
           {/* TO DO -- move logout to user profile page */}
           <LogoutButton />
+        </div>
+        <div className='navbar-shopping-cart-container'>
+          <NavLink to='/cart' exact={true} className='navbar-shopping-cart-link'>
+            <div className='shopping-cart-img'>
+              <img src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653253/aa-capstone-gamebaux/svgs/cart-icon_jjashy.svg`} alt='Shopping Cart Icon' />
+            </div>
+            <div className='shopping-cart-label'>
+              Cart
+            </div>
+          </NavLink>
         </div>
       </nav>
     </div>
