@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchUpdateReview } from '../../store/review';
 import { fetchUserReviews } from '../../store/review';
+import { inputHandler } from '../../utils';
 
 export default function EditReviewForm({ setShowModal, reviewEdit }) {
 
@@ -19,9 +20,31 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
   const [errors, setErrors] = useState([])
   const [editReview, setEditReview] = useState({})
 
+  let errorCheck = []
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // reset errors for handling new submit
+    setErrors([])
+    errorCheck = []
+
+    if (Array.isArray(inputHandler(title, 5))) {
+      errorCheck.push(`Review title ${inputHandler(title, 5)}`)
+    }
+    if (Array.isArray(inputHandler(review, 25))) {
+      errorCheck.push(`Review text ${inputHandler(review, 25)}`)
+    }
+    if (!rating || rating < 1 || rating > 5) {
+      errorCheck.push(['Must Provide a Rating between 1 and 5'])
+    }
+
+    if (errorCheck.length > 0) {
+      setErrors(errorCheck)
+      return
+    } else {
+      setErrors([])
+    }
 
     const updateReview = {
       id: reviewEdit.id,
@@ -37,7 +60,6 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
         setErrors([])
       })
       .catch(async res => {
-        console.log(res, 'BAD RES????')
         const badData = await res.json()
         if (badData && badData.errors) {
           setErrors([badData.errors])

@@ -29,6 +29,10 @@ const NavBar = () => {
     return e.target.value = value
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
 
   return (
     <div className='navbar-nav-container'>
@@ -47,7 +51,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className='navbar-search-bar-container'>
-          <form className='navbar-search-bar-form-container'>
+          <form className='navbar-search-bar-form-container' onSubmit={handleSubmit}>
 
             <button type='submit' className='navbar-search-bar-search-button-container'>
               <div className='navbar-search-bar-magnifying-glass-container'>
@@ -86,7 +90,7 @@ const NavBar = () => {
                     <img className='navbar-login-icon' alt='Login Icon' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671736422/aa-capstone-gamebaux/svgs/icons8-user-48_vbhniw.png' />
                   </div>
                   <div className='navbar-login-text'>
-                  Sign In
+                    Sign In
                   </div>
                 </NavLink>
               </div>

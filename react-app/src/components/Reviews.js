@@ -5,6 +5,7 @@ import { fetchReviews } from '../store/review';
 import "../css/Reviews.css"
 import { fetchOneItem } from '../store/item';
 import CreateReviewFormModal from './CreateReview';
+import { avgRating, timeFormatter } from '../utils';
 
 
 export default function Reviews() {
@@ -28,40 +29,41 @@ export default function Reviews() {
 
   ), [dispatch, itemId])
 
-  // -- Format Review dates -- //
-  const timeFormatter = (date) => {
-    let now = new Date()
-    let then = new Date(date)
-    let timeElapsed = now - then
-    let oneDay = (1000 * 3600 * 24)
-    let daysSince = (timeElapsed / oneDay)
-    daysSince = Math.round(daysSince)
-    if (daysSince < 1) {
-      return `less than 1 day ago...`
-    } else if (daysSince === 1) {
-      return `Just 1 day ago...`
-    } else if (daysSince > 14) {
-      return `more than 2 weeks ago...`
-    } else if (daysSince > 31) {
-      return `over a month ago...`
-    } else if (daysSince > 365) {
-      return `over a year ago...`
-    } else {
-      return `About ${daysSince} days ago...`
-    }
-  }
+  // // -- Format Review dates -- //
+  // const timeFormatter = (date) => {
+  //   let now = new Date()
+  //   let then = new Date(date)
+  //   let timeElapsed = now - then
+  //   let oneDay = (1000 * 3600 * 24)
+  //   let daysSince = (timeElapsed / oneDay)
+  //   daysSince = Math.round(daysSince)
+  //   if (daysSince < 1) {
+  //     return `less than 1 day ago...`
+  //   } else if (daysSince === 1) {
+  //     return `Just 1 day ago...`
+  //   } else if (daysSince > 14) {
+  //     return `more than 2 weeks ago...`
+  //   } else if (daysSince > 31) {
+  //     return `over a month ago...`
+  //   } else if (daysSince > 365) {
+  //     return `over a year ago...`
+  //   } else {
+  //     return `About ${daysSince} days ago...`
+  //   }
+  // }
 
-  // -- Create Average Rating from all reviews -- //
-  const avgRating = (arr) => {
+  // // -- Create Average Rating from all reviews -- //
+  // const avgRating = (arr) => {
 
-    const avg = arr?.reduce((a, c) => {
-      return a + c.rating
-    }, 0) / arr.length
+  //   const avg = arr?.reduce((a, c) => {
+  //     return a + c.rating
+  //   }, 0) / arr.length
 
-    return avg.toFixed(2)
-  }
+  //   return avg.toFixed(2)
+  // }
 
   if (!itemId) return null;
+  if (!isLoaded) return "Loading...";
 
   return (
     <>

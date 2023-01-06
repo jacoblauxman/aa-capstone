@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
 import { createReview } from '../../store/review';
-
+import { inputHandler } from '../../utils';
 
 export default function CreateReviewForm({ setShowModal }) {
 
@@ -19,8 +19,31 @@ export default function CreateReviewForm({ setShowModal }) {
   const [rating, setRating] = useState('')
   const [errors, setErrors] = useState([])
 
+  let errorCheck = []
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    // reset errors for handling new submit
+    setErrors([])
+    errorCheck = []
+
+    if (Array.isArray(inputHandler(title, 5))) {
+      errorCheck.push(`Review title ${inputHandler(title, 5)}`)
+    }
+    if (Array.isArray(inputHandler(review, 25))) {
+      errorCheck.push(`Review text ${inputHandler(review, 25)}`)
+    }
+    if (!rating || rating < 1 || rating > 5) {
+      errorCheck.push(['Must Provide a Rating between 1 and 5'])
+    }
+
+    if (errorCheck.length > 0) {
+      setErrors(errorCheck)
+      return
+    } else {
+      setErrors([])
+    }
 
     const newReview = {
       title,
@@ -42,8 +65,6 @@ export default function CreateReviewForm({ setShowModal }) {
     setTitle('')
     setReview('')
     setRating('')
-
-    // history.push(`/items/${itemId}/reviews`)
   }
 
   const handleCancel = async (e) => {
@@ -58,9 +79,6 @@ export default function CreateReviewForm({ setShowModal }) {
 
   if (!user) history.push(`/login`)
 
-
-  // if (!showModal) return null
-
   return (
     <div className='create-review-container'>
       <div className='exit-button'>
@@ -71,11 +89,11 @@ export default function CreateReviewForm({ setShowModal }) {
       <div className='create-review-image-container'>
         <img src={currentItem?.image} alt='A Small Product Preview' className='create-review-item-image' />
       </div>
-      {errors.length > 0 && errors[0](
+      {/* {errors.length > 0 && errors[0](
         <ul className="errors">
           <li>{errors[0]}</li>
         </ul>
-      )}
+      )} */}
       <div className='create-review-form-header'>
         Write a Review
       </div>
@@ -103,7 +121,7 @@ export default function CreateReviewForm({ setShowModal }) {
               name='stars'
               min={1}
               max={5}
-              required
+              required={true}
             />
           </div>
           {/* <div className='create-review-form-recommend-container'>
@@ -123,10 +141,11 @@ export default function CreateReviewForm({ setShowModal }) {
             <input
               type='text'
               onChange={e => setTitle(e.target.value)}
+              // value={Array?.isArray(inputHandler(title, 5)) ? setErrors(inputHandler(title, 5)) : inputHandler(title, 5)}
               value={title}
               placeholder='Review Title'
               name='review title'
-              required
+              required={true}
               minLength={5}
               maxLength={25}
             />
@@ -140,7 +159,7 @@ export default function CreateReviewForm({ setShowModal }) {
             value={review}
             placeholder='Review'
             name='review'
-            required
+            required={true}
             minLength={25}
             maxLength={250}
           />

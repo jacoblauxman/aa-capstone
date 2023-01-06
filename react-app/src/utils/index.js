@@ -33,8 +33,8 @@ export const avgRating = (arr) => {
 }
 
 
- // -- Create Cart Total for User's Cart -- //
- export const cartTotal = (cartItems) => {
+// -- Create Cart Total for User's Cart -- //
+export const cartTotal = (cartItems) => {
   const prices = cartItems.map(item => [item.item.price, item.quantity])
   const total = prices.reduce((a, c) => a += (c[0] *= c[1]), 0)
 
@@ -45,8 +45,19 @@ export const avgRating = (arr) => {
 // -- Dynamic String Input Check with Reducer -- //
 export const inputHandler = (str, n) => {
   const reduced = str.replace(/\s+/g, " ").trim()
-  if (reduced.split(' ').filter(char => char !== '').length >= n) return reduced;
-  else return [`Input must be at least ${n} characters (excluding spaces / no excess spaces)`]
+  if (reduced.split(' ').filter(char => char !== '').join('').length >= n) return reduced;
+  else return [`input must be at least ${n} characters (excluding spaces / no excess spaces)`]
 }
+// -- Step 1: Reduce down string input
+// -- Step 2: check against provided value from filtering spaces to ensure chars to determine output
 // -- NOTE: use "Array.isArray(inputHandler()) ? (setErrors([res])) : pass along res to next step of form"
 // -- to confirm if error message is return to "setErrors" slice in component - ternary false
+
+
+// -- Checking for email ending domain substring, one more validation for Sign Up -- //
+export const emailChecker = (str) => {
+  let afterAt = str.split("@")[1]
+  let ending = afterAt.split(".")[1]
+  let check = ['com', 'co', 'org', 'io', 'net', 'us']
+  return check.includes(ending)
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { inputHandler, emailChecker } from '../../utils';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -12,12 +13,49 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  let errorCheck = []
+  // const emailEndings = ['.com', '.net', '.org', '.']
+
   const onSignUp = async (e) => {
     e.preventDefault();
+
+    setErrors([])
+    errorCheck = []
+
+    if (Array.isArray(inputHandler(username, 4))) {
+      errorCheck.push(`Username ${inputHandler(username, 4)}`)
+    }
+    if (Array.isArray(inputHandler(password, 6))) {
+      errorCheck.push(`Password ${inputHandler(password, 4)}`)
+    }
+    if (Array.isArray(inputHandler(repeatPassword, 6))) {
+      errorCheck.push(`Repeat password ${inputHandler(repeatPassword, 4)}`)
+    }
+    if (Array.isArray(inputHandler(email, 7))) {
+      errorCheck.push(`Email ${inputHandler(repeatPassword, 7)}`)
+    }
+    if (password !== repeatPassword) {
+      errorCheck.push("Password and Repeat Password Must Match!")
+    }
+    if (!emailChecker(email)) {
+      errorCheck.push(`Email must include common domain extension ('.com', '.org', etc.)`)
+    }
+
+
+    if (errorCheck.length > 0) {
+      setErrors(errorCheck)
+      return
+    } else {
+      setErrors([])
+    }
+
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
-        setErrors(data)
+        const error = data[0]
+        console.log(error.split(':')[1], 'DATA TO SPLIT UP!!!!')
+        setErrors([error.split(": ")[1]])
       }
     }
   };
@@ -58,15 +96,21 @@ const SignUpForm = () => {
             name='username'
             onChange={updateUsername}
             value={username}
+            minLength={4}
+            maxLength={16}
+            required={true}
           ></input>
         </div>
         <div>
           <label>Email</label>
           <input
-            type='text'
+            type='email'
             name='email'
             onChange={updateEmail}
             value={email}
+            required={true}
+            minLength={7}
+            maxLength={25}
           ></input>
         </div>
         <div>
@@ -76,6 +120,9 @@ const SignUpForm = () => {
             name='password'
             onChange={updatePassword}
             value={password}
+            minLength={6}
+            maxLength={16}
+            required={true}
           ></input>
         </div>
         <div>
@@ -86,6 +133,8 @@ const SignUpForm = () => {
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
+            minLength={6}
+            maxLength={16}
           ></input>
         </div>
         <button type='submit'>Sign Up</button>
