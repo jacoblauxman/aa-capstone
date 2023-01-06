@@ -53,7 +53,7 @@ const initialState = { items: {}, oneItem: {} }
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ITEMS: {
-      const loadState = { ...state, items: { ...state.items }, oneItem: { ...state.oneItem } }
+      const loadState = { ...state, items: { ...state.items }, oneItem: {} }
       action.items?.items?.forEach(item => {
         loadState.items[item.id] = item;
       })
