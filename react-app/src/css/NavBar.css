@@ -67,6 +67,10 @@
   width: 780px;
 }
 
+.navbar-search-bar-form-container:hover {
+  cursor: not-allowed;
+}
+
 .navbar-search-bar-form-container {
   display: flex;
   justify-content: center;
@@ -99,6 +103,10 @@
   padding: 8px;
 }
 
+.navbar-search-bar-input-field:hover {
+  cursor: not-allowed;
+}
+
 .navbar-search-bar-input-field::placeholder {
   font-weight: 250;
   color: #5B6167;
@@ -106,6 +114,7 @@
 
 .navbar-search-bar-input-field:focus {
   outline: none;
+  cursor: not-allowed;
 }
 
 .navbar-search-bar-search-cancel-container {
@@ -178,11 +187,75 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
+  transition: all 0.15s ease-in-out
 }
 
 .navbar-user-info-account {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.15s ease-in-out
+}
 
+.navbar-user-info-account:hover,
+.navbar-user-info-short-username:hover {
+  color: red;
+}
+
+.navbar-logout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.navbar-logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: #DBDBDB;
+  font-size: .66rem;
+  transition: all 0.15s ease-in-out
+}
+
+.navbar-logout-button:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.navbar-shopping-cart-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.navbar-cart-icon {
+  height: 35px;
+  width: 35px;
+}
+
+.navbar-shopping-cart-label {
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-shopping-cart-link {
+  text-decoration: none;
+  color: black;
+  transition: all 0.15s ease-in-out
+}
+
+.navbar-shopping-cart-link:hover {
+  cursor: pointer;
+  color: red;
 }

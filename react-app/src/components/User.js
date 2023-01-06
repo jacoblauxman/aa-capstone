@@ -77,14 +77,12 @@ function User() {
       </div>
 
       <div className='user-page-user-reviews-container'>
-        <div>
+        <div className='user-page-reviews-header'>
           Your Reviews
         </div>
         {userReviews.length > 0 && userReviews?.map(review => (
           <div key={review?.id} className='reviews-page-single-review-container'>
-            <div className='reviews-page-single-review-delete-container'>
-              <DeleteReviewFormModal review={review} />
-            </div>
+
             <div className='reviews-page-single-review-ago-container'>
               {timeFormatter(review?.createdAt)}
             </div>
@@ -102,9 +100,14 @@ function User() {
             <div className='reviews-page-single-review-review'>
               {review?.review}
             </div>
-            <div className='reviews-page-single-review-edit-container'>
-              <EditReviewFormModal reviewEdit={review}
-              />
+            <div className='reviews-page-single-review-edit-delete-container'>
+              <div className='reviews-page-single-review-edit-container'>
+                <EditReviewFormModal reviewEdit={review}
+                />
+              </div>
+              <div className='reviews-page-single-review-delete-container'>
+                <DeleteReviewFormModal review={review} />
+              </div>
             </div>
           </div>
         ))}

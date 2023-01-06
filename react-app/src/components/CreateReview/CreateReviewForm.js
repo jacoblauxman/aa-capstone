@@ -106,7 +106,7 @@ export default function CreateReviewForm({ setShowModal }) {
               required
             />
           </div>
-          <div className='create-review-form-recommend-container'>
+          {/* <div className='create-review-form-recommend-container'>
             <div className='create-review-form-recommend-header'>
               Would you recommend this item to a friend?
             </div>
@@ -118,8 +118,8 @@ export default function CreateReviewForm({ setShowModal }) {
                 Yes, I would recommend this item.
               </div>
             </div>
-          </div>
-          <div className='create-review-form-email-container'>
+          </div> */}
+          <div className='create-review-form-title-container'>
             <input
               type='text'
               onChange={e => setTitle(e.target.value)}
@@ -144,14 +144,14 @@ export default function CreateReviewForm({ setShowModal }) {
             minLength={25}
             maxLength={250}
           />
-          <div className='create-review-form-add-photo-video-container'>
+          {/* <div className='create-review-form-add-photo-video-container'>
             <button className='create-review-form-add-photo-button'>
               Add Photo
             </button>
             <button className='create-review-form-add-video-button'>
               Add Video
             </button>
-          </div>
+          </div> */}
           <button type='submit' className='create-review-form-submit-button'>
             Share Review
           </button>

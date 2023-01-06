@@ -98,7 +98,7 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
           </div>
           <div className='create-review-form-rating-container'>
             <div className='create-review-form-rating-header'>
-              New Rating
+              Overall Rating
             </div>
             <input
               type='number'
@@ -111,7 +111,7 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
               required
             />
           </div>
-          <div className='create-review-form-recommend-container'>
+          {/* <div className='create-review-form-recommend-container'>
             <div className='create-review-form-recommend-header'>
               Still worth recommending?
             </div>
@@ -123,8 +123,8 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
                 Yes, I would recommend this item.
               </div>
             </div>
-          </div>
-          <div className='create-review-form-email-container'>
+          </div> */}
+          <div className='create-review-form-title-container'>
             <input
               type='text'
               onChange={e => setTitle(e.target.value)}
@@ -149,14 +149,14 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
             minLength={25}
             maxLength={250}
           />
-          <div className='create-review-form-add-photo-video-container'>
+          {/* <div className='create-review-form-add-photo-video-container'>
             <button className='create-review-form-add-photo-button'>
               Add Photo
             </button>
             <button className='create-review-form-add-video-button'>
               Add Video
             </button>
-          </div>
+          </div> */}
           <button type='submit' className='create-review-form-submit-button'>
             Share Review
           </button>

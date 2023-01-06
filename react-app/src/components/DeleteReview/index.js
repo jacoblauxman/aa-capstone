@@ -9,7 +9,7 @@ function DeleteReviewFormModal({ review }) {
 
   return (
     <>
-      <button className='delete-review-modal' onClick={() => setShowModal(true)}>X</button>
+      <button className='edit-review-modal' onClick={() => setShowModal(true)}>Delete</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <DeleteReviewForm setShowModal={setShowModal} review={review} />

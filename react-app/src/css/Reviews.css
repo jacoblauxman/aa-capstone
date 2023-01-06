@@ -248,3 +248,18 @@ button .create-a-review-modal {
 .reviews-page-back-button:hover {
   cursor: pointer;
 }
+
+
+.reviews-page-single-review-edit-delete-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* .reviews-page-edit-container */
+
+.edit-review-modal:hover {
+  color: rgb(253, 0, 0);
+}

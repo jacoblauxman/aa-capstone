@@ -16,6 +16,20 @@ const NavBar = () => {
   const user = useSelector(state => state?.session?.user)
 
 
+  // -- Reset Search on mouseout -- //
+  const searchMouseOut = (e) => {
+    e.preventDefault()
+    let placeholder = "Search games, consoles & more"
+    return e.target.value = placeholder
+  }
+  // -- Temp search display for future -- //
+  const onFocusSearch = (e) => {
+    e.preventDefault()
+    let value = 'Search Feature Coming Soon!'
+    return e.target.value = value
+  }
+
+
   return (
     <div className='navbar-nav-container'>
       <nav className='navbar-nav'>
@@ -45,6 +59,8 @@ const NavBar = () => {
               value={searchInput}
               onChange={e => setSearchInput(e.target.value)}
               placeholder='Search games, consoles & more'
+              onFocus={onFocusSearch}
+              onBlur={searchMouseOut}
             />
             <button type='button' className='navbar-search-bar-search-cancel-container'>
               <img className='navbar-search-bar-cancel-x' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653253/aa-capstone-gamebaux/svgs/cancel-icon_xw1xvb.svg' alt='Search Cancel' />
@@ -75,13 +91,15 @@ const NavBar = () => {
             </>
           )}
         </div>
-        <div>
-          <LogoutButton />
-        </div>
+        {user && (
+          <div className='navbar-logout-container'>
+            <LogoutButton />
+          </div>
+        )}
         <div className='navbar-shopping-cart-container'>
           <NavLink to='/cart' exact={true} className='navbar-shopping-cart-link'>
             <div className='shopping-cart-img'>
-              <img src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653253/aa-capstone-gamebaux/svgs/cart-icon_jjashy.svg`} alt='Shopping Cart Icon' />
+              <img className='navbar-cart-icon' src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653253/aa-capstone-gamebaux/svgs/cart-icon_jjashy.svg`} alt='Shopping Cart Icon' />
             </div>
             <div className='shopping-cart-label'>
               Cart
