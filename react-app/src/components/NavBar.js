@@ -85,7 +85,9 @@ const NavBar = () => {
                   <div className='navbar-login-icon-container'>
                     <img className='navbar-login-icon' alt='Login Icon' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671736422/aa-capstone-gamebaux/svgs/icons8-user-48_vbhniw.png' />
                   </div>
+                  <div className='navbar-login-text'>
                   Sign In
+                  </div>
                 </NavLink>
               </div>
             </>

@@ -15,7 +15,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(["Invalid Credentials Provided"]);
     }
     const cart = await dispatch(fetchCart())
   };

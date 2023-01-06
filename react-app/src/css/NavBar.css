@@ -259,3 +259,12 @@
   cursor: pointer;
   color: red;
 }
+
+.navbar-login-text {
+  color: black;
+  transition: all .15s ease-in-out
+}
+
+.navbar-login-text:hover {
+  color: red;
+}
