@@ -104,7 +104,7 @@
 }
 
 .navbar-search-bar-input-field:hover {
-  cursor: not-allowed;
+  cursor: url('https://res.cloudinary.com/dixbzsdnm/image/upload/v1673027892/aa-capstone-gamebaux/svgs/nosign_besbka.png'), auto;
 }
 
 .navbar-search-bar-input-field::placeholder {
@@ -114,7 +114,7 @@
 
 .navbar-search-bar-input-field:focus {
   outline: none;
-  cursor: not-allowed;
+  cursor: url('https://res.cloudinary.com/dixbzsdnm/image/upload/v1673027892/aa-capstone-gamebaux/svgs/nosign_besbka.png');
 }
 
 .navbar-search-bar-search-cancel-container {
