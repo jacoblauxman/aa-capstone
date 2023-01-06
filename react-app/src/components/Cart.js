@@ -39,7 +39,6 @@ export default function Cart() {
   // -- Cart Total -- //
   const cartTotal = (cartItems) => {
     const prices = cartItems.map(item => [item.item.price, item.quantity])
-    console.log(prices)
     const total = prices.reduce((a, c) => a += (c[0] *= c[1]), 0)
 
     return total.toFixed(2)
