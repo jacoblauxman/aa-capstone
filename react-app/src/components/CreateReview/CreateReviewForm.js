@@ -89,11 +89,6 @@ export default function CreateReviewForm({ setShowModal }) {
       <div className='create-review-image-container'>
         <img src={currentItem?.image} alt='A Small Product Preview' className='create-review-item-image' />
       </div>
-      {/* {errors.length > 0 && errors[0](
-        <ul className="errors">
-          <li>{errors[0]}</li>
-        </ul>
-      )} */}
       <div className='create-review-form-header'>
         Write a Review
       </div>
@@ -141,7 +136,6 @@ export default function CreateReviewForm({ setShowModal }) {
             <input
               type='text'
               onChange={e => setTitle(e.target.value)}
-              // value={Array?.isArray(inputHandler(title, 5)) ? setErrors(inputHandler(title, 5)) : inputHandler(title, 5)}
               value={title}
               placeholder='Review Title'
               name='review title'

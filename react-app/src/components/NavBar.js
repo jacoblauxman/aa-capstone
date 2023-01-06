@@ -6,6 +6,7 @@ import LogoutButton from './auth/LogoutButton';
 import User from './User'
 import '../css/NavBar.css'
 
+
 const NavBar = () => {
 
   const dispatch = useDispatch()
@@ -14,7 +15,6 @@ const NavBar = () => {
   const [searchInput, setSearchInput] = useState('')
 
   const user = useSelector(state => state?.session?.user)
-
 
   // -- Reset Search on mouseout -- //
   const searchMouseOut = (e) => {
@@ -32,7 +32,6 @@ const NavBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
-
 
   return (
     <div className='navbar-nav-container'>

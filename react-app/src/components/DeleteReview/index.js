@@ -3,9 +3,9 @@ import { Modal } from '../../context/Modal';
 import DeleteReviewForm from './DeleteReviewForm';
 import './DeleteReview.css'
 
+
 function DeleteReviewFormModal({ review }) {
   const [showModal, setShowModal] = useState(false);
-
 
   return (
     <>

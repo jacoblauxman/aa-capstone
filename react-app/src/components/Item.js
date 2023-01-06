@@ -7,6 +7,7 @@ import { createCartItem, fetchCart } from '../store/cart'
 import { timeFormatter } from '../utils'
 // import "../css/Item.css"
 
+
 export default function Item() {
 
   const { itemId } = useParams()
@@ -33,7 +34,6 @@ export default function Item() {
 
   }, [dispatch, itemId])
 
-
   // -- First Review for display -- //
   const reviewSample = reviews => {
     const firstFew = [...reviews]
@@ -41,30 +41,6 @@ export default function Item() {
 
     return selected
   }
-
-  // // -- Format Review dates -- //
-  // const timeFormatter = (date) => {
-  //   let now = new Date()
-  //   let then = new Date(date)
-  //   let timeElapsed = now - then
-  //   let oneDay = (1000 * 3600 * 24)
-  //   let daysSince = (timeElapsed / oneDay)
-  //   daysSince = Math.round(daysSince)
-
-  //   if (daysSince < 1) {
-  //     return `less than 1 day ago...`
-  //   } else if (daysSince === 1) {
-  //     return `Just 1 day ago...`
-  //   } else if (daysSince > 14) {
-  //     return `more than 2 week ago...`
-  //   } else if (daysSince > 31) {
-  //     return `over a month ago...`
-  //   } else if (daysSince > 365) {
-  //     return `over a year ago...`
-  //   } else {
-  //     return `About ${daysSince} days ago...`
-  //   }
-  // }
 
   // -- Add Item to user's cart -- //
   const addToCart = async (e) => {

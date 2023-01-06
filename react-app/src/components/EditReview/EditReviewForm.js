@@ -5,11 +5,11 @@ import { fetchUpdateReview } from '../../store/review';
 import { fetchUserReviews } from '../../store/review';
 import { inputHandler } from '../../utils';
 
+
 export default function EditReviewForm({ setShowModal, reviewEdit }) {
 
   const dispatch = useDispatch()
   const history = useHistory()
-
 
   const user = useSelector(state => state.session?.user)
   const reviews = useSelector(state => state.reviews?.user)
@@ -98,11 +98,6 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
       <div className='create-review-image-container'>
         <img src={reviewEdit?.item?.image} alt='A Small Product Preview' className='create-review-item-image' />
       </div>
-      {errors.length > 0 && errors[0](
-        <ul className="errors">
-          <li>{errors[0]}</li>
-        </ul>
-      )}
       <div className='create-review-form-header'>
         Changed your mind?
       </div>

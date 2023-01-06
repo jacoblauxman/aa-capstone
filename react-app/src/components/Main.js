@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { fetchItems } from "../store/item";
-
 // import "../css/Main.css"
+
 
 export default function Main() {
 

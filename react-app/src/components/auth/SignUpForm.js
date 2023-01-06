@@ -4,7 +4,9 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { inputHandler, emailChecker } from '../../utils';
 
+
 const SignUpForm = () => {
+  
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -14,7 +16,6 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   let errorCheck = []
-  // const emailEndings = ['.com', '.net', '.org', '.']
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -41,7 +42,6 @@ const SignUpForm = () => {
       errorCheck.push(`Email must include common domain extension ('.com', '.org', etc.)`)
     }
 
-
     if (errorCheck.length > 0) {
       setErrors(errorCheck)
       return
@@ -49,12 +49,10 @@ const SignUpForm = () => {
       setErrors([])
     }
 
-
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         const error = data[0]
-        console.log(error.split(':')[1], 'DATA TO SPLIT UP!!!!')
         setErrors([error.split(": ")[1]])
       }
     }

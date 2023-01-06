@@ -13,6 +13,7 @@ import Item from './components/Item';
 import CreateReviewModal from './components/CreateReview/CreateReviewForm';
 import Cart from './components/Cart';
 import { fetchCart } from './store/cart';
+import NotFound from './components/404';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,9 +43,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/login' exact={true}>
+          {/* <NavBar /> */}
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
+          {/* <NavBar /> */}
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/cart' exact={true} >
@@ -69,6 +72,10 @@ function App() {
         <Route path='/' exact={true} >
           <NavBar />
           <Main />
+        </Route>
+        <Route>
+          <NavBar />
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>

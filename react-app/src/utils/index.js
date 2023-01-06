@@ -6,6 +6,7 @@ export const timeFormatter = (date) => {
   let oneDay = (1000 * 3600 * 24)
   let daysSince = (timeElapsed / oneDay)
   daysSince = Math.round(daysSince)
+
   if (daysSince < 1) {
     return `less than 1 day ago...`
   } else if (daysSince === 1) {
@@ -17,6 +18,7 @@ export const timeFormatter = (date) => {
   } else if (daysSince > 365) {
     return `over a year ago...`
   } else {
+
     return `About ${daysSince} days ago...`
   }
 }
@@ -46,6 +48,7 @@ export const cartTotal = (cartItems) => {
 export const inputHandler = (str, n) => {
   const reduced = str.replace(/\s+/g, " ").trim()
   if (reduced.split(' ').filter(char => char !== '').join('').length >= n) return reduced;
+
   else return [`input must be at least ${n} characters (excluding spaces / no excess spaces)`]
 }
 // -- Step 1: Reduce down string input
@@ -59,5 +62,6 @@ export const emailChecker = (str) => {
   let afterAt = str.split("@")[1]
   let ending = afterAt.split(".")[1]
   let check = ['com', 'co', 'org', 'io', 'net', 'us']
+
   return check.includes(ending)
 }

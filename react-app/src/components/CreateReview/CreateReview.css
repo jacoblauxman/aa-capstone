@@ -106,15 +106,6 @@
 
 }
 
-/* to attempt hiding / deleting the arrows in int selection */
-/*
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
-
-
  .create-review-modal {
   background-color: black;
   color: white;
