@@ -11,7 +11,6 @@ item_routes = Blueprint('items', __name__)
 # GET all items
 
 @item_routes.route("/")
-# @login_required
 def get_all_items():
 
   all_items = Item.query.all()
@@ -24,7 +23,6 @@ def get_all_items():
 # GET item by id
 
 @item_routes.route('/<int:id>')
-# @login_required
 def get_one_item(id):
   found_item = Item.query.get(id)
   reviews = found_item.reviews
@@ -63,15 +61,14 @@ def post_review_to_item(id):
       rating=form.data['rating']
     )
 
-
     db.session.add(new_review)
     db.session.commit()
 
     return_review = new_review.to_dict()
 
-
     user = current_user.to_dict()
     return_review['user'] = user
+
     return return_review, 201
 
   return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
@@ -81,7 +78,6 @@ def post_review_to_item(id):
 # GET all reviews by item id
 
 @item_routes.route('/<int:id>/reviews')
-# @login_required
 def get_item_reviews(id):
 
   item = Item.query.get(id)
@@ -109,7 +105,6 @@ def add_item_to_cart(id):
   cart_items = cart.items_association
 
   for i in cart.items_association:
-    print('\n TESTING!! ----', "\n", i.item_id, item.id, i.quantity, "\n")
 
     if i.item_id==item.id and i.quantity < 10:
       i.quantity = i.quantity+1

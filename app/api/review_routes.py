@@ -98,6 +98,5 @@ def update_review_yes(id):
   update_review = Review.query.get(id)
   update_review = update_review.to_dict()
   update_review['yes'] = update_review['yes']+1
-  # print(update_review, 'HERE IS OUR UPDATE REVIEW!!!! ---------')
 
   return update_review, 200

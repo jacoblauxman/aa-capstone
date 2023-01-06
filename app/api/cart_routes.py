@@ -37,7 +37,6 @@ def update_user_cart_item(id):
   cart_item = CartItem.query.get(id)
   form = CartItemForm()
 
-  # print("\n",cart_item.to_dict(), "HERE IS OUR CART ITEM BEFORE UPDATE!!!!!! \n")
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     setattr(cart_item, 'quantity', form.quantity.data)
@@ -66,9 +65,6 @@ def delete_cart_item(id):
     db.session.delete(cart_item)
     db.session.commit()
     return {"message": "Item Successfully Removed from Cart"}, 200
-
-  # elif cart_item is None:
-  #   return {"errors": ["UNAUTHORIZED: You don't have authorization to complete this request"]}, 401
 
 
 
