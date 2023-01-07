@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { inputHandler, emailChecker } from '../../utils';
+import '../../css/Auth.css'
 
 
 const SignUpForm = () => {
@@ -79,72 +80,95 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='signup-form-page-container'>
-
-      <form onSubmit={onSignUp}>
+    <div className='auth-form-page-container'>
+      <div className='auth-form-header-bar'>
+        <NavLink className='auth-form-header-text' to='/'>
+          GameBaux
+        </NavLink>
+      </div>
+      <div className='auth-form-auth-container'>
+        <div className='auth-form-header'>
+          Create Account
+        </div>
+        <div className='auth-form-subheader'>
+          Create your GameBaux account to start earning points and rewards today!
+        </div>
         <div className='errors-container'>
           {errors.map((error, ind) => (
             <div className='error-message' key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <label>User Name</label>
-          <input
-            type='text'
-            name='username'
-            onChange={updateUsername}
-            value={username}
-            minLength={4}
-            maxLength={16}
-            required={true}
-          ></input>
+        <div className='auth-form-form-container'>
+          <form onSubmit={onSignUp}>
+            <div className='auth-input-container'>
+              <label className='auth-input-label'>User Name</label>
+              <input
+                className='auth-input'
+                type='text'
+                name='username'
+                onChange={updateUsername}
+                value={username}
+                minLength={4}
+                maxLength={16}
+                required={true}
+              ></input>
+            </div>
+            <div className='auth-input-container'>
+              <label className='auth-input-label'>Email</label>
+              <input
+                className='auth-input'
+                type='email'
+                name='email'
+                onChange={updateEmail}
+                value={email}
+                required={true}
+                minLength={7}
+                maxLength={25}
+              ></input>
+            </div>
+            <div className='auth-input-container'>
+              <label className='auth-input-label'>Password</label>
+              <input
+                className='auth-input'
+                type='password'
+                name='password'
+                onChange={updatePassword}
+                value={password}
+                minLength={6}
+                maxLength={16}
+                required={true}
+              ></input>
+            </div>
+            <div className='auth-input-container'>
+              <label className='auth-input-label'>Repeat Password</label>
+              <input
+                className='auth-input'
+                type='password'
+                name='repeat_password'
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+                minLength={6}
+                maxLength={16}
+              ></input>
+            </div>
+            <button
+              type='submit'
+              className='confirm-auth-button'
+            >SUBMIT
+            </button>
+          </form>
         </div>
-        <div>
-          <label>Email</label>
-          <input
-            type='email'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-            required={true}
-            minLength={7}
-            maxLength={25}
-          ></input>
+        <div className='divider-or'>
+          <span className='or'>OR</span>
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-            minLength={6}
-            maxLength={16}
-            required={true}
-          ></input>
+        <div className='signup-page-container-sign-in-button'>
+          <NavLink className='signup-page-sign-in-link' to='/login'>
+            Sign in
+          </NavLink>
         </div>
-        <div>
-          <label>Repeat Password</label>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-            minLength={6}
-            maxLength={16}
-          ></input>
-        </div>
-        <button type='submit'>Sign Up</button>
-      </form>
-      <div className='signup-page-container-back-button'>
-        <NavLink to='/'>
-          <button type="button">
-            Go Back Home
-          </button>
-        </NavLink>
       </div>
-    </div>
+    </div >
   );
 };
 

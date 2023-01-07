@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { fetchCart } from '../../store/cart';
 import { login } from '../../store/session';
-import '../../css/Login.css'
+import '../../css/Auth.css'
 
 
 const LoginForm = () => {
@@ -47,17 +47,17 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='login-form-page-container'>
-      <div className='login-form-header-bar'>
-        <NavLink className='login-form-header-text' to='/'>
+    <div className='auth-form-page-container'>
+      <div className='auth-form-header-bar'>
+        <NavLink className='auth-form-header-text' to='/'>
           GameBaux
         </NavLink>
       </div>
-      <div className='login-form-login-container'>
-        <div className='login-form-header'>
+      <div className='auth-form-auth-container'>
+        <div className='auth-form-header'>
           Welcome to GameBaux
         </div>
-        <div className='login-form-subheader'>
+        <div className='auth-form-subheader'>
           Sign in to your Gamebaux account
         </div>
         <div className='errors-container'>
@@ -65,7 +65,7 @@ const LoginForm = () => {
             <div className='error-message' key={ind}>{error}</div>
           ))}
         </div>
-        <div className='login-form-form-container'>
+        <div className='auth-form-form-container'>
           <form onSubmit={onLogin}>
             <div className='auth-input-container'>
               <label className='auth-input-label' htmlFor='email'>Email</label>
