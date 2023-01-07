@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
 import { fetchCart } from '../../store/cart';
 import { login } from '../../store/session';
+import '../../css/Login.css'
 
 
 const LoginForm = () => {
@@ -47,55 +48,84 @@ const LoginForm = () => {
 
   return (
     <div className='login-form-page-container'>
-      <form onSubmit={onLogin}>
+      <div className='login-form-header-bar'>
+        <NavLink className='login-form-header-text' to='/'>
+          GameBaux
+        </NavLink>
+      </div>
+      <div className='login-form-login-container'>
+        <div className='login-form-header'>
+          Welcome to GameBaux
+        </div>
+        <div className='login-form-subheader'>
+          Sign in to your Gamebaux account
+        </div>
         <div className='errors-container'>
           {errors.map((error, ind) => (
             <div className='error-message' key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
+        <div className='login-form-form-container'>
+          <form onSubmit={onLogin}>
+            <div className='auth-input-container'>
+              <label className='auth-input-label' htmlFor='email'>Email</label>
+              <input
+                className='auth-input'
+                name='email'
+                type='text'
+                placeholder='Email'
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div className='auth-input-container'>
+              <label className='auth-input-label' htmlFor='password'>Password</label>
+              <input
+                className='auth-input'
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+              />
+              <button
+                type='submit'
+                className='confirm-auth-button'
+              >
+                SIGN IN
+              </button>
+            </div>
+          </form>
         </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
-          <button type='submit'>Login</button>
-        </div>
-      </form>
-      <div className='login-form-demo-button'>
+        {/* <div className='login-form-demo-button'> */}
         <button
           type='button'
+          className='confirm-auth-button'
           onClick={demoLogin}
         >
-          Demo Login
+          DEMO USER
         </button>
-      </div>
-      <div className='login-form-sign-up-button'>
+        {/* </div> */}
+        <div className='divider-or'>
+          <span className='or'>OR</span>
+        </div>
+        {/* <div className='login-form-sign-up-button'> */}
         <NavLink to='/sign-up'>
-          <button type='button'>
-            Create an Account
+          <button
+            type='button'
+            className='login-sign-up-button'
+          >
+            CREATE ACCOUNT
           </button>
         </NavLink>
-      </div>
-      <div className='login-form-back-button'>
+        {/* </div> */}
+        {/* <div className='login-form-back-button'>
         <NavLink to='/'>
-          <button type='button'>
-            Go Back
-          </button>
+        <button type='button'>
+        Go Back
+        </button>
         </NavLink>
+      </div> */}
       </div>
     </div>
   );

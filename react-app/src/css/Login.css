@@ -1,0 +1,152 @@
+.login-form-page-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 250px;
+}
+
+.login-form-login-container {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  width: 66%;
+  height: 100%;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.login-form-header-bar {
+  padding: 5px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 1.75rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 200;
+  color: black;
+  border-bottom: 1px solid #F5F5F5;
+  box-shadow: 0px 0px 10px 5px #F7F7F7;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+
+
+.login-form-header {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  align-items: center;
+  font-weight: Bold;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.login-form-header-text {
+  text-decoration: none;
+  color: black;
+}
+
+.login-form-subheader {
+  color: #828282;
+  font-size: .9rem;
+  font-weight: 325;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+/* .login-form-form-container {
+
+} */
+
+.auth-input-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  position: relative;
+}
+
+.auth-input-label {
+  color: #828282;
+  background-color: white;
+  padding: 1px 3px;
+  position: fixed;
+  font-size: .75rem;
+  position: absolute;
+  left: 10px;
+  top: -8px;
+  ;
+}
+
+.auth-input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 20px 0px;
+  padding-left: 10px;
+  color: black;
+  background-color: #ECF4FB;
+  margin-bottom: 10px;
+}
+
+.auth-input::placeholder {
+  color: black;
+}
+
+.auth-input:focus {
+  outline: none;
+  border: 2px solid black;
+}
+
+.confirm-auth-button {
+  color: white;
+  background-color: #E7230D;
+  padding: 20px 10px;
+  width: 100%;
+  font-weight: 350;
+  font-size: 1rem;
+  margin: 10px 0px;
+  border: none;
+}
+
+.confirm-auth-button:hover {
+  cursor: pointer;
+}
+
+.divider-or {
+  display: flex;
+  color: #828282;
+}
+
+.or {
+  padding: 0px 5px;
+  font-size: .85rem;
+}
+
+.divider-or:before,
+.divider-or:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+}
+
+.login-sign-up-button {
+  padding: 20px 10px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 25px 0px;
+  background-color: white;
+}
+
+.login-sign-up-button:hover {
+  cursor: pointer;
+}
