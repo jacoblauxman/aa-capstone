@@ -1,0 +1,103 @@
+.main-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column
+}
+
+.main-container-title {
+  padding: 10px;
+  margin: 20px 0px;
+  display: flex;
+  justify-content: left;
+  color: #828282;
+  font-weight: 275;
+}
+
+.results-category-title {
+  color: black;
+  padding: 0px 5px;
+  font-weight: 450;
+}
+
+.results-items-grid-container {
+  display: grid;
+
+  /* !! TODO FIX OUR COLUMNS TO FOUR ROWS -- ONCE SEARCH CATEGORY SIDE IMPLEMENTED !! */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 15px;
+  row-gap: 25px;
+}
+
+.results-item-link {
+  color: black;
+  text-decoration: none;
+}
+
+
+.results-single-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 490px;
+  width: 170px;
+  border-radius: 10px;
+  padding: 20px 10px;
+  background-color: #F9F9F9;
+  position: relative;
+}
+
+.results-single-item-container:hover {
+  box-shadow: 0px 0px 10px 5px rgb(237, 237, 237)
+}
+
+.results-item-info {
+  display: flex;
+  align-items: center;
+  object-fit: contain;
+  max-width: 300px;
+  max-height: 300px;
+  margin: 15px 0px;
+  text-align: left;
+}
+
+.results-item-preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.results-item-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 150px;
+  object-fit: contain;
+  margin: 20px;
+}
+
+.results-item-brief-descript {
+  padding: 10px 0px;
+  margin: 20px 0px;
+  font-size: .80rem;
+  font-style: italic;
+  font-weight: 250;
+  color: #828282;
+  display: flex;
+  flex: 1 1 auto;
+  height: 130px;
+  overflow: hidden;
+}
+
+.results-item-price {
+  position: absolute;
+  margin: 20px 0px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  bottom: 10px;
+  left: 15px;
+}

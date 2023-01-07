@@ -27,6 +27,8 @@ export default function Item() {
 
   const test = useSelector(state => state.items?.oneItem?.reviews)
 
+  console.log(currentItem, 'currentItem!!')
+
   useEffect(() => {
     dispatch(fetchOneItem(itemId))
     dispatch(fetchReviews(itemId))

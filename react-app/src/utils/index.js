@@ -65,3 +65,10 @@ export const emailChecker = (str) => {
 
   return check.includes(ending)
 }
+
+
+// -- Reducing item descriptions for main results page -- //
+export const briefDescription = str => {
+  const arr = str.split(" ").slice(0, 30)
+  return arr.join(" ")
+}
