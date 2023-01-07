@@ -62,7 +62,10 @@ const LoginForm = () => {
         </div>
         <div className='errors-container'>
           {errors.map((error, ind) => (
-            <div className='error-message' key={ind}>{error}</div>
+            <div className='error-message' key={ind}>
+              <span className='error-icon'><i class="fa-solid fa-circle-exclamation"></i></span>
+              {error}
+              </div>
           ))}
         </div>
         <div className='auth-form-form-container'>
@@ -97,7 +100,6 @@ const LoginForm = () => {
             </div>
           </form>
         </div>
-        {/* <div className='login-form-demo-button'> */}
         <button
           type='button'
           className='confirm-auth-button'
@@ -105,11 +107,9 @@ const LoginForm = () => {
         >
           DEMO USER
         </button>
-        {/* </div> */}
         <div className='divider-or'>
           <span className='or'>OR</span>
         </div>
-        {/* <div className='login-form-sign-up-button'> */}
         <NavLink to='/sign-up'>
           <button
             type='button'
@@ -118,14 +118,6 @@ const LoginForm = () => {
             CREATE ACCOUNT
           </button>
         </NavLink>
-        {/* </div> */}
-        {/* <div className='login-form-back-button'>
-        <NavLink to='/'>
-        <button type='button'>
-        Go Back
-        </button>
-        </NavLink>
-      </div> */}
       </div>
     </div>
   );

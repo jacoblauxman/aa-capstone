@@ -5,11 +5,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 90px;
-
+  height: 80px;
   box-sizing: border-box;
-  padding-right: 5%;
-  padding-left: 5%;
   border-bottom: 1px solid #E0E0E0;
   box-shadow: 0px 1px 4px 0.5px #E0E0E0;
   background-color: white;
@@ -20,10 +17,12 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 100px;
+  height: 80px;
+  padding: 0 10px
 }
 
-.navbar-menu-button-container {
+/* !! will add hamburger icon back in with searches/categories !! */
+/* .navbar-menu-button-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,25 +45,27 @@
 .navbar-menu-menu-text {
   font-family: Arial, Helvetica, sans-serif;
   font-size: .8rem;
-}
+} */
 
 .navbar-site-title-container {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  flex: 1 2 auto;
 }
 
 .navbar-navlink-title-text {
-
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   height: 100%;
   text-decoration: none;
   color: black;
+  margin-right: 15px;
 }
 
 .navbar-search-bar-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 780px;
+  width: 25%;
+  flex: 2 1 750px;
 }
 
 .navbar-search-bar-form-container:hover {
@@ -74,6 +75,7 @@
 .navbar-search-bar-form-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .navbar-search-bar-search-button-container {
@@ -81,7 +83,7 @@
   justify-content: center;
   align-items: center;
   border: none;
-  background-color: #F0F0F0
+  background-color: #F0F0F0;
 }
 
 .navbar-search-bar-magnifying-glass-container {
@@ -93,14 +95,16 @@
 .navbar-search-bar-magnifying-glass {
   height: 20px;
   width: 20px;
+  flex: 0 1;
 }
 
 .navbar-search-bar-input-field {
-  width: 700px;
+  /* min-width: 400px; */
   border: none;
   font-size: 1.2rem;
   background-color: #F0F0F0;
   padding: 8px;
+  flex: 1 1 auto;
 }
 
 .navbar-search-bar-input-field:hover {
@@ -110,6 +114,7 @@
 .navbar-search-bar-input-field::placeholder {
   font-weight: 250;
   color: #5B6167;
+  font-size: .95rem;
 }
 
 .navbar-search-bar-input-field:focus {
@@ -144,9 +149,10 @@
 }
 
 .navbar-login-icon {
-  height: 35px;
-  width: 33px;
+  max-height: 25px;
+  max-width: 25px;
   padding: .2rem;
+  flex: 1 1 auto;
 }
 
 .navbar-login-link {
@@ -158,8 +164,6 @@
   font-size: .8rem;
   color: black;
 }
-
-
 
 
 .navbar-user-info-login-info {
@@ -187,6 +191,7 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
+
   transition: all 0.15s ease-in-out
 }
 
@@ -194,9 +199,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.15s ease-in-out
+  font-size: .85rem;
+
+  transition: all 0.15s ease-in-out;
 }
 
+.navbar-login-link:hover,
 .navbar-user-info-account:hover,
 .navbar-user-info-short-username:hover {
   color: red;
@@ -220,6 +228,7 @@
   border: none;
   background-color: #DBDBDB;
   font-size: .66rem;
+
   transition: all 0.15s ease-in-out
 }
 
@@ -227,6 +236,7 @@
   cursor: pointer;
   color: red;
 }
+
 
 .navbar-shopping-cart-img {
   display: flex;
@@ -237,8 +247,11 @@
 }
 
 .navbar-cart-icon {
-  height: 35px;
-  width: 35px;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar-shopping-cart-label {
@@ -252,6 +265,7 @@
 .navbar-shopping-cart-link {
   text-decoration: none;
   color: black;
+
   transition: all 0.15s ease-in-out
 }
 
@@ -260,11 +274,17 @@
   color: red;
 }
 
+.shopping-cart-label {
+  font-size: .85rem;
+}
+
 .navbar-login-text {
   color: black;
+
   transition: all .15s ease-in-out
 }
 
-.navbar-login-text:hover {
+.navbar-login-text:hover,
+.navbar-login-container:hover * {
   color: red;
 }

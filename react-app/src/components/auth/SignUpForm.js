@@ -5,7 +5,6 @@ import { signUp } from '../../store/session';
 import { inputHandler, emailChecker } from '../../utils';
 import '../../css/Auth.css'
 
-
 const SignUpForm = () => {
 
   const [errors, setErrors] = useState([]);
@@ -95,7 +94,10 @@ const SignUpForm = () => {
         </div>
         <div className='errors-container'>
           {errors.map((error, ind) => (
-            <div className='error-message' key={ind}>{error}</div>
+            <div className='error-message' key={ind}>
+              <span className='error-icon'><i class="fa-solid fa-circle-exclamation"></i></span>
+              {error}
+              </div>
           ))}
         </div>
         <div className='auth-form-form-container'>
