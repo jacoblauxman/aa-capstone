@@ -6,7 +6,7 @@ import { login } from '../../store/session';
 
 
 const LoginForm = () => {
-  
+
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,9 +48,9 @@ const LoginForm = () => {
   return (
     <div className='login-form-page-container'>
       <form onSubmit={onLogin}>
-        <div>
+        <div className='errors-container'>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div className='error-message' key={ind}>{error}</div>
           ))}
         </div>
         <div>

@@ -6,7 +6,7 @@ import { inputHandler, emailChecker } from '../../utils';
 
 
 const SignUpForm = () => {
-  
+
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -82,9 +82,9 @@ const SignUpForm = () => {
     <div className='signup-form-page-container'>
 
       <form onSubmit={onSignUp}>
-        <div>
+        <div className='errors-container'>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div className='error-message' key={ind}>{error}</div>
           ))}
         </div>
         <div>

@@ -106,9 +106,9 @@ export default function EditReviewForm({ setShowModal, reviewEdit }) {
       </div>
       <div className='create-review-form-container'>
         <form onSubmit={handleSubmit}>
-          <div className='create-review-form-errors-container'>
+          <div className='errors-container'>
             {errors?.length > 0 && errors.map((err, i) => (
-              <div className='create-review-form-errors-error' key={i}>
+              <div className='error-message' key={i}>
                 {err}
               </div>
             ))}
