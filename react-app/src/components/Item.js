@@ -34,6 +34,8 @@ export default function Item() {
     dispatch(fetchReviews(itemId))
       .then(() => setIsLoaded(true))
 
+    return setIsLoaded(false)
+
   }, [dispatch, itemId])
 
   // -- First Review for display -- //

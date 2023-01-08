@@ -6,6 +6,7 @@
   background-color: white;
   padding: 1rem;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .main-container-title {
@@ -25,12 +26,15 @@
 
 .results-items-grid-container {
   display: grid;
+  width: 100%;
+  padding: 1rem;
 
   /* !! TODO FIX OUR COLUMNS TO FOUR ROWS -- ONCE SEARCH CATEGORY SIDE IMPLEMENTED !! */
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 15px;
   row-gap: 25px;
 }
+
 
 .results-item-link {
   color: black;
