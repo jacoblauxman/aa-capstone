@@ -45,18 +45,9 @@ function User() {
 
   return (
     <>
-      <div className='user-page-user-info-container'>
-        <div>
-          <strong>Username</strong> {user.username}
-        </div>
-        <div>
-          <strong>Email</strong> {user.email}
-        </div>
-      </div>
-
       <div className='user-page-user-reviews-container'>
-        <div className='user-page-reviews-header'>
-          Your Reviews
+        <div className='user-cart-header'>
+          Hey {user?.username}, Here's All Your Reviews:
         </div>
         {userReviews.length > 0 && userReviews?.map(review => (
           <div key={review?.id} className='reviews-page-single-review-container'>

@@ -55,9 +55,11 @@ export default function Cart() {
               <CartItem key={cartItem?.id} cartItem={cartItem} />
             </div>
           )) :
-          <NavLink className='user-cart-no-items-link' to='/'>
-            "Nothing here yet? Why not browse around!"
-          </NavLink>
+          <div className='nothing-here-cart'>
+            <NavLink className='user-cart-no-items-link' to='/'>
+              Nothing here yet? Why not <span className='browse-back'>browse</span> around!
+            </NavLink>
+          </div>
         }
       </div>
       {cartItemsArr.length > 0 && (

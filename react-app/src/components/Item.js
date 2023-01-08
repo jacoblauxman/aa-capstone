@@ -29,8 +29,6 @@ export default function Item() {
   const test = useSelector(state => state.items?.oneItem?.reviews)
   const currentItemReviews = useSelector(state => state.items?.oneItem?.reviews)
 
-  // console.log('TESTING TESTING', randomReview(currentItemReviews))
-
   useEffect(() => {
     dispatch(fetchOneItem(itemId))
     dispatch(fetchReviews(itemId))
@@ -80,9 +78,11 @@ export default function Item() {
           </div>
         </div>
         <div className='single-item-reviews-sample'>
-          <div className='single-item-text-header'>
-            One customer's thoughts...
-          </div>
+          {test?.length > 0 && (
+            <div className='single-item-text-header'>
+              One customer's thoughts...
+            </div>
+          )}
           {test?.length > 0 && reviewSample(test).map(review => (
             < div key={review?.id} className='reviews-page-single-review-container'>
               <div className='reviews-page-single-review-title'>

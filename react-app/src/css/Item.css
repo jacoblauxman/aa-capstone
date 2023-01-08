@@ -1,7 +1,9 @@
 .single-item-container {
   display: flex;
   justify-content: center;
-  padding: 2%
+  padding: 2%;
+  background-color: white;
+  margin-bottom: 1rem;
 }
 
 .single-item-sticky {
