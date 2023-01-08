@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { fetchCart, updateCartItem, deleteCartItem } from '../store/cart';
+import "../css/CartItem.css"
 
 
 export default function CartItem({ cartItem }) {
@@ -48,42 +49,56 @@ export default function CartItem({ cartItem }) {
 
   return (
     <div className='single-cart-item-container'>
-      <div className='single-cart-item-name'>
-        {cartItem?.item?.title} - {cartItem?.item?.platform}
-      </div>
-      <div className='single-cart-item-image'>
-        <img src={cartItem?.item?.image} alt='Cart Item Preview' />
+      <div className='single-cart-item-info-container'>
+        <div className='single-cart-item-image-container'>
+          <img className='single-cart-item-image' src={cartItem?.item?.image} alt='Cart Item Preview' />
+        </div>
+        <div className='single-cart-item-info'>
+          <div className='single-cart-item-name'>
+            {cartItem?.item?.title} - {cartItem?.item?.platform}
+          </div>
+          <div className='single-item-condition-container'>
+            <span className='single-item-descript-label'>Condition:&nbsp; </span> New
+          </div>
+          <div className='single-item-edition-container'>
+            <span className='single-item-descript-label'>Edition:&nbsp; </span> Standard
+          </div>
+        </div>
       </div>
       <div className='single-cart-item-update-form'>
-
         <form onSubmit={handleSubmit}>
-          <div className='update-form-errors-container'>
+          <div className='errors-container'>
             {errors?.length > 0 && errors.map((err, i) => (
-              <div className='update-form-error' key={i}>
+              <div className='error-message' key={i}>
                 {err}
               </div>
             ))}
           </div>
-          <label className='update-form-select-labe'>Quantity</label>
-          <select value={quantity} onChange={handleChange} options={quantityOptions}>
+          <label className='update-form-select-label'>Quantity</label>
+          <select value={quantity} onChange={handleChange} options={quantityOptions} className='update-form-select-field'>
             {quantityOptions.map(option => (
               <option key={option} value={option}>
                 {option}
               </option>
             ))}
           </select>
-          <button type='submit'>
-            Update Cart Quantity
-          </button>
+          <div className='single-cart-update-button-container'>
+
+            <button
+              className='single-cart-item-update-button'
+              type='submit'
+            >
+              Update Your Cart
+            </button>
+          </div>
         </form>
-        <div className='update=form-delete-container'>
-          <button
-            type='button'
-            onClick={handleDelete}
-          >
-            Remove from Cart
-          </button>
-        </div>
+        <button
+          type='button'
+          className='single-cart-item-delete-button'
+          onClick={handleDelete}
+        >
+          Remove from Cart
+        </button>
       </div>
     </div >
   )

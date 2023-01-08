@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { fetchCart, purchaseCartItems } from '../store/cart';
 import CartItem from './CartItem';
 import { cartTotal } from '../utils';
+import "../css/Cart.css"
 
 
 export default function Cart() {
@@ -40,7 +41,7 @@ export default function Cart() {
   return (
     <div className='user-cart-page-container'>
       <div className='user-cart-header'>
-        Hey there {user?.username}, here's your cart!
+        Hey there {user?.username}, here's what's in your cart!
       </div>
       {errors && errors.length > 0 && errors.map((error, i) => (
         <div key={i} className='error-message'>
@@ -54,7 +55,7 @@ export default function Cart() {
               <CartItem key={cartItem?.id} cartItem={cartItem} />
             </div>
           )) :
-          <NavLink to='/'>
+          <NavLink className='user-cart-no-items-link' to='/'>
             "Nothing here yet? Why not browse around!"
           </NavLink>
         }
@@ -70,8 +71,11 @@ export default function Cart() {
           <div className='user-cart-purchase-header'>
             Would you like to complete your purchase?
           </div>
-          <button type='button'
-            onClick={handleSubmit}>
+          <button
+            className='user-cart-complete-purchase-button'
+            type='button'
+            onClick={handleSubmit}
+          >
             Complete My Order
           </button>
         </div>
