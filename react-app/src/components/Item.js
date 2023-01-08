@@ -34,7 +34,7 @@ export default function Item() {
     dispatch(fetchReviews(itemId))
     setTimeout(() => {
       setIsLoaded(true)
-    }, 200)
+    }, 750)
 
     return () => setIsLoaded(false)
 
