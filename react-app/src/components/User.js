@@ -5,6 +5,7 @@ import DeleteReviewFormModal from './DeleteReview';
 import { fetchUserReviews } from '../store/review';
 import EditReviewFormModal from './EditReview';
 import { timeFormatter } from '../utils';
+import '../css/User.css'
 
 function User() {
 
@@ -44,7 +45,7 @@ function User() {
   }
 
   return (
-    <>
+    <div className='user-page-container'>
       <div className='user-page-user-reviews-container'>
         <div className='user-cart-header'>
           Hi {user?.username}, here are your purchase reviews:
@@ -81,7 +82,7 @@ function User() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 export default User;
