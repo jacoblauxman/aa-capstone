@@ -94,7 +94,7 @@
   box-shadow: 0px 2px 2px 1px rgba(128, 128, 128, 0.478);
 }
 
- .create-review-modal {
+.create-review-modal {
   background-color: black;
   color: white;
   width: 100%;
@@ -107,4 +107,14 @@
 
 .create-review-modal:hover {
   cursor: pointer;
+}
+
+.privacy-policy-container {
+  text-decoration: underline;
+  font-weight: 325;
+}
+
+.privacy-policy-container:hover {
+  cursor: url('https://res.cloudinary.com/dixbzsdnm/image/upload/v1673027892/aa-capstone-gamebaux/svgs/nosign_besbka.png'), auto;
+
 }

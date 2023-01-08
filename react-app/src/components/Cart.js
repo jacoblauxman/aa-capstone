@@ -41,7 +41,7 @@ export default function Cart() {
   return (
     <div className='user-cart-page-container'>
       <div className='user-cart-header'>
-        Hey there {user?.username}, here's what's in your cart!
+        Hey there {user?.username}, here's your cart!
       </div>
       {errors && errors.length > 0 && errors.map((error, i) => (
         <div key={i} className='error-message'>

@@ -169,7 +169,7 @@ export default function CreateReviewForm({ setShowModal }) {
             Share Review
           </button>
         </form>
-        <div className='create-review-form-privacy-container'>
+        <div className='privacy-policy-container'>
           Privacy Policy
         </div>
       </div>
