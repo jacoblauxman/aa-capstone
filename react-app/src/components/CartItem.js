@@ -63,6 +63,9 @@ export default function CartItem({ cartItem }) {
           <div className='single-item-edition-container'>
             <span className='single-item-descript-label'>Edition:&nbsp; </span> Standard
           </div>
+          <div className='single-item-edition-container'>
+            <span className='single-item-descript-label'>Price:&nbsp; </span> ${cartItem?.item?.price}
+          </div>
         </div>
       </div>
       <div className='single-cart-item-update-form'>
