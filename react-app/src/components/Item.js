@@ -32,9 +32,11 @@ export default function Item() {
   useEffect(() => {
     dispatch(fetchOneItem(itemId))
     dispatch(fetchReviews(itemId))
-      .then(() => setIsLoaded(true))
+    setTimeout(() => {
+      setIsLoaded(true)
+    }, 200)
 
-    return setIsLoaded(false)
+    return () => setIsLoaded(false)
 
   }, [dispatch, itemId])
 

@@ -13,12 +13,18 @@ def seed_users():
         username='cobe', email='cobe@aa.io', password='password')
     super_shopper=User(
         username='SuperShopper', email='supershopper@aa.io', password='password')
+    arlo=User(
+        username='arlo', email='arlo@gmail.com', password='password')
+    gamer=User(
+        username='trÜgamer', email='tru@gmail.com', password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(cobe)
     db.session.add(super_shopper)
+    db.session.add(arlo)
+    db.session.add(gamer)
     db.session.commit()
 
 
