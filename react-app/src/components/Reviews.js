@@ -65,7 +65,12 @@ export default function Reviews() {
                 </div>
               </div>
               <div className='reviews-page-reviews-stars-breakdown-container'>
-                !!! STARS BREAKDOWN COMING SOON !!!
+                <div className='smile'>
+                  <i class="fa-regular fa-face-smile"></i>
+                </div>
+                <div className='frown'>
+                  <i class="fa-regular fa-face-frown"></i>
+                </div>
               </div>
             </div>
             {reviewsArr && reviewsArr.map(review => (
@@ -100,21 +105,20 @@ export default function Reviews() {
             <div className='reviews-page-item-container'>
               <div className='reviews-page-item-preview-container'>
                 <div className='reviews-page-all-item-container'>
-
                   <div className='reviews-page-item-image-container'>
                     <img src={currentItem?.image} alt='Reviews Single Item Preview' className='reviews-page-item-image' />
                   </div>
                   <div className='reviews-page-item-info-container'>
-                  </div>
-                  <div className='reviews-page-item-title'>
-                    {currentItem?.title}
-                  </div>
-                  <div className='reviews-page-item-creator'>
-                    {currentItem?.creator}
+                    <div className='reviews-page-item-title'>
+                      {currentItem?.title}
+                    </div>
+                    <div className='reviews-page-item-creator'>
+                      {currentItem?.creator}
+                    </div>
                   </div>
                 </div>
                 <div className='reviews-page-item-back-container'>
-                  <NavLink to={`/items/${itemId}`}>
+                  <NavLink className='reviews-page-back-link' to={`/items/${itemId}`}>
                     <button className='reviews-page-back-button'>
                       Return to Product Details
                     </button>

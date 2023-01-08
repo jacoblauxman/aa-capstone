@@ -5,7 +5,8 @@ import { fetchOneItem } from '../store/item'
 import { fetchReviews } from '../store/review'
 import { createCartItem, fetchCart } from '../store/cart'
 import { timeFormatter } from '../utils'
-// import "../css/Item.css"
+import "../css/Item.css"
+import { reviewSample, randomReview } from '../utils'
 
 
 export default function Item() {
@@ -26,8 +27,9 @@ export default function Item() {
   const reviewsArr = Object?.values(itemReviews)
 
   const test = useSelector(state => state.items?.oneItem?.reviews)
+  const currentItemReviews = useSelector(state => state.items?.oneItem?.reviews)
 
-  console.log(currentItem, 'currentItem!!')
+  // console.log('TESTING TESTING', randomReview(currentItemReviews))
 
   useEffect(() => {
     dispatch(fetchOneItem(itemId))
@@ -65,14 +67,22 @@ export default function Item() {
 
   return (
     <div className='single-item-container'>
-      <div className='single-item-item-side-container'>
-        <div>
-          {currentItem?.title} - {currentItem?.platform}
-        </div>
+      <div className='single-item-left-side-container'>
         <div className='single-item-image-container'>
           <img src={currentItem?.image} alt='Current Item Display Preview' className='single-item-image' />
         </div>
+        <div className='single-item-description-container'>
+          <div className='single-item-text-header'>
+            Product Description:
+          </div>
+          <div className='single-item-description-text'>
+            {currentItem?.description}
+          </div>
+        </div>
         <div className='single-item-reviews-sample'>
+          <div className='single-item-text-header'>
+            One customer's thoughts...
+          </div>
           {test?.length > 0 && reviewSample(test).map(review => (
             < div key={review?.id} className='reviews-page-single-review-container'>
               <div className='reviews-page-single-review-title'>
@@ -100,38 +110,60 @@ export default function Item() {
         </div>
         <div className='single-item-reviews-all-reviews'>
           <NavLink to={`/items/${itemId}/reviews`}>
-            <button type="button">
-              SEE ALL REVIEWS
+            <button
+              type="button"
+              className='single-item-all-reviews-button'
+            >
+              See All Reviews
             </button>
           </NavLink>
         </div>
       </div>
-      <div className='single-item-purchase-side-container'>
-        <div className='single-item-purchase-errors-container'>
-          {errors && errors?.length > 0 && errors.map((err, i) => (
-            <div key={i}>{err}</div>
-          ))}
+      <div className='single-item-right-side-container'>
+        <div className='single-item-sticky'>
+          <div className='single-item-info-container'>
+            <div className='single-item-header-container'>
+              {currentItem?.title} - {currentItem?.platform}
+            </div>
+            <div className='single-item-creator-container'>
+              <span className='single-item-descript-label'>by&nbsp;</span>{currentItem?.creator}
+            </div>
+            <div className='single-item-condition-container'>
+              <span className='single-item-descript-label'>Condition:&nbsp; </span> New
+            </div>
+            <div className='single-item-edition-container'>
+              <span className='single-item-descript-label'>Edition:&nbsp; </span> Standard
+            </div>
+          </div>
+          <div className='single-item-purchase-side-container'>
+            <div className='single-item-purchase-stock'>
+              <div className='single-item-purchase-stock-header'>
+                <span className='in-stock'>In Stock</span> for pickup nearby
+              </div>
+              <div className='single-item-purchase-stock-sub'>
+                Today - always free
+              </div>
+              <div className='single-item-purchase-stock-header'>
+                <span className='in-stock'>In Stock</span> for delivery
+              </div>
+              <div className='single-item-purchase-stock-sub'>
+                Free 1-3 Day Shipping Over $59
+              </div>
+            </div>
+            <div className='errors-container'>
+              {errors && errors?.length > 0 && errors.map((err, i) => (
+                <div className='error-message' key={i}>{err}</div>
+              ))}
+            </div>
+            <button
+              type='button'
+              className='single-item-add-to-cart-button'
+              onClick={addToCart}
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
-        <div className='single-item-purchase-stock'>
-          <div className='single-item-purchase-stock-header'>
-            <span className='in-stock'>In Stock</span> for pickup nearby
-          </div>
-          <div className='single-item-purchase-stock-sub'>
-            Today - always free
-          </div>
-          <div className='single-item-purchase-stock-header'>
-            <span className='in-stock'>In Stock</span> for delivery
-          </div>
-          <div className='single-item-purchase-stock-sub'>
-            Free 1-3 Day Shipping Over $59
-          </div>
-        </div>
-        <button
-          type='button'
-          onClick={addToCart}
-        >
-          Add to Cart
-        </button>
       </div>
     </div>
   )

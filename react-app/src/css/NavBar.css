@@ -58,7 +58,7 @@
   height: 100%;
   text-decoration: none;
   color: black;
-  /* margin-right: 15px; */
+  margin-right: 15px;
 }
 
 .navbar-search-bar-container {
@@ -67,6 +67,7 @@
   justify-content: center;
   width: 25%;
   flex: 2 1 750px;
+  margin-right: 7px;
 }
 
 .navbar-search-bar-form-container:hover {
@@ -229,6 +230,7 @@
   border: none;
   background-color: #DBDBDB;
   font-size: .66rem;
+  margin-right: 7px;
 
   transition: all 0.15s ease-in-out
 }
@@ -237,7 +239,6 @@
   cursor: pointer;
   color: red;
 }
-
 
 .navbar-shopping-cart-img {
   display: flex;

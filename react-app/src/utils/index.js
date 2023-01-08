@@ -72,3 +72,20 @@ export const briefDescription = str => {
   const arr = str.split(" ").slice(0, 30)
   return arr.join(" ")
 }
+
+
+// -- Random Review picker for Single Item Display -- //
+// export const randomReview = reviewArr => {
+//   const i = Math.floor(Math.random() * reviewArr?.length)
+//   const pick = reviewArr[i]
+//   return pick
+// }
+
+
+// -- Review sample slice, for later user with more seed data implemented -- //
+export const reviewSample = reviewArr => {
+  const firstFew = [...reviewArr]
+  const selected = firstFew.slice(0, 1)
+
+  return selected
+}
