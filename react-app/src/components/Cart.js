@@ -20,6 +20,7 @@ export default function Cart() {
 
   useEffect(() => {
     dispatch(fetchCart())
+
   }, [dispatch, myfriendjson])
 
   if (!user) {

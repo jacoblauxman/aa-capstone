@@ -4,6 +4,7 @@ const LOAD_CART = 'cart/LOAD_CART'
 const UPDATE_CART = 'cart/UPDATE_CART'
 const DELETE_CART_ITEM = 'cart/DELETE_CART_ITEM'
 const PURCHASE_CART = 'cart/PURCHASE_CART'
+const LOGOUT_CART = 'cart/LOGOUT_CART'
 
 
 // --- CREATORS --- //
@@ -27,6 +28,9 @@ const purchaseCart = () => ({
   type: PURCHASE_CART,
 })
 
+const logoutCart = () => ({
+  type: LOGOUT_CART
+})
 
 // --- THUNKS --- //
 
@@ -58,9 +62,9 @@ export const createCartItem = (itemId) => async dispatch => {
     dispatch(updateCart(newCartItem))
   }
 
-    return {
-      "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
-    }
+  return {
+    "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
+  }
 }
 
 
@@ -109,6 +113,13 @@ export const purchaseCartItems = () => async dispatch => {
   }
 }
 
+export const clearCartItems = () => async dispatch => {
+  console.log('TRYING TO CLEAR CART STATE ON LOGOUT!!')
+  dispatch(logoutCart())
+
+  return
+}
+
 
 // --- INITIAL STATE --- //
 
@@ -147,6 +158,10 @@ const cartReducer = (state = initialState, action) => {
 
     case PURCHASE_CART: {
       return initialState
+    }
+
+    case LOGOUT_CART: {
+      return { allItems: {} }
     }
 
     default: {
