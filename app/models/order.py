@@ -28,5 +28,10 @@ class Order(db.Model):
   def to_dict(self):
     return {
       'id': self.id,
-      'userId': self.user_id
+      'userId': self.user_id,
+      'street': self.street,
+      'city': self.city,
+      'state': self.state,
+      'zipcode': self.zipcode,
+      'items': [item.to_dict() for item in self.items_association]
     }

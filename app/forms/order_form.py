@@ -6,8 +6,8 @@ from wtforms.validators import DataRequired, NumberRange, Length, Regexp, Valida
 class OrderForm(FlaskForm):
   street = StringField('street', validators=[DataRequired(), Length(min=5, max=50)])
   city = StringField('city', validators=[DataRequired(), Length(min=3, max=50)])
-  state = StringField('state', validators=[DataRequired()])
-  zipcode = StringField('zipcode', validators=[DataRequired(), Length(min=5, max=5, message='Please provide 5 digit zip'), validate_zip])
+  state = StringField('state', validators=[DataRequired(), Length(min=2, max=2)])
+  zipcode = StringField('zipcode', validators=[DataRequired(), Length(min=5, max=5, message='Please provide 5 digit zip')])
   submit = SubmitField('complete purchase')
 
   def validate_zipcode(form, field):
