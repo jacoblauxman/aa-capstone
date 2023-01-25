@@ -5,20 +5,24 @@ from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import String, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
-from .cart_item import CartItem
+from .order_item import OrderItem
 
-class Cart(db.Model):
-  __tablename__ = "carts"
+class Order(db.Model):
+  __tablename__ = "orders"
 
   if environment == "production":
     __table_args__ = {'schema': SCHEMA}
 
   id = Column(Integer, primary_key=True)
   user_id = Column(Integer, ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+  street = Column(String(50), nullable=False)
+  city = Column(String(25), nullable=False)
+  state = Column(String(2), nullable=False)
 
-  user = relationship("User", back_populates="cart")
-  items_association = relationship("CartItem", back_populates="cart")
-  items = association_proxy("items_association", "item", creator=lambda i: CartItem(item=i))
+
+  user = relationship("User", back_populates="orders")
+  items_association = relationship("OrderItem", back_populates="order")
+  items = association_proxy("items_association", "item", creator=lambda i: OrderItem(item=i))
 
   def to_dict(self):
     return {

@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
 
     reviews = relationship("Review", back_populates="user", cascade="all, delete")
     cart = relationship("Cart", back_populates="user", cascade="all, delete")
+    orders = relationship("Order", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
