@@ -18,6 +18,7 @@ class Order(db.Model):
   street = Column(String(50), nullable=False)
   city = Column(String(25), nullable=False)
   state = Column(String(2), nullable=False)
+  zipcode = Column(String(5), nullable=False)
 
 
   user = relationship("User", back_populates="orders")
