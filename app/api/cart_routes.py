@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, session, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Item, Cart, CartItem, Order
+from app.models import db, User, Item, Cart, CartItem, Order, OrderItem
 from app.forms import CartItemForm, OrderForm
 
 cart_routes = Blueprint('cart', __name__)
@@ -74,8 +74,10 @@ def delete_cart_item(id):
 @login_required
 def purchase_cart_items():
   cart = Cart.query.filter(Cart.user_id==current_user.id).first()
+  order_items = []
   form = OrderForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+
   if form.validate_on_submit():
     user_order = Order(
       user_id=current_user.id,
@@ -83,15 +85,16 @@ def purchase_cart_items():
       city=form.city.data,
       state=form.state.data,
       zipcode=form.zipcode.data)
-    # db.session.commit()
+
+    db.session.commit()
+
   for i in cart.items_association:
-      print("\n", i.to_dict(), "I TO DICT!", "\n" )
-      user_order.items.append(i)
+      item = Item.query.get(i.item.id)
+      new_order_item = OrderItem(order=user_order, item=item)
+      new_order_item.quantity = i.quantity
+      order_items.append(new_order_item)
 
-
-
-
-  # cart.items_association = []
-  # db.session.commit()
+  cart.items_association = []
+  db.session.commit()
 
   return {"message": "Transaction successfully completed! Thank You for Your Purchase!"}, 200
