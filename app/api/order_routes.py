@@ -23,6 +23,7 @@ def get_user_orders():
 @login_required
 def update_user_order(id):
   order = Order.query.get(id)
+  user_orders = Order.query.filter(Order.user_id==current_user.id).all()
   form = OrderForm()
 
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -34,6 +35,6 @@ def update_user_order(id):
 
     db.session.commit()
 
-    return {"order": order.to_dict()}, 200
+    return {"orders": [order.to_dict() for order in user_orders]}, 200
 
   return {"errors": ["VALIDATION: Must provide valid shipping address information"]}, 400

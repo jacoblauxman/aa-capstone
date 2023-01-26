@@ -38,9 +38,9 @@ export const fetchCart = () => async dispatch => {
     dispatch(loadCart(cartItems))
 
     return cartItems
-  }
 
-  else {
+  } else {
+
     return { "errors": "AUTHORIZATION: UNAUTHORIZED REQUEST" }
   }
 }
@@ -72,6 +72,7 @@ export const updateCartItem = (cartItem) => async dispatch => {
     },
     body: JSON.stringify(cartItem)
   }).catch(err => {
+
     return {
       "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
     }
@@ -80,6 +81,8 @@ export const updateCartItem = (cartItem) => async dispatch => {
   if (response.ok) {
     const updatedCart = await response.json()
     dispatch(updateCart(updatedCart))
+
+    return updatedCart
   }
 }
 
