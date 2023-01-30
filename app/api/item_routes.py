@@ -94,7 +94,7 @@ def get_item_reviews(id):
 
 
 
-# POST item to cart by item id
+# POST (GET) item to cart by item id
 
 @item_routes.route('/<int:id>/cart')
 @login_required
@@ -118,3 +118,19 @@ def add_item_to_cart(id):
   db.session.commit()
 
   return {"items": [item.to_dict() for item in cart_items]}
+
+
+# POST item to user wishlist
+@item_routes.route('/<int:id>/wishlist', methods=["POST"])
+@login_required
+def add_item_to_wishlist(id):
+  item = Item.query.get(id)
+  user = current_user
+
+  for i in user.wishlist_items:
+    if i.id == item.id:
+      return {"errors": ["VALIDATION: Item is already in wishlist"]}
+
+  user.wishlist_items.append(item)
+  db.session.commit()
+  return {"wishlist": [i.to_dict() for i in user.wishlist_items], "user": user.to_dict()}, 201
