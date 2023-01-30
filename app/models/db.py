@@ -17,16 +17,20 @@ def add_prefix_for_prod(attr):
 
 wishlists = db.Table(
     "wishlists",
+    db.Model.metadata,
     db.Column(
         "user_id",
         db.Integer,
-        db.ForeignKey("users.id"),
+        db.ForeignKey(add_prefix_for_prod("users.id")),
         primary_key=True
     ),
     db.Column(
         "item_id",
         db.Integer,
-        db.ForeignKey("items.id"),
+        db.ForeignKey(add_prefix_for_prod("items.id")),
         primary_key=True
     )
 )
+
+if environment == "production":
+    wishlists.schema = SCHEMA
