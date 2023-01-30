@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA, add_prefix_for_prod, wishlists
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.schema import Column
@@ -19,6 +19,8 @@ class User(db.Model, UserMixin):
     reviews = relationship("Review", back_populates="user", cascade="all, delete")
     cart = relationship("Cart", back_populates="user", cascade="all, delete")
     orders = relationship("Order", back_populates="user", cascade="all, delete")
+
+    wishlist_items = relationship("Item", secondary=wishlists, back_populates="wishlist_users", cascade="all, delete")
 
     @property
     def password(self):

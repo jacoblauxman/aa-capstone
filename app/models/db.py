@@ -15,3 +15,18 @@ def add_prefix_for_prod(attr):
         return attr
 
 
+wishlists = db.Table(
+    "wishlists",
+    db.Column(
+        "user_id",
+        db.Integer,
+        db.ForeignKey("users.id"),
+        primary_key=True
+    ),
+    db.Column(
+        "item_id",
+        db.Integer,
+        db.ForeignKey("items.id"),
+        primary_key=True
+    )
+)
