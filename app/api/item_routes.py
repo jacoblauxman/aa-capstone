@@ -1,8 +1,9 @@
 from flask import Blueprint, redirect, session, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Item, Review, Cart, CartItem
-from app.forms import ReviewForm
+from app.forms import ReviewForm, ItemSearchForm
 import json
+from sqlalchemy import or_
 
 item_routes = Blueprint('items', __name__)
 
@@ -19,6 +20,45 @@ def get_all_items():
   return {'items': res}, 200
 
 
+
+### 'SEARCH' / QUERY RESULTS Section ###
+
+# GET all PLATFORM specific items
+
+@item_routes.route("/platform/<string:platform>")
+def get_platform_items(platform):
+  all_items = Item.query.filter(Item.platform==platform).all()
+
+  return {'items': [i.to_dict() for i in all_items]}, 200
+
+
+@item_routes.route("/category/<string:category>")
+def get_category_items(category):
+  all_items = Item.query.filter(Item.category==category).all()
+
+  return {'items': [i.to_dict() for i in all_items]}, 200
+
+
+# GET all SEARCH related items
+@item_routes.route("/search", methods=["POST"])
+def get_searched_items():
+  form = ItemSearchForm()
+  search = form.search.data
+  db_search_str = f"%{search}%"
+
+  search_result = Item.query.filter(or_(
+    Item.title.ilike(db_search_str),
+    Item.description.ilike(db_search_str),
+    Item.platform.ilike(db_search_str),
+    Item.creator.ilike(db_search_str)
+  ))
+
+  return {'items': [i.to_dict() for i in search_result]}, 200
+
+
+
+
+### ITEM SPECIFICS Section ###
 
 # GET item by id
 
@@ -94,7 +134,7 @@ def get_item_reviews(id):
 
 
 
-# POST item to cart by item id
+# POST (GET) item to cart by item id
 
 @item_routes.route('/<int:id>/cart')
 @login_required
@@ -118,3 +158,19 @@ def add_item_to_cart(id):
   db.session.commit()
 
   return {"items": [item.to_dict() for item in cart_items]}
+
+
+# POST item to user wishlist
+@item_routes.route('/<int:id>/wishlist', methods=["POST"])
+@login_required
+def add_item_to_wishlist(id):
+  item = Item.query.get(id)
+  user = current_user
+
+  for i in user.wishlist_items:
+    if i.id == item.id:
+      return {"errors": ["VALIDATION: Item is already in wishlist"]}
+
+  user.wishlist_items.append(item)
+  db.session.commit()
+  return {"wishlist": [i.to_dict() for i in user.wishlist_items], "user": user.to_dict()}, 201

@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.types import String, Integer
 from sqlalchemy.ext.associationproxy import association_proxy
 from .cart_item import CartItem
+
 class Cart(db.Model):
   __tablename__ = "carts"
 
