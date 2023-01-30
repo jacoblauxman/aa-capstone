@@ -1,8 +1,9 @@
 from flask import Blueprint, redirect, session, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Item, Review, Cart, CartItem
-from app.forms import ReviewForm
+from app.forms import ReviewForm, ItemSearchForm
 import json
+from sqlalchemy import or_
 
 item_routes = Blueprint('items', __name__)
 
@@ -19,6 +20,46 @@ def get_all_items():
   return {'items': res}, 200
 
 
+
+### 'SEARCH' / QUERY RESULTS Section ###
+
+# GET all PLATFORM specific items
+
+@item_routes.route("/platform/<string:platform>")
+def get_platform_items(platform):
+  all_items = Item.query.filter(Item.platform==platform).all()
+
+  return {'items': [i.to_dict() for i in all_items]}, 200
+
+
+@item_routes.route("/category/<string:category>")
+def get_category_items(category):
+  all_items = Item.query.filter(Item.category==category).all()
+
+  return {'items': [i.to_dict() for i in all_items]}, 200
+
+
+# GET all SEARCH related items
+@item_routes.route("/search", methods=["POST"])
+def get_searched_items():
+  form = ItemSearchForm()
+  search = form.search.data
+  print('search data here', '\n', search)
+  db_search_str = f"%{search}%"
+
+  search_result = Item.query.filter(or_(
+    Item.title.ilike(db_search_str),
+    Item.description.ilike(db_search_str),
+    Item.platform.ilike(db_search_str),
+    Item.creator.ilike(db_search_str)
+  ))
+
+  return {'items': [i.to_dict() for i in search_result]}, 200
+
+
+
+
+### ITEM SPECIFICS Section ###
 
 # GET item by id
 
