@@ -44,7 +44,6 @@ def get_category_items(category):
 def get_searched_items():
   form = ItemSearchForm()
   search = form.search.data
-  print('search data here', '\n', search)
   db_search_str = f"%{search}%"
 
   search_result = Item.query.filter(or_(
