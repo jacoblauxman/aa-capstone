@@ -1,5 +1,4 @@
 // --- ACTIONS --- //
-
 const LOAD_CART = 'cart/LOAD_CART'
 const UPDATE_CART = 'cart/UPDATE_CART'
 const DELETE_CART_ITEM = 'cart/DELETE_CART_ITEM'
@@ -7,7 +6,6 @@ const PURCHASE_CART = 'cart/PURCHASE_CART'
 
 
 // --- CREATORS --- //
-
 const loadCart = (cartItems) => ({
   type: LOAD_CART,
   cartItems
@@ -29,7 +27,6 @@ const purchaseCart = () => ({
 
 
 // --- THUNKS --- //
-
 export const fetchCart = () => async dispatch => {
   const response = await fetch(`/api/cart/user`)
 
@@ -114,12 +111,10 @@ export const purchaseCartItems = () => async dispatch => {
 
 
 // --- INITIAL STATE --- //
-
 const initialState = { allItems: {} }
 
 
 // --- REDUCER --- //
-
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
 

@@ -1,5 +1,4 @@
 // --- ACTIONS --- //
-
 const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
@@ -8,7 +7,6 @@ const LOAD_USER_REVIEWS = 'reviews/LOAD_USER_REVIEWS'
 
 
 // --- CREATORS --- //
-
 const loadReviews = (reviews, itemId) => ({
   type: LOAD_REVIEWS,
   reviews,
@@ -37,7 +35,6 @@ const loadUserReviews = (reviews) => ({
 
 
 // --- THUNKS --- //
-
 export const fetchReviews = itemId => async dispatch => {
   const response = await fetch(`/api/items/${itemId}/reviews`)
 
@@ -112,12 +109,10 @@ export const fetchUserReviews = () => async dispatch => {
 
 
 // --- INITIAL STATE --- //
-
 const initialState = { oneItem: {}, user: {} }
 
 
 // --- REDUCER --- //
-
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_REVIEWS: {

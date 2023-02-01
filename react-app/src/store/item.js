@@ -1,11 +1,9 @@
 // --- ACTIONS --- //
-
 const LOAD_ITEMS = 'reviews/LOAD_REVIEWS'
 const LOAD_ITEM = 'items/LOAD_ITEM'
 
 
 // --- CREATORS --- //
-
 const loadItems = (items) => ({
   type: LOAD_ITEMS,
   items
@@ -29,6 +27,7 @@ export const fetchItems = () => async dispatch => {
   }
 }
 
+
 export const fetchOneItem = (itemId) => async dispatch => {
   const response = await fetch(`/api/items/${itemId}`)
 
@@ -39,6 +38,7 @@ export const fetchOneItem = (itemId) => async dispatch => {
     return item
   }
 }
+
 
 export const fetchPlatItems = (platform) => async dispatch => {
   const response = await fetch(`/api/items/platform/${platform}`)
@@ -51,6 +51,7 @@ export const fetchPlatItems = (platform) => async dispatch => {
   }
 }
 
+
 export const fetchCatItems = (category) => async dispatch => {
   const response = await fetch(`/api/items/category/${category}`)
 
@@ -61,6 +62,7 @@ export const fetchCatItems = (category) => async dispatch => {
     return items
   }
 }
+
 
 export const fetchSearchItems = (search) => async dispatch => {
   const response = await fetch(`/api/items/search`, {
@@ -81,12 +83,10 @@ export const fetchSearchItems = (search) => async dispatch => {
 
 
 // --- INITIAL STATE --- //
-
 const initialState = { items: {}, oneItem: {} }
 
 
 // --- REDUCER --- //
-
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ITEMS: {

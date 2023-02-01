@@ -27,6 +27,7 @@ export const fetchWishlist = () => async dispatch => {
   }
 }
 
+
 export const fetchUpdatedWishlist = (itemId) => async dispatch => {
   const response = await fetch(`/api/wishlist/${itemId}`, {
     method: "PUT",
@@ -72,7 +73,7 @@ const wishlistReducer = (state = initialState, action) => {
     }
 
     default: {
-      
+
       return state
     }
   }
