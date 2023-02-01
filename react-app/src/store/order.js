@@ -14,8 +14,8 @@ const updateOrders = (updatedOrder) => ({
   updatedOrder
 })
 
-// --- THUNKS --- //
 
+// --- THUNKS --- //
 export const fetchOrders = () => async dispatch => {
   const response = await fetch(`/api/orders/user`)
 
@@ -53,8 +53,8 @@ export const fetchUpdateOrders = (order) => async dispatch => {
 // --- INITIAL STATE --- //
 const initialState = { allOrders: {} }
 
-// --- REDUCER --- //
 
+// --- REDUCER --- //
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
 

@@ -1,11 +1,9 @@
 // --- ACTIONS --- //
-
 const LOAD_ITEMS = 'reviews/LOAD_REVIEWS'
 const LOAD_ITEM = 'items/LOAD_ITEM'
 
 
 // --- CREATORS --- //
-
 const loadItems = (items) => ({
   type: LOAD_ITEMS,
   items
@@ -18,7 +16,6 @@ const loadItem = (item) => ({
 
 
 // --- THUNKS --- //
-
 export const fetchItems = () => async dispatch => {
   const response = await fetch(`/api/items/`)
 
@@ -43,13 +40,53 @@ export const fetchOneItem = (itemId) => async dispatch => {
 }
 
 
-// --- INITIAL STATE --- //
+export const fetchPlatItems = (platform) => async dispatch => {
+  const response = await fetch(`/api/items/platform/${platform}`)
 
+  if (response.ok) {
+    const items = await response.json()
+    dispatch(loadItems(items))
+
+    return items
+  }
+}
+
+
+export const fetchCatItems = (category) => async dispatch => {
+  const response = await fetch(`/api/items/category/${category}`)
+
+  if (response.ok) {
+    const items = await response.json()
+    dispatch(loadItems(items))
+
+    return items
+  }
+}
+
+
+export const fetchSearchItems = (search) => async dispatch => {
+  const response = await fetch(`/api/items/search`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(search)
+  })
+
+  if (response.ok) {
+    const items = await response.json()
+    dispatch(loadItems(items))
+
+    return items
+  }
+}
+
+
+// --- INITIAL STATE --- //
 const initialState = { items: {}, oneItem: {} }
 
 
 // --- REDUCER --- //
-
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ITEMS: {
