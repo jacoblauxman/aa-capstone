@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Redirect } from 'react-router-dom';
-import { fetchCart } from '../../store/cart';
 import { login } from '../../store/session';
 import '../../css/Auth.css'
 
+import { fetchCart } from '../../store/cart';
+import { fetchWishlist } from '../../store/wishlist';
 
 const LoginForm = () => {
 
@@ -21,6 +22,7 @@ const LoginForm = () => {
       setErrors(["Invalid Credentials Provided"]);
     }
     const cart = await dispatch(fetchCart())
+    const wishlist = await dispatch(fetchWishlist())
   };
 
   const demoLogin = async (e) => {
@@ -32,6 +34,7 @@ const LoginForm = () => {
       setErrors(data)
     }
     const cart = await dispatch(fetchCart())
+    const wishlist = await dispatch(fetchWishlist())
   }
 
   const updateEmail = (e) => {

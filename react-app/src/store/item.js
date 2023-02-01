@@ -18,7 +18,6 @@ const loadItem = (item) => ({
 
 
 // --- THUNKS --- //
-
 export const fetchItems = () => async dispatch => {
   const response = await fetch(`/api/items/`)
 
@@ -30,7 +29,6 @@ export const fetchItems = () => async dispatch => {
   }
 }
 
-
 export const fetchOneItem = (itemId) => async dispatch => {
   const response = await fetch(`/api/items/${itemId}`)
 
@@ -39,6 +37,45 @@ export const fetchOneItem = (itemId) => async dispatch => {
     dispatch(loadItem(item))
 
     return item
+  }
+}
+
+export const fetchPlatItems = (platform) => async dispatch => {
+  const response = await fetch(`/api/items/platform/${platform}`)
+
+  if (response.ok) {
+    const items = await response.json()
+    dispatch(loadItems(items))
+
+    return items
+  }
+}
+
+export const fetchCatItems = (category) => async dispatch => {
+  const response = await fetch(`/api/items/category/${category}`)
+
+  if (response.ok) {
+    const items = await response.json()
+    dispatch(loadItems(items))
+
+    return items
+  }
+}
+
+export const fetchSearchItems = (search) => async dispatch => {
+  const response = await fetch(`/api/items/search`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(search)
+  })
+
+  if (response.ok) {
+    const items = await response.json()
+    dispatch(loadItems(items))
+
+    return items
   }
 }
 
