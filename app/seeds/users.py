@@ -3,34 +3,48 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
-    cobe = User(
-        username='cobe', email='cobe@aa.io', password='password')
-    super_shopper=User(
-        username='SuperShopper', email='supershopper@aa.io', password='password')
-    pro_gamer=User(
+    users = [
+        User(
+        username='Demo', email='demo@aa.io', password='password'
+        ),
+        User(
+        username='marnie', email='marnie@aa.io', password='password'
+        ),
+        User(
+        username='bobbie', email='bobbie@aa.io', password='password'
+        ),
+        User(
+        username='jaboc', email='jaboc@aa.io', password='password'
+        ),
+        User(
+        username='SuperShopper', email='supershopper@aa.io', password='password'
+        ),
+        User(
         username='pro_gamer', email='pro_gamer@aa.io', password='password'
-    )
-    fake_gamer=User(
+    ),
+        User(
         username='fakeGamer', email='fakeGamer@aa.io', password='password'
-    )
-    just_a_user=User(
+    ),
+        User(
         username='justAnotherUser', email='justanotheruser@aa.io', password='password'
-    )
+    ),
+        User(
+        username='hanz', email='hanz@aa.io', password='password'
+    ),
+        User(
+        username='trev', email='trev@aa.io', password='password'
+    ),
+        User(
+        username='cahzzm', email='cahzzm@aa.io', password='password'
+    ),
+        User(
+        username='d0rk5ter', email='d0r5ter@aa.io', password='password'
+    ),
+        User(
+        username='mikemillercodes', email='mikemillercodes@aa.io', password='password'
+    )]
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.add(cobe)
-    db.session.add(super_shopper)
-    db.session.add(pro_gamer)
-    db.session.add(fake_gamer)
-    db.session.add(just_a_user)
+    [db.session.add(user) for user in users]
     db.session.commit()
 
 

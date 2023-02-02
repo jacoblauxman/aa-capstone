@@ -141,19 +141,26 @@ def seed_reviews():
   add_reviews=[db.session.add(review) for review in all_reviews]
   db.session.commit()
 
-  user_ids = [2,3,4,5,6,7,8]
+  user_ids = [2,3,4,5,6,7,8,9,10,11,12,13]
   # item_ids = list(range(43))
-  item_ids = [n for n in range(43) if n!=0]
-  ratings = [1,2,3,4,5]
+  item_ids = [n for n in range(44) if n!=0]
+  ratings = [1,2,3,4,5,4,3,2,3,2]
   titles = ['Newest Buy', 'Worth it', "Can't Believe it", "Ohhhmy!", "Gotta Say", "Woooooow", "Just a heads up...", "What they don't tell you", "I have some thoughts", "Fresh take here" ]
-  review = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu"
+  reviews = [
+    "What would you say a review is really worth? I'd say it's roughly equivalent to however much I'm being paid to currently write these words. More so than anything, it's content, and what more could you ask for?",
+    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
+    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
+    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.",
+    "Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pro",
+    "Short and sweet. To break up the monotony. Cheers",
+    "Leaving a little note now to remind me to come back and finish this review later. Stay tuned! Find out next time on..."]
 
-  for i in range(250):
+  for i in range(500):
     a_review = Review(
       user_id=random.choice(user_ids),
       item_id=random.choice(item_ids),
       title=random.choice(titles),
-      review=review,
+      review=random.choice(reviews),
       rating=random.choice(ratings)
     )
     db.session.add(a_review)
