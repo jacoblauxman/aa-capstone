@@ -1,4 +1,5 @@
 from app.models import db, Review, environment, SCHEMA
+import random
 
 def seed_reviews():
   review1 = Review(
@@ -140,7 +141,23 @@ def seed_reviews():
   add_reviews=[db.session.add(review) for review in all_reviews]
   db.session.commit()
 
+  user_ids = [2,3,4,5,6,7,8]
+  # item_ids = list(range(43))
+  item_ids = [n for n in range(43) if n!=0]
+  ratings = [1,2,3,4,5]
+  titles = ['Newest Buy', 'Worth it', "Can't Believe it", "Ohhhmy!", "Gotta Say", "Woooooow", "Just a heads up...", "What they don't tell you", "I have some thoughts", "Fresh take here" ]
+  review = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu"
 
+  for i in range(250):
+    a_review = Review(
+      user_id=random.choice(user_ids),
+      item_id=random.choice(item_ids),
+      title=random.choice(titles),
+      review=review,
+      rating=random.choice(ratings)
+    )
+    db.session.add(a_review)
+  db.session.commit()
 
 def undo_reviews():
     if environment == "production":
