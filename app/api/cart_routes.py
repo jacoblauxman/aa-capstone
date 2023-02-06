@@ -97,4 +97,4 @@ def purchase_cart_items():
   cart.items_association = []
   db.session.commit()
 
-  return {"message": "Transaction successfully completed! Thank You for Your Purchase!"}, 200
+  return {"message": "Transaction successfully completed! Thank You for Your Purchase!", "order": user_order.to_dict()}, 200

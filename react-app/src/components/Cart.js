@@ -5,6 +5,7 @@ import { fetchCart, purchaseCartItems } from '../store/cart';
 import CartItem from './CartItem';
 import { cartTotal } from '../utils';
 import "../css/Cart.css"
+import CreateCartOrderFormModal from './CreateCartOrder';
 
 
 export default function Cart() {
@@ -17,7 +18,8 @@ export default function Cart() {
   const cartItems = useSelector(state => state.cart?.allItems)
   const cartItemsArr = Object?.values(cartItems)
   const myfriendjson = JSON?.stringify(cartItemsArr)
-  
+  let currentTotal = cartTotal(cartItemsArr)
+
   useEffect(() => {
     dispatch(fetchCart())
   }, [dispatch, myfriendjson])
@@ -73,13 +75,14 @@ export default function Cart() {
           <div className='user-cart-purchase-header'>
             Would you like to complete your purchase?
           </div>
-          <button
+          {/* <button
             className='user-cart-complete-purchase-button'
             type='button'
             onClick={handleSubmit}
           >
             Complete My Order
-          </button>
+          </button> */}
+          <CreateCartOrderFormModal currTotal={currentTotal} />
         </div>
       )}
     </div>
