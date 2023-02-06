@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
-import { purchaseCartItems } from '../../store/cart';
+import { fetchOrders, fetchUpdateOrders } from '../../store/order';
 import { inputHandler, cartTotal } from '../../utils';
 
-export default function CreateCartOrderForm({ setShowModal, currTotal }) {
+export default function EditCartOrderForm({ setShowModal, currTotal, order }) {
 
   const dispatch = useDispatch()
   const history = useHistory()
 
   const user = useSelector(state => state.session?.user)
 
-  const [street, setStreet] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
-  const [zip, setZip] = useState('')
+  const [street, setStreet] = useState(order?.street)
+  const [city, setCity] = useState(order?.city)
+  const [state, setState] = useState(order?.state)
+  const [zip, setZip] = useState(order?.zipcode)
   const [errors, setErrors] = useState([])
 
 
@@ -46,17 +46,21 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
       setErrors([])
     }
 
-    let order = { 'street': street, 'city': city, 'state': state, 'zipcode': zip }
+    let updatedOrder = { 'id': order?.id, 'street': street, 'city': city, 'state': state, 'zipcode': zip }
 
-    const res = await dispatch(purchaseCartItems(order))
-      .then(async res => {
-        let data = await res.json()
-        if (data.errors?.length > 0) {
-          setErrors(data.errors)
-        } else {
-          history.push('/')
+    const res = await dispatch(fetchUpdateOrders(updatedOrder))
+      .then(() => {
+        setShowModal(false)
+        setErrors([])
+      })
+      .catch(async res => {
+        const badData = await res.json()
+        if (badData && badData.errors.length > 0) {
+          setErrors([badData.errors])
         }
       })
+
+    history.push(`/users/${user?.id}`)
   }
 
   const handleCancel = async (e) => {
@@ -143,7 +147,7 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
         <button
           type='submit'
           className='confirm-order-button'
-        >PLACE ORDER
+        >UPDATE ORDER
         </button>
         <button
           type='button'

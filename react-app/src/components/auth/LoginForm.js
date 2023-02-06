@@ -6,6 +6,7 @@ import '../../css/Auth.css'
 
 import { fetchCart } from '../../store/cart';
 import { fetchWishlist } from '../../store/wishlist';
+import { fetchOrders } from '../../store/order';
 
 const LoginForm = () => {
 
@@ -23,6 +24,7 @@ const LoginForm = () => {
     }
     const cart = await dispatch(fetchCart())
     const wishlist = await dispatch(fetchWishlist())
+    const orders = await dispatch(fetchOrders())
   };
 
   const demoLogin = async (e) => {
@@ -35,6 +37,7 @@ const LoginForm = () => {
     }
     const cart = await dispatch(fetchCart())
     const wishlist = await dispatch(fetchWishlist())
+    const orders = await dispatch(fetchOrders())
   }
 
   const updateEmail = (e) => {
@@ -68,7 +71,7 @@ const LoginForm = () => {
             <div className='error-message' key={ind}>
               <span className='error-icon'><i class="fa-solid fa-circle-exclamation"></i></span>
               {error}
-              </div>
+            </div>
           ))}
         </div>
         <div className='auth-form-form-container'>
