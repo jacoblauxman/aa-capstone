@@ -28,11 +28,14 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
 
     if (Array.isArray(inputHandler(street, 5))) {
       errorCheck.push(`Street address ${inputHandler(city, 5)}`)
-    } else if (Array.isArray(inputHandler(city, 3))) {
+    }
+    if (Array.isArray(inputHandler(city, 3))) {
       errorCheck.push(`City ${inputHandler(state, 3)}`)
-    } else if (Array.isArray(inputHandler(state, 2))) {
+    }
+    if (Array.isArray(inputHandler(state, 2))) {
       errorCheck.push(`State abbreviation must be exactly 2 characters`)
-    } else if (Array.isArray(inputHandler(city, 5))) {
+    }
+    if (Array.isArray(inputHandler(zip, 5)) || isNaN(zip)) {
       errorCheck.push(`ZIP Code provided must be 5 numerical characters`)
     }
 
@@ -43,12 +46,24 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
       setErrors([])
     }
 
-    const res = await dispatch(purchaseCartItems())
-      .catch(async res => {
-        const data = await res.json()
-        if (data && data.errors.length > 0) setErrors(data.errors)
+    let order = { 'street': street, 'city': city, 'state': state, 'zipcode': zip }
+
+    const res = await dispatch(purchaseCartItems(order))
+      .then(async res => {
+        let data = await res.json()
+        if (data.errors?.length > 0) {
+          setErrors(data.errors)
+          console.log(errors, 'ERRRORS')
+        } else {
+          history.push('/')
+        }
       })
-      .then(() => history.push('/'))
+    // .catch(async res => {
+    //   const data = await res.json()
+    //   console.log(data, 'DATA IN FRONTEND!')
+    //   if (data && data.errors.length > 0) setErrors(data.errors)
+    // })
+    // .then(() => history.push('/'))
   }
 
   const handleCancel = async (e) => {
@@ -65,22 +80,28 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
   if (!user) history.push('/login')
 
   return (
-    <div className='create-review-container'>
-      <div className='create-review-form-header'>
+    <div className='auth-form-auth-container'>
+      <div className='auth-form-header-bar'>
         PURCHASE TOTAL - ${currTotal}
       </div>
       <form onSubmit={handleSubmit}>
-        <div className='errors-container'>
+        {/* <div className='errors-container'>
           {errors?.length > 0 && errors.map((err, i) => (
             <div className='error-message' key={i}>
               {err}
             </div>
           ))}
-        </div>
-        <div className='auth-input-container'>
-          <label className='auth-input-label'>Street</label>
+        </div> */}
+        {errors.map((error, ind) => (
+          <div className='error-message' key={ind}>
+            <span className='error-icon'><i class="fa-solid fa-circle-exclamation"></i></span>
+            {error}
+          </div>
+        ))}
+        <div className='order-input-container'>
+          <label className='order-input-label'>Street</label>
           <input
-            className='auth-input'
+            className='order-input'
             type='text'
             name='street'
             onChange={e => setStreet(e.target.value)}
@@ -91,10 +112,10 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
             required={true}
           />
         </div>
-        <div className='auth-input-container'>
-          <label className='auth-input-label'>City</label>
+        <div className='order-input-container'>
+          <label className='order-input-label'>City</label>
           <input
-            className='auth-input'
+            className='order-input'
             type='text'
             name='city'
             onChange={e => setCity(e.target.value)}
@@ -105,10 +126,10 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
             required={true}
           />
         </div>
-        <div className='auth-input-container'>
-          <label className='auth-input-label'>State</label>
+        <div className='order-input-container'>
+          <label className='order-input-label'>State</label>
           <input
-            className='auth-input'
+            className='order-input'
             type='text'
             name='state'
             onChange={e => setState(e.target.value)}
@@ -119,10 +140,10 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
             required={true}
           />
         </div>
-        <div className='auth-input-container'>
-          <label className='auth-input-label'>ZIP Code</label>
+        <div className='order-input-container'>
+          <label className='order-input-label'>ZIP Code</label>
           <input
-            className='auth-input'
+            className='order-input'
             type='text'
             name='ZIP'
             onChange={e => setZip(e.target.value)}
@@ -135,12 +156,12 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
         </div>
         <button
           type='submit'
-          className='confirm-auth-button'
+          className='confirm-order-button'
         >PLACE ORDER
         </button>
         <button
           type='button'
-          className='confirm-auth-button'
+          className='confirm-order-button'
           onClick={handleCancel}>
           GO BACK
         </button>

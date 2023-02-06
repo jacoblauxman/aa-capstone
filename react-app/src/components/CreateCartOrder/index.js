@@ -5,17 +5,17 @@ import './CreateCartOrder.css'
 import { useSelector } from 'react-redux';
 
 
-function CreateCartOrderFormModal({ currTotal }) {
+function CreateCartOrderFormModal({currTotal}) {
   const [showModal, setShowModal] = useState(false);
 
   const user = useSelector(state => state.session?.user)
 
   return (
     <>
-      <button className='create-review-modal' onClick={() => setShowModal(true)}>Write a Review</button>
+      <button className='create-review-modal' onClick={() => setShowModal(true)}>Complete My Purchase</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateCartOrderForm setShowModal={setShowModal} currTotal={currTotal} />
+          <CreateCartOrderForm setShowModal={setShowModal} currTotal={currTotal}/>
         </Modal>
       )}
     </>

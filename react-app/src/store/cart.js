@@ -55,9 +55,9 @@ export const createCartItem = (itemId) => async dispatch => {
     dispatch(updateCart(newCartItem))
   }
 
-    return {
-      "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
-    }
+  return {
+    "errors": "VALIDATION: Item Quantity in cart must not exceed 10"
+  }
 }
 
 
@@ -97,16 +97,27 @@ export const deleteCartItem = (cartItemId) => async dispatch => {
 }
 
 
-export const purchaseCartItems = () => async dispatch => {
+export const purchaseCartItems = (order) => async dispatch => {
   const response = await fetch(`/api/cart/user`, {
-    method: "DELETE"
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(order)
   })
-
+  // .catch(err => {
+  //   console.log('in the catch', err)
+  //   return {
+  //     "errors": err
+  //   }
+  // })
+  console.log(response, 'OUR RESPONSE!!')
   if (response.ok) {
     dispatch(purchaseCart())
 
-    return { "message": "Thank You for Your Purchase!" }
+    return { "message": "Thank You for Your Purchase!", response }
   }
+  return response
 }
 
 
