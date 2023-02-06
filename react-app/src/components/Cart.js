@@ -17,7 +17,7 @@ export default function Cart() {
   const cartItems = useSelector(state => state.cart?.allItems)
   const cartItemsArr = Object?.values(cartItems)
   const myfriendjson = JSON?.stringify(cartItemsArr)
-
+  
   useEffect(() => {
     dispatch(fetchCart())
   }, [dispatch, myfriendjson])
