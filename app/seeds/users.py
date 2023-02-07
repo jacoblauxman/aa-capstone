@@ -3,30 +3,7 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-<<<<<<< HEAD
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
-    cobe = User(
-        username='cobe', email='cobe@aa.io', password='password')
-    super_shopper=User(
-        username='SuperShopper', email='supershopper@aa.io', password='password')
-    arlo=User(
-        username='arlo', email='arlo@gmail.com', password='password')
-    gamer=User(
-        username='trÜgamer', email='tru@gmail.com', password='password')
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.add(cobe)
-    db.session.add(super_shopper)
-    db.session.add(arlo)
-    db.session.add(gamer)
-=======
     users = [
         User(
         username='Demo', email='demo@aa.io', password='password'
@@ -69,7 +46,6 @@ def seed_users():
     )]
 
     [db.session.add(user) for user in users]
->>>>>>> dev
     db.session.commit()
 
 

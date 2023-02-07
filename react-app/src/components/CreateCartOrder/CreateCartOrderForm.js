@@ -49,14 +49,17 @@ export default function CreateCartOrderForm({ setShowModal, currTotal }) {
     let order = { 'street': street, 'city': city, 'state': state, 'zipcode': zip }
 
     const res = await dispatch(purchaseCartItems(order))
-      .then(async res => {
+      .then(() => {
+        setShowModal(false)
+        setErrors([])
+      })
+      .catch(async res => {
         let data = await res.json()
         if (data.errors?.length > 0) {
           setErrors(data.errors)
-        } else {
-          history.push('/')
         }
       })
+      history.push(`/users/${user?.id}`)
   }
 
   const handleCancel = async (e) => {
