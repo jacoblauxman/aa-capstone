@@ -28,18 +28,6 @@ export default function Cart() {
     history.push(`/login`)
   }
 
-  // -- Cart Purchase -- //
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const res = await dispatch(purchaseCartItems())
-      .catch(async res => {
-        const data = await res.json()
-        if (data && data.errors.length > 0) setErrors(data.errors)
-      })
-      .then(() => history.push('/'))
-  }
-
   return (
     <div className='user-cart-page-container'>
       <div className='user-cart-header'>
@@ -75,13 +63,6 @@ export default function Cart() {
           <div className='user-cart-purchase-header'>
             Would you like to complete your purchase?
           </div>
-          {/* <button
-            className='user-cart-complete-purchase-button'
-            type='button'
-            onClick={handleSubmit}
-          >
-            Complete My Order
-          </button> */}
           <CreateCartOrderFormModal currTotal={currentTotal} />
         </div>
       )}

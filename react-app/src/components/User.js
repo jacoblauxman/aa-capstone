@@ -9,9 +9,10 @@ import { fetchOrders } from '../store/order';
 import { logout } from '../store/session';
 import UserReviews from './UserReviews';
 import UserOrders from './UserOrders';
-// import UserReviews from './UserReviews';
+import { fetchWishlist } from '../store/wishlist';
+import UserWishlist from './UserWishlist';
 
-function User() {
+function User({ wishDirect }) {
 
   const [user, setUser] = useState({});
   const { userId } = useParams();
@@ -21,15 +22,22 @@ function User() {
 
   const [userReviews, setUserReviews] = useState([])
   const [userOrders, setUserOrders] = useState([])
+  const [userWishlist, setUserWishlist] = useState([])
   const [showReviews, setShowReviews] = useState(false)
   const [showOrders, setShowOrders] = useState(false)
+  const [showWishlist, setShowWishlist] = useState(false || wishDirect)
 
   const reviews = useSelector(state => state.reviews?.user)
   const reviewsArr = Object?.values(reviews)
   const myfriendjson = JSON.stringify(reviewsArr)
+
   const orders = useSelector(state => state.orders?.allOrders)
   const ordersArr = Object?.values(orders)
   const myfriendjson2 = JSON.stringify(ordersArr)
+
+  const wishlist = useSelector(state => state.wishlist?.wishlist)
+  const wishlistArr = Object?.values(wishlist)
+  const myfriendjson3 = JSON.stringify(wishlistArr)
 
   useEffect(() => {
     if (!user) history.push('/')
@@ -41,7 +49,11 @@ function User() {
       .then((res) => {
         setUserOrders(res?.orders)
       })
-  }, [dispatch, userId, myfriendjson, myfriendjson2])
+    dispatch(fetchWishlist())
+      .then((res) => {
+        setUserWishlist(res?.wishlist)
+      })
+  }, [dispatch, userId, myfriendjson, myfriendjson2, myfriendjson3])
 
   useEffect(() => {
     if (!userId) {
@@ -63,14 +75,22 @@ function User() {
     e.preventDefault()
     setShowReviews(true)
     setShowOrders(false)
+    setShowWishlist(false)
   }
 
   const showUserOrders = (e) => {
     e.preventDefault()
     setShowOrders(true)
     setShowReviews(false)
+    setShowWishlist(false)
   }
 
+  const showUserWishlist = (e) => {
+    e.preventDefault()
+    setShowWishlist(true)
+    setShowOrders(false)
+    setShowReviews(false)
+  }
 
   // --- check for user / page returns --- //
   if (!user) {
@@ -103,6 +123,10 @@ function User() {
             onClick={showUserOrders}>
             My Orders
           </button>
+          <button className='user-page-sidebar-link'
+            onClick={showUserWishlist}>
+            My Wishlist
+          </button>
         </div>
         <div className='user-page-display-choice'>
           {showReviews && (
@@ -110,6 +134,9 @@ function User() {
           )}
           {showOrders && (
             <UserOrders userOrders={userOrders} />
+          )}
+          {showWishlist && (
+            <UserWishlist userWishlist={userWishlist} />
           )}
         </div>
       </div>

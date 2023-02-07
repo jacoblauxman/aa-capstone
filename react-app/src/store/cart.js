@@ -105,13 +105,7 @@ export const purchaseCartItems = (order) => async dispatch => {
     },
     body: JSON.stringify(order)
   })
-  // .catch(err => {
-  //   console.log('in the catch', err)
-  //   return {
-  //     "errors": err
-  //   }
-  // })
-  console.log(response, 'OUR RESPONSE!!')
+
   if (response.ok) {
     dispatch(purchaseCart())
 

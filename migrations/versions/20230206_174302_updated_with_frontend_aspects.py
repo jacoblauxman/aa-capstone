@@ -1,8 +1,8 @@
-"""added review generator for seed data
+"""updated with frontend aspects
 
-Revision ID: f9cf6f96c8bd
+Revision ID: d739317afe05
 Revises: 
-Create Date: 2023-02-02 13:35:41.799068
+Create Date: 2023-02-06 17:43:02.352079
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f9cf6f96c8bd'
+revision = 'd739317afe05'
 down_revision = None
 branch_labels = None
 depends_on = None

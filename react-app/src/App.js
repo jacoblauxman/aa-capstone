@@ -58,6 +58,10 @@ function App() {
           <NavBar />
           <User />
         </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/wishlist' exact={true} >
+          <NavBar />
+          <User wishDirect={true}/>
+        </ProtectedRoute>
         <Route path='/items/:itemId' exact={true}>
           <NavBar />
           <Item />

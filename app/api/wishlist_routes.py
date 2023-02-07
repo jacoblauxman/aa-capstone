@@ -20,10 +20,13 @@ def get_user_wishlist():
 
 
 # PUT (delete) item in user wishlist
-@wishlist_routes.route('/<int:id>', methods=["PUT"])
+@wishlist_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def update_user_wishlist(id):
   user = User.query.filter(User.id==current_user.id).first()
   user.wishlist_items = [i for i in user.wishlist_items if i.id!=id]
   db.session.commit()
+  print('\n', [i.to_dict() for i in user.wishlist_items], 'IN THE UPDATE')
   return {"wishlist": [i.to_dict() for i in user.wishlist_items]}, 200
+
+

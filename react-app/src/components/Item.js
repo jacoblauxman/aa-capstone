@@ -7,6 +7,7 @@ import { createCartItem, fetchCart } from '../store/cart'
 import { timeFormatter } from '../utils'
 import "../css/Item.css"
 import { reviewSample, randomReview } from '../utils'
+import { fetchUpdatedWishlist } from '../store/wishlist'
 
 
 export default function Item() {
@@ -17,10 +18,13 @@ export default function Item() {
 
   const [isLoaded, setIsLoaded] = useState(false)
   const [errors, setErrors] = useState([])
+  const [showWishButton, setShowWishButton] = useState(true)
 
   const user = useSelector(state => state.session?.user)
   const userCart = useSelector(state => state.cart?.allItems)
   const cartItem = Object?.values(userCart).filter(item => item.itemId === +itemId)[0]
+  const wishlist = useSelector(state => state.wishlist?.wishlist)
+  console.log(wishlist, 'USER WISHLIST!')
 
   const currentItem = useSelector(state => state.items?.oneItem)
   const itemReviews = useSelector(state => state.reviews?.oneItem)
@@ -33,14 +37,20 @@ export default function Item() {
     dispatch(fetchOneItem(itemId))
     dispatch(fetchReviews(itemId))
       .then(() => setIsLoaded(true))
+    if (wishlist[itemId]) {
+      console.log(wishlist, 'YAYAYAYAYA')
+      setShowWishButton(false)
+    }
 
   }, [dispatch, itemId])
 
   // -- First Review for display -- //
   const reviewSample = reviews => {
     const firstFew = [...reviews]
-    const selected = firstFew.slice(0, 1)
-
+    let n = reviews?.length
+    let random = Math.floor(Math.random() * n)
+    console.log(random)
+    let selected = firstFew.slice(0, 1)
     return selected
   }
 
@@ -58,6 +68,13 @@ export default function Item() {
       dispatch(createCartItem(itemId))
         .then(() => history.push('/cart'))
     }
+  }
+
+  const addToWishlist = async (e) => {
+    e.preventDefault()
+    dispatch(fetchUpdatedWishlist(itemId))
+    // .then(() => history.push(`/users/${user?.id}`))
+
   }
 
   // --- check for load --- //
@@ -83,7 +100,7 @@ export default function Item() {
               One customer's thoughts...
             </div>
           )}
-          {test?.length > 0 && reviewSample(test).map(review => (
+          {reviewsArr?.length > 0 && reviewSample(reviewsArr)?.map(review => (
             < div key={review?.id} className='reviews-page-single-review-container'>
               <div className='reviews-page-single-review-title'>
                 {review?.title}
@@ -162,6 +179,20 @@ export default function Item() {
             >
               Add to Cart
             </button>
+            {!wishlist[+itemId] && (
+              <button
+                type='button'
+                className='single-item-add-to-cart-button'
+                onClick={addToWishlist}
+              >
+                Add to Wishlist
+              </button>
+            )}
+            {wishlist[+itemId] && (
+              <div className='single-item-in-wishlist'>
+                In Your <NavLink to={`/users/${user?.id}/wishlist`}>Wishlist!</NavLink>
+              </div>
+            )}
           </div>
         </div>
       </div>

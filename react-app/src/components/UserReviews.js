@@ -10,6 +10,9 @@ import { timeFormatter } from '../utils';
 function UserReviews({ userReviews }) {
 
   const user = useSelector(state => state.session?.user)
+  const history = useHistory()
+
+  if (!user) history.push('/')
 
   return (
     <>
