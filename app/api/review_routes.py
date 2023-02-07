@@ -88,8 +88,6 @@ def delete_review(id):
 
 
 
-
-
 # ADD ONE YES VOTE TO REVIEW -- BONUS
 @review_routes.route('/<int:id>/yes', methods=["GET"])
 @login_required

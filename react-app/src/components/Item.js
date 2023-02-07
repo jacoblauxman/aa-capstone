@@ -24,7 +24,6 @@ export default function Item() {
   const userCart = useSelector(state => state.cart?.allItems)
   const cartItem = Object?.values(userCart).filter(item => item.itemId === +itemId)[0]
   const wishlist = useSelector(state => state.wishlist?.wishlist)
-  console.log(wishlist, 'USER WISHLIST!')
 
   const currentItem = useSelector(state => state.items?.oneItem)
   const itemReviews = useSelector(state => state.reviews?.oneItem)
@@ -38,7 +37,6 @@ export default function Item() {
     dispatch(fetchReviews(itemId))
       .then(() => setIsLoaded(true))
     if (wishlist[itemId]) {
-      console.log(wishlist, 'YAYAYAYAYA')
       setShowWishButton(false)
     }
 
@@ -49,7 +47,6 @@ export default function Item() {
     const firstFew = [...reviews]
     let n = reviews?.length
     let random = Math.floor(Math.random() * n)
-    console.log(random)
     let selected = firstFew.slice(0, 1)
     return selected
   }
@@ -73,8 +70,6 @@ export default function Item() {
   const addToWishlist = async (e) => {
     e.preventDefault()
     dispatch(fetchUpdatedWishlist(itemId))
-    // .then(() => history.push(`/users/${user?.id}`))
-
   }
 
   // --- check for load --- //

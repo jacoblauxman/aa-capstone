@@ -7,15 +7,7 @@ from app.api.auth_routes import validation_errors_to_error_messages
 cart_routes = Blueprint('cart', __name__)
 
 
-# def validation_errors_to_error_messages(validation_errors):
-#     """
-#     Simple function that turns the WTForms validation errors into a simple list
-#     """
-#     errorMessages = []
-#     for field in validation_errors:
-#         for error in validation_errors[field]:
-#             errorMessages.append(f'{field} : {error}')
-#     return errorMessages
+
 
 
 # GET users cart
@@ -30,7 +22,6 @@ def get_user_cart():
   user_cart['user'] = user
   user_cart['items'] = []
   cart_items = cart.items_association
-
 
   for i in cart_items:
     item = i.to_dict()
@@ -56,7 +47,6 @@ def update_user_cart_item(id):
 
     return {"items": [item.to_dict() for item in cart_items]}
 
-  # return {"errors": ["VALIDATION: Item quantity in cart must be greater than 1 but no more than 10"]}, 400
   return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -109,10 +99,5 @@ def purchase_cart_items():
     cart.items_association = []
     db.session.commit()
 
-    # print('\n', user_order.to_dict(), 'USER ORDER!!', '\n')
     return {"message": "Transaction successfully completed! Thank You for Your Purchase!", "order": user_order.to_dict()}, 200
   return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-
-  # else:
-  #   print('\n',form.errors, 'ERRORS', '\n')
-  #   return form.errors

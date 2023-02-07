@@ -14,5 +14,4 @@ class OrderForm(FlaskForm):
     if field.data.isnumeric():
       return
     else:
-      print('\n', 'HERE IN THE ORDER -- ERROR HANDLING WORKING!', '\n')
       raise ValidationError('Input must be valid zipcode / numeric')

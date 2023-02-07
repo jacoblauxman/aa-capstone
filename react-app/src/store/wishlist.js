@@ -44,7 +44,6 @@ export const fetchUpdatedWishlist = (itemId) => async dispatch => {
 
   if (response.ok) {
     const updatedWishlist = await response.json()
-    console.log(updatedWishlist, 'IN THUNK!!')
     dispatch(updateWishlist(updatedWishlist))
 
     return updatedWishlist
