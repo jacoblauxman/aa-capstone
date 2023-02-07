@@ -3,6 +3,7 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+<<<<<<< HEAD
     demo = User(
         username='Demo', email='demo@aa.io', password='password')
     marnie = User(
@@ -25,6 +26,50 @@ def seed_users():
     db.session.add(super_shopper)
     db.session.add(arlo)
     db.session.add(gamer)
+=======
+    users = [
+        User(
+        username='Demo', email='demo@aa.io', password='password'
+        ),
+        User(
+        username='marnie', email='marnie@aa.io', password='password'
+        ),
+        User(
+        username='bobbie', email='bobbie@aa.io', password='password'
+        ),
+        User(
+        username='jaboc', email='jaboc@aa.io', password='password'
+        ),
+        User(
+        username='SuperShopper', email='supershopper@aa.io', password='password'
+        ),
+        User(
+        username='pro_gamer', email='pro_gamer@aa.io', password='password'
+    ),
+        User(
+        username='fakeGamer', email='fakeGamer@aa.io', password='password'
+    ),
+        User(
+        username='justAnotherUser', email='justanotheruser@aa.io', password='password'
+    ),
+        User(
+        username='hanz', email='hanz@aa.io', password='password'
+    ),
+        User(
+        username='trev', email='trev@aa.io', password='password'
+    ),
+        User(
+        username='cahzzm', email='cahzzm@aa.io', password='password'
+    ),
+        User(
+        username='d0rk5ter', email='d0r5ter@aa.io', password='password'
+    ),
+        User(
+        username='mikemillercodes', email='mikemillercodes@aa.io', password='password'
+    )]
+
+    [db.session.add(user) for user in users]
+>>>>>>> dev
     db.session.commit()
 
 

@@ -1,8 +1,8 @@
-"""created_wishlists_association_updated_user_to_dict
+"""updated with frontend aspects
 
-Revision ID: 77ab50d857ea
+Revision ID: d739317afe05
 Revises:
-Create Date: 2023-01-30 15:01:29.320500
+Create Date: 2023-02-06 17:43:02.352079
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '77ab50d857ea'
+revision = 'd739317afe05'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -97,7 +97,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-
+    
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     if environment == "production":

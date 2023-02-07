@@ -101,16 +101,21 @@ export const deleteCartItem = (cartItemId) => async dispatch => {
 }
 
 
-export const purchaseCartItems = () => async dispatch => {
+export const purchaseCartItems = (order) => async dispatch => {
   const response = await fetch(`/api/cart/user`, {
-    method: "DELETE"
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(order)
   })
 
   if (response.ok) {
     dispatch(purchaseCart())
 
-    return { "message": "Thank You for Your Purchase!" }
+    return { "message": "Thank You for Your Purchase!", response }
   }
+  return response
 }
 
 export const clearCartItems = () => async dispatch => {

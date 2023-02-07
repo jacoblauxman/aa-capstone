@@ -1,0 +1,56 @@
+.order-input-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  position: relative;
+}
+
+.order-input-label {
+  color: #828282;
+  background-color: white;
+  padding: 1px 3px;
+  /* position: absolute; */
+  font-size: .75rem;
+  width: fit-content;
+  /* position: relative; */
+  z-index: 1;
+  left: 10px;
+  top: -4px;
+  ;
+}
+
+.order-input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 20px 0px;
+  padding-left: 10px;
+  color: black;
+  background-color: #ECF4FB;
+  margin-bottom: 10px;
+}
+
+.order-input::placeholder {
+  color: black;
+}
+
+.order-input:focus {
+  outline: none;
+  border: 2px solid black;
+}
+
+.confirm-order-button {
+  color: white;
+  background-color: #E7230D;
+  padding: 20px 10px;
+  width: 100%;
+  font-weight: 350;
+  font-size: 1rem;
+  margin: 10px 0px;
+  border: none;
+}
+
+.confirm-order-button:hover {
+  cursor: pointer;
+}

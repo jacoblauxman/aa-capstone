@@ -35,10 +35,6 @@ export const fetchUpdateOrders = (order) => async dispatch => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(order)
-  }).catch(err => {
-    return {
-      "errors": "VALIDATION: Shipping Address must be a valid shipping address"
-    }
   })
 
   if (response.ok) {

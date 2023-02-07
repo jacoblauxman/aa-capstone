@@ -5,6 +5,7 @@ import { fetchCart, purchaseCartItems } from '../store/cart';
 import CartItem from './CartItem';
 import { cartTotal } from '../utils';
 import "../css/Cart.css"
+import CreateCartOrderFormModal from './CreateCartOrder';
 
 
 export default function Cart() {
@@ -17,6 +18,7 @@ export default function Cart() {
   const cartItems = useSelector(state => state.cart?.allItems)
   const cartItemsArr = Object?.values(cartItems)
   const myfriendjson = JSON?.stringify(cartItemsArr)
+  let currentTotal = cartTotal(cartItemsArr)
 
   useEffect(() => {
     dispatch(fetchCart())
@@ -25,18 +27,6 @@ export default function Cart() {
 
   if (!user) {
     history.push(`/login`)
-  }
-
-  // -- Cart Purchase -- //
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const res = await dispatch(purchaseCartItems())
-      .catch(async res => {
-        const data = await res.json()
-        if (data && data.errors.length > 0) setErrors(data.errors)
-      })
-      .then(() => history.push('/'))
   }
 
   return (
@@ -74,13 +64,7 @@ export default function Cart() {
           <div className='user-cart-purchase-header'>
             Would you like to complete your purchase?
           </div>
-          <button
-            className='user-cart-complete-purchase-button'
-            type='button'
-            onClick={handleSubmit}
-          >
-            Complete My Order
-          </button>
+          <CreateCartOrderFormModal currTotal={currentTotal} />
         </div>
       )}
     </div>

@@ -2,8 +2,12 @@ from flask import Blueprint, jsonify, redirect, session, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Item, Cart, CartItem, Order, OrderItem
 from app.forms import CartItemForm, OrderForm
+from app.api.auth_routes import validation_errors_to_error_messages
 
 cart_routes = Blueprint('cart', __name__)
+
+
+
 
 
 # GET users cart
@@ -18,7 +22,6 @@ def get_user_cart():
   user_cart['user'] = user
   user_cart['items'] = []
   cart_items = cart.items_association
-
 
   for i in cart_items:
     item = i.to_dict()
@@ -44,8 +47,7 @@ def update_user_cart_item(id):
 
     return {"items": [item.to_dict() for item in cart_items]}
 
-  return {"errors": ["VALIDATION: Item quantity in cart must be greater than 1 but no more than 10"]}, 400
-
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 # DELETE users cart item
@@ -58,7 +60,7 @@ def delete_cart_item(id):
   cart_item = CartItem.query.get(id)
 
   if not cart_item:
-    return {"errors": ["404 NOT FOUND: Resource Not Found"]}, 401
+    return {"errors": ["404 NOT FOUND: Resource Not Found"]}, 404
 
 
   if cart_item.cart_id==cart['id']:
@@ -70,7 +72,7 @@ def delete_cart_item(id):
 
 # PURCHASE (DELETE ALL / send to ORDERS) users cart items
 
-@cart_routes.route("/user", methods=["DELETE"])
+@cart_routes.route("/user", methods=["POST"])
 @login_required
 def purchase_cart_items():
   cart = Cart.query.filter(Cart.user_id==current_user.id).first()
@@ -88,13 +90,14 @@ def purchase_cart_items():
 
     db.session.commit()
 
-  for i in cart.items_association:
-      item = Item.query.get(i.item.id)
-      new_order_item = OrderItem(order=user_order, item=item)
-      new_order_item.quantity = i.quantity
-      order_items.append(new_order_item)
+    for i in cart.items_association:
+        item = Item.query.get(i.item.id)
+        new_order_item = OrderItem(order=user_order, item=item)
+        new_order_item.quantity = i.quantity
+        order_items.append(new_order_item)
 
-  cart.items_association = []
-  db.session.commit()
+    cart.items_association = []
+    db.session.commit()
 
-  return {"message": "Transaction successfully completed! Thank You for Your Purchase!"}, 200
+    return {"message": "Transaction successfully completed! Thank You for Your Purchase!", "order": user_order.to_dict()}, 200
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 400

@@ -40,6 +40,7 @@ def get_category_items(category):
 
 
 # GET all SEARCH related items
+
 @item_routes.route("/search", methods=["POST"])
 def get_searched_items():
   form = ItemSearchForm()
@@ -161,6 +162,7 @@ def add_item_to_cart(id):
 
 
 # POST item to user wishlist
+
 @item_routes.route('/<int:id>/wishlist', methods=["POST"])
 @login_required
 def add_item_to_wishlist(id):
