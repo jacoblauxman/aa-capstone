@@ -15,6 +15,7 @@ import Cart from './components/Cart';
 import { fetchCart } from './store/cart';
 import NotFound from './components/404';
 import { SearchContext, SearchProvider } from './components/SearchContext';
+import Splash from './components/Splash';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -76,9 +77,21 @@ function App() {
           <ProtectedRoute path='/create-review'>
             <CreateReviewModal />
           </ProtectedRoute>
-          <Route path='/' exact={true} >
+          <Route path='/items/results/:search' exact={true} >
             <NavBar />
             <Main />
+          </Route>
+          <Route path='/items/platform/:platform' exact={true} >
+            <NavBar />
+            <Main />
+          </Route>
+          <Route path='/items/category/:category' exact={true} >
+            <NavBar />
+            <Main />
+          </Route>
+          <Route path='/' exact={true}>
+            <NavBar />
+            <Splash />
           </Route>
           <Route>
             <NavBar />

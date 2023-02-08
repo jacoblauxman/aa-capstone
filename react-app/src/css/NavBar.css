@@ -70,9 +70,9 @@
   margin-right: 7px;
 }
 
-.navbar-search-bar-form-container:hover {
+/* .navbar-search-bar-form-container:hover {
   cursor: not-allowed;
-}
+} */
 
 .navbar-search-bar-form-container {
   display: flex;
@@ -98,6 +98,7 @@
   height: 20px;
   width: 20px;
   flex: 0 1;
+  cursor: pointer;
 }
 
 .navbar-search-bar-input-field {
@@ -109,9 +110,9 @@
   flex: 1 1 auto;
 }
 
-.navbar-search-bar-input-field:hover {
+/* .navbar-search-bar-input-field:hover {
   cursor: url('https://res.cloudinary.com/dixbzsdnm/image/upload/v1673027892/aa-capstone-gamebaux/svgs/nosign_besbka.png'), auto;
-}
+} */
 
 .navbar-search-bar-input-field::placeholder {
   font-weight: 250;
@@ -121,7 +122,7 @@
 
 .navbar-search-bar-input-field:focus {
   outline: none;
-  cursor: url('https://res.cloudinary.com/dixbzsdnm/image/upload/v1673027892/aa-capstone-gamebaux/svgs/nosign_besbka.png');
+  /* cursor: url('https://res.cloudinary.com/dixbzsdnm/image/upload/v1673027892/aa-capstone-gamebaux/svgs/nosign_besbka.png'); */
 }
 
 .navbar-search-bar-search-cancel-container {

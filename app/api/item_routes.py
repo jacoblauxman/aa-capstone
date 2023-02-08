@@ -48,6 +48,7 @@ def get_searched_items():
 
   search = form.search.data
   db_search_str = f"%{search}%"
+  # db_search_str = search
   if form.validate_on_submit():
 
     search_result = Item.query.filter(or_(
@@ -56,6 +57,8 @@ def get_searched_items():
       Item.platform.ilike(db_search_str),
       Item.creator.ilike(db_search_str)
     ))
+
+    print('\n','items RESULT', [i.to_dict() for i in search_result], '\n' )
 
     return {'items': [i.to_dict() for i in search_result]}, 200
 

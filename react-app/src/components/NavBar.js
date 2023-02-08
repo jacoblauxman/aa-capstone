@@ -18,12 +18,11 @@ const NavBar = () => {
   const { setSearchString } = useContext(SearchContext)
   const user = useSelector(state => state?.session?.user)
 
-  // -- Reset Search on mouseout -- //
-  const searchMouseOut = (e) => {
+  // -- Reset Search on homepage click -- //
+  const resetSearch = (e) => {
     e.preventDefault()
-    // let placeholder = "Search games, consoles & more"
+    setSearchInput('')
     return
-    // e.target.value = placeholder
   }
   // -- Temp search display for future -- //
   const onFocusSearch = (e) => {
@@ -40,12 +39,17 @@ const NavBar = () => {
       setSearchInput('')
       return
     } else {
-      console.log(sent, 'sent!')
       setSearchString(sent)
       const search = { 'search': sent }
       dispatch(fetchSearchItems(search))
-        .then(() => history.push(`/`))
+        .then(() => history.push(`/items/results/${search}`))
     }
+  }
+
+  const handleCancel = (e) => {
+    e.preventDefault()
+    setSearchInput('')
+    return
   }
 
   return (
@@ -60,7 +64,7 @@ const NavBar = () => {
           </div>
         </div> */}
         <div className='navbar-site-title-container'>
-          <NavLink to='/' exact={true} activeClassName='active' className='navbar-navlink-title-text'>
+          <NavLink to='/' exact={true} activeClassName='active' className='navbar-navlink-title-text' onClick={resetSearch}>
             GameBaux
           </NavLink>
         </div>
@@ -78,9 +82,9 @@ const NavBar = () => {
               onChange={e => setSearchInput(e.target.value)}
               placeholder='Search games, consoles & more'
               onFocus={onFocusSearch}
-              onBlur={searchMouseOut}
+            // onBlur={searchMouseOut}
             />
-            <button type='button' className='navbar-search-bar-search-cancel-container'>
+            <button type='button' className='navbar-search-bar-search-cancel-container' onClick={handleCancel}>
               <img className='navbar-search-bar-cancel-x' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1671653253/aa-capstone-gamebaux/svgs/cancel-icon_xw1xvb.svg' alt='Search Cancel' />
             </button>
           </form>
