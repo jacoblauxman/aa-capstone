@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from 'react-router-dom'
-import { fetchItems, fetchSearchItems, fetchCatItems, fetchPlatItems } from "../store/item";
+import { fetchSearchItems, fetchCatItems, fetchPlatItems } from "../store/item";
 import "../css/Main.css"
 import { briefDescription } from "../utils";
 import { SearchContext } from "./SearchContext";
@@ -12,22 +12,12 @@ export default function Main() {
   const history = useHistory()
   const resultUrl = useParams()
   const [isLoaded, setIsLoaded] = useState(false)
-  // const []
   const user = useSelector(state => state.session?.user)
   const allItems = useSelector(state => state.items?.items)
   const itemsArr = Object?.values(allItems)
 
-  // useEffect(() => {
-  //   dispatch(fetchItems())
-  //     .then(() => setIsLoaded(true))
-
-  //   return () => setIsLoaded(false)
-  // }, [
-  //   // dispatch, itemsArr.length, searchString
-  // ])
 
   useEffect(() => {
-    console.log(resultUrl, 'CHECKING FOR URL!')
     setIsLoaded(false)
     if (resultUrl.category) {
       dispatch(fetchCatItems(resultUrl.category))

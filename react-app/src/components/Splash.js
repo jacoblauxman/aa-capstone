@@ -13,9 +13,7 @@ export default function Splash() {
       .then(() => setIsLoaded(true))
 
     return () => setIsLoaded(false)
-  }, [
-    // dispatch, itemsArr.length, searchString
-  ])
+  }, [])
 
   return (
     <div className='splash-container'>
