@@ -21,8 +21,9 @@ const NavBar = () => {
   // -- Reset Search on mouseout -- //
   const searchMouseOut = (e) => {
     e.preventDefault()
-    let placeholder = "Search games, consoles & more"
-    return e.target.value = placeholder
+    // let placeholder = "Search games, consoles & more"
+    return
+    // e.target.value = placeholder
   }
   // -- Temp search display for future -- //
   const onFocusSearch = (e) => {
