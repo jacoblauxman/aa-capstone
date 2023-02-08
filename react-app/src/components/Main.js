@@ -1,32 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { fetchItems } from "../store/item";
 import "../css/Main.css"
 import { briefDescription } from "../utils";
-
+import { SearchContext } from "./SearchContext";
 
 export default function Main() {
-
+  const { searchString } = useContext(SearchContext)
   const dispatch = useDispatch()
   const history = useHistory()
 
   const [isLoaded, setIsLoaded] = useState(false)
-
+  // const []
   const user = useSelector(state => state.session?.user)
   const allItems = useSelector(state => state.items?.items)
   const itemsArr = Object?.values(allItems)
 
-  useEffect(() => (
+  useEffect(() => {(
     dispatch(fetchItems())
       .then(() => setIsLoaded(true))
-
-  ), [dispatch, itemsArr.length])
+  )}, [dispatch, itemsArr.length, searchString])
 
   return (
     <div className='main-container'>
       <div className='main-container-title'>
-        All {itemsArr?.length} Results for <span className='results-category-title'>"Current Stock"</span>
+        All {itemsArr?.length} Results for <span className='results-category-title'>"Current Stock" {searchString}</span>
       </div>
       <div className='results-items-grid-container'>
         {itemsArr?.length > 0 && itemsArr.map(item => (

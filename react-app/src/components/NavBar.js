@@ -1,11 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import LogoutButton from './auth/LogoutButton';
 import User from './User'
 import '../css/NavBar.css'
-
+import { SearchContext } from './SearchContext';
+import { inputHandler } from '../utils';
+import { fetchSearchItems } from '../store/item';
 
 const NavBar = () => {
 
@@ -13,7 +15,7 @@ const NavBar = () => {
   const history = useHistory()
 
   const [searchInput, setSearchInput] = useState('')
-
+  const { setSearchString } = useContext(SearchContext)
   const user = useSelector(state => state?.session?.user)
 
   // -- Reset Search on mouseout -- //
@@ -25,12 +27,23 @@ const NavBar = () => {
   // -- Temp search display for future -- //
   const onFocusSearch = (e) => {
     e.preventDefault()
-    let value = 'Search Feature Coming Soon!'
-    return e.target.value = value
+    // let value = 'Search Feature Coming Soon!'
+    // return e.target.value = value
+    return
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    let sent = inputHandler(searchInput, 1)
+    if (Array.isArray(sent)) {
+      setSearchInput('')
+      return
+    } else {
+      console.log(sent, 'sent!')
+      setSearchString(sent)
+      const search = { 'search': sent }
+      dispatch(fetchSearchItems(search))
+    }
   }
 
   return (

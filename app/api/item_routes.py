@@ -44,17 +44,21 @@ def get_category_items(category):
 @item_routes.route("/search", methods=["POST"])
 def get_searched_items():
   form = ItemSearchForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  print('\n', form.data['search'], 'SEARCH \n')
+
   search = form.search.data
   db_search_str = f"%{search}%"
+  if form.validate_on_submit():
 
-  search_result = Item.query.filter(or_(
-    Item.title.ilike(db_search_str),
-    Item.description.ilike(db_search_str),
-    Item.platform.ilike(db_search_str),
-    Item.creator.ilike(db_search_str)
-  ))
+    search_result = Item.query.filter(or_(
+      Item.title.ilike(db_search_str),
+      Item.description.ilike(db_search_str),
+      Item.platform.ilike(db_search_str),
+      Item.creator.ilike(db_search_str)
+    ))
 
-  return {'items': [i.to_dict() for i in search_result]}, 200
+    return {'items': [i.to_dict() for i in search_result]}, 200
 
 
 

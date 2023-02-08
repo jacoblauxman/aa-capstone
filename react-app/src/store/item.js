@@ -1,5 +1,5 @@
 // --- ACTIONS --- //
-const LOAD_ITEMS = 'reviews/LOAD_REVIEWS'
+const LOAD_ITEMS = 'items/LOAD_ITEMS'
 const LOAD_ITEM = 'items/LOAD_ITEM'
 
 
@@ -75,6 +75,9 @@ export const fetchSearchItems = (search) => async dispatch => {
 
   if (response.ok) {
     const items = await response.json()
+    // const results = await items.json()
+    console.log(items, 'seeing ITEMS')
+    // console.log(results, 'seeing RESULTS')
     dispatch(loadItems(items))
 
     return items

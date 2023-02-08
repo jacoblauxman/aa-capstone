@@ -14,6 +14,7 @@ import CreateReviewModal from './components/CreateReview/CreateReviewForm';
 import Cart from './components/Cart';
 import { fetchCart } from './store/cart';
 import NotFound from './components/404';
+import { SearchContext, SearchProvider } from './components/SearchContext';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,49 +41,52 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/login' exact={true}>
-          {/* <NavBar /> */}
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          {/* <NavBar /> */}
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/cart' exact={true} >
-          <NavBar />
-          <Cart />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <NavBar />
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId/wishlist' exact={true} >
-          <NavBar />
-          <User wishDirect={true}/>
-        </ProtectedRoute>
-        <Route path='/items/:itemId' exact={true}>
-          <NavBar />
-          <Item />
-        </Route>
-        <Route path='/items/:itemId/reviews' exact={true}>
-          <NavBar />
-          <Reviews />
-        </Route>
-        <ProtectedRoute path='/create-review'>
-          <CreateReviewModal />
-        </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <NavBar />
-          <Main />
-        </Route>
-        <Route>
-          <NavBar />
-          <NotFound />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <SearchProvider>
+
+      <BrowserRouter>
+        <Switch>
+          <Route path='/login' exact={true}>
+            {/* <NavBar /> */}
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            {/* <NavBar /> */}
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path='/cart' exact={true} >
+            <NavBar />
+            <Cart />
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <NavBar />
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId/wishlist' exact={true} >
+            <NavBar />
+            <User wishDirect={true} />
+          </ProtectedRoute>
+          <Route path='/items/:itemId' exact={true}>
+            <NavBar />
+            <Item />
+          </Route>
+          <Route path='/items/:itemId/reviews' exact={true}>
+            <NavBar />
+            <Reviews />
+          </Route>
+          <ProtectedRoute path='/create-review'>
+            <CreateReviewModal />
+          </ProtectedRoute>
+          <Route path='/' exact={true} >
+            <NavBar />
+            <Main />
+          </Route>
+          <Route>
+            <NavBar />
+            <NotFound />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </SearchProvider>
   );
 }
 
