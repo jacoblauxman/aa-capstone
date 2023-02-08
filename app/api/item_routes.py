@@ -45,7 +45,6 @@ def get_category_items(category):
 def get_searched_items():
   form = ItemSearchForm()
   form['csrf_token'].data = request.cookies['csrf_token']
-  print('\n', form.data['search'], 'SEARCH \n')
 
   search = form.search.data
   db_search_str = f"%{search}%"

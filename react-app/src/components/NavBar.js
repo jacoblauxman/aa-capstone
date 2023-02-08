@@ -43,6 +43,7 @@ const NavBar = () => {
       setSearchString(sent)
       const search = { 'search': sent }
       dispatch(fetchSearchItems(search))
+        .then(() => history.push(`/`))
     }
   }
 

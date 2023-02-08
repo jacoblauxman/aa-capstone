@@ -1,6 +1,7 @@
 // --- ACTIONS --- //
 const LOAD_ITEMS = 'items/LOAD_ITEMS'
 const LOAD_ITEM = 'items/LOAD_ITEM'
+const LOAD_SEARCH_ITEMS = 'items/LOAD_SEARCH_ITEMS'
 
 
 // --- CREATORS --- //
@@ -14,6 +15,10 @@ const loadItem = (item) => ({
   item
 })
 
+const loadSearchItems = (items) => ({
+  type: LOAD_SEARCH_ITEMS,
+  items
+})
 
 // --- THUNKS --- //
 export const fetchItems = () => async dispatch => {
@@ -45,7 +50,7 @@ export const fetchPlatItems = (platform) => async dispatch => {
 
   if (response.ok) {
     const items = await response.json()
-    dispatch(loadItems(items))
+    dispatch(loadSearchItems(items))
 
     return items
   }
@@ -57,7 +62,7 @@ export const fetchCatItems = (category) => async dispatch => {
 
   if (response.ok) {
     const items = await response.json()
-    dispatch(loadItems(items))
+    dispatch(loadSearchItems(items))
 
     return items
   }
@@ -75,10 +80,7 @@ export const fetchSearchItems = (search) => async dispatch => {
 
   if (response.ok) {
     const items = await response.json()
-    // const results = await items.json()
-    console.log(items, 'seeing ITEMS')
-    // console.log(results, 'seeing RESULTS')
-    dispatch(loadItems(items))
+    dispatch(loadSearchItems(items))
 
     return items
   }
@@ -106,6 +108,15 @@ const itemsReducer = (state = initialState, action) => {
       loadOneState.oneItem = action.item.item
 
       return loadOneState
+    }
+
+    case LOAD_SEARCH_ITEMS: {
+      const loadSearchState = { items: {}, oneItem: { ...state.oneItem } }
+      action.items?.items?.forEach(item => {
+        loadSearchState.items[item.id] = item;
+      })
+
+      return loadSearchState
     }
 
     default: {
