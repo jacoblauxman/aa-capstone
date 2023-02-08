@@ -22,7 +22,7 @@ const NavBar = () => {
   const resetSearch = (e) => {
     e.preventDefault()
     setSearchInput('')
-    return
+    history.push('/')
   }
   // -- Temp search display for future -- //
   const onFocusSearch = (e) => {
@@ -42,14 +42,13 @@ const NavBar = () => {
       setSearchString(sent)
       const search = { 'search': sent }
       dispatch(fetchSearchItems(search))
-        .then(() => history.push(`/items/results/${search}`))
+        .then(() => history.push(`/items/results/${sent}`))
     }
   }
 
   const handleCancel = (e) => {
     e.preventDefault()
     setSearchInput('')
-    return
   }
 
   return (

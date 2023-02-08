@@ -47,7 +47,7 @@ export default function Item() {
     const firstFew = [...reviews]
     let n = reviews?.length
     let random = Math.floor(Math.random() * n)
-    let selected = firstFew.slice(0, 1)
+    let selected = firstFew.slice(0, 2)
     return selected
   }
 
@@ -92,7 +92,7 @@ export default function Item() {
         <div className='single-item-reviews-sample'>
           {test?.length > 0 && (
             <div className='single-item-text-header'>
-              One customer's thoughts...
+              A few customer's thoughts...
             </div>
           )}
           {reviewsArr?.length > 0 && reviewSample(reviewsArr)?.map(review => (

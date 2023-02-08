@@ -53,7 +53,16 @@ export default function Main() {
   return (
     <div className='main-container'>
       <div className='main-container-title'>
-        All {itemsArr?.length} Results for <span className='results-category-title'>{searchString ? searchString : resultUrl?.category ? resultUrl?.category : resultUrl?.platform}</span>
+        {itemsArr?.length > 0 ? (
+          <div>
+            All {itemsArr?.length} Results for <span className='results-category-title'>{searchString ? searchString : resultUrl?.category ? resultUrl?.category : resultUrl?.platform}</span>
+          </div>
+        ) : (
+          <div>
+            No Results found for<span className='results-category-title'>{searchString}</span>
+          </div>
+        )
+        }
       </div>
       <div className='results-items-grid-container'>
         {itemsArr?.length > 0 && itemsArr.map(item => (

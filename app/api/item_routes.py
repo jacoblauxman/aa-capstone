@@ -58,10 +58,8 @@ def get_searched_items():
       Item.creator.ilike(db_search_str)
     ))
 
-    print('\n','items RESULT', [i.to_dict() for i in search_result], '\n' )
-
     return {'items': [i.to_dict() for i in search_result]}, 200
-
+  # return {'items': []}
 
 
 
