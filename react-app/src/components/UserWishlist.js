@@ -9,10 +9,10 @@ function UserWishlist({ userWishlist }) {
 
   const user = useSelector(state => state.session?.user)
   const userCart = useSelector(state => state.cart?.allItems)
+  const userCartArr = Object?.values(userCart)
   const history = useHistory()
   const dispatch = useDispatch()
   const [errors, setErrors] = useState([])
-
 
   const addToCart = async (e, item) => {
     e.preventDefault()
@@ -64,13 +64,16 @@ function UserWishlist({ userWishlist }) {
               </div>
             </NavLink>
             <div className='wishlist-item-options-container'>
-              <button
-                type='button'
-                className='single-item-add-to-cart-button'
-                onClick={(e) => addToCart(e, item)}
-              >
-                Add to Cart
-              </button>
+              {userCartArr?.findIndex(i => i?.itemId === item?.id) === -1 ?
+                (< button
+                  type='button'
+                  className='single-item-add-to-cart-button'
+                  onClick={(e) => addToCart(e, item)}
+                >
+                  Add to Cart
+                </button>) : (
+                  <NavLink to={`/cart`}>In Your Cart!</NavLink>
+                )}
               <button
                 type='button'
                 className='single-item-add-to-cart-button'

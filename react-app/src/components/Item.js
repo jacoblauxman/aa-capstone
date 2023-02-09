@@ -163,9 +163,12 @@ export default function Item() {
               </div>
             </div>
             <div className='errors-container'>
-              {errors && errors?.length > 0 && errors.map((err, i) => (
-                <div className='error-message' key={i}>{err}</div>
-              ))}
+            {errors?.map((error, ind) => (
+            <div className='error-message' key={ind}>
+              <span className='error-icon'><i class="fa-solid fa-circle-exclamation"></i></span>
+              {error}
+            </div>
+          ))}
             </div>
             <button
               type='button'

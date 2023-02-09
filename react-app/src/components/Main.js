@@ -40,6 +40,8 @@ export default function Main() {
     }
   }, [dispatch, itemsArr.length, searchString, resultUrl])
 
+  if (!isLoaded) return "Loading..."
+
   return (
     <div className='main-container'>
       <div className='main-container-title'>
