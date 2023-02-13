@@ -16,6 +16,7 @@ import { fetchCart } from './store/cart';
 import NotFound from './components/404';
 import { SearchContext, SearchProvider } from './components/SearchContext';
 import Splash from './components/Splash';
+import ComingSoon from './components/ComingSoon';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -92,6 +93,10 @@ function App() {
           <Route path='/' exact={true}>
             <NavBar />
             <Splash />
+          </Route>
+          <Route path='/comingsoon' exact={true}>
+            <NavBar />
+            <ComingSoon />
           </Route>
           <Route>
             <NavBar />

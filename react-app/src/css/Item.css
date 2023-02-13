@@ -167,6 +167,7 @@
 .single-item-add-to-cart-button {
   width: 100%;
   padding: 20px 0px;
+  margin: .25rem 0;
   font-size: 1.1rem;
   font-weight: bold;
   color: white;
