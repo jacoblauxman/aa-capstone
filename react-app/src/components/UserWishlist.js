@@ -49,14 +49,14 @@ function UserWishlist({ userWishlist }) {
           Here's your Wishlist:
         </div>
         {userWishlist?.length > 0 && userWishlist?.map(item => (
-          <div key={item?.id} className='reviews-page-single-review-container'>
-            <NavLink to={`/items/${item.id}`}>
+          <div key={item?.id} className='single-wishlist-item'>
+            <NavLink className='wishlist-item-link' to={`/items/${item.id}`}>
               <div className='single-cart-item-image-container'>
                 <img className='single-cart-item-image' src={item?.image} alt='Wishlist Item Preview' />
               </div>
-              <div className='single-cart-item-info'>
+              <div className='single-cart-item-info wishlist-item-info'>
                 <span className='order-product-info'>
-                  {item?.title} - {item?.item?.platform}
+                  <span className='item-title' >{item?.title}</span> <span className='item-title'>{item?.platform}</span>
                 </span>
                 <span className='order-product-price'>
                   ${item?.price}
@@ -72,15 +72,16 @@ function UserWishlist({ userWishlist }) {
                 >
                   Add to Cart
                 </button>) : (
-                  <NavLink to={`/cart`}>In Your Cart!</NavLink>
+                  <NavLink className='wishlist-cart-link' to={`/cart`}>Already in Your Cart!</NavLink>
                 )}
-              <button
+              <div
                 type='button'
-                className='single-item-add-to-cart-button'
+                className='
+                 wishlist-remove'
                 onClick={(e) => removeFromList(e, item)}
               >
-                Remove
-              </button>
+                Not interested anymore? Remove from your list
+              </div>
             </div>
           </div>
         ))}

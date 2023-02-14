@@ -18,7 +18,7 @@ function UserReviews({ userReviews }) {
     <>
       <div className='user-page-user-reviews-container'>
         <div className='user-cart-header'>
-          Here are your purchase reviews:
+          Here are your reviews:
         </div>
         {userReviews?.length > 0 && userReviews?.map(review => (
           <div key={review?.id} className='reviews-page-single-review-container'>

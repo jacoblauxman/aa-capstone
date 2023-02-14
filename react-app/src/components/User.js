@@ -89,7 +89,7 @@ function User({ wishDirect }) {
   const showUserWishlist = (e) => {
     e.preventDefault()
     setShowWishlist(true)
-    
+
     setShowOrders(false)
     setShowReviews(false)
   }
@@ -101,45 +101,51 @@ function User({ wishDirect }) {
 
   return (
     <>
-      <div className='user-page-user-reviews-container'>
-        <div className='user-cart-header'>
-          <div className='user-info-name'>
-            Hi {user?.username}
+      <div className='user-page-container'>
+        <div className='user-page-header'>
+          <div className='user-info-name
+          '>
+            Welcome, {user?.username}
           </div>
           <div className='user-info-logout'>
-            <button
+            <div
               type='button'
               className='user-info-logout-text'
               onClick={onLogout}
             >
               Logout
-            </button>
+            </div>
           </div>
         </div>
-        <div className='user-page-sidebar-container'>
-          <button className='user-page-sidebar-link'
-            onClick={showUserReviews}>
-            My Reviews
-          </button>
-          <button className='user-page-sidebar-link'
-            onClick={showUserOrders}>
-            My Orders
-          </button>
-          <button className='user-page-sidebar-link'
-            onClick={showUserWishlist}>
-            My Wishlist
-          </button>
-        </div>
-        <div className='user-page-display-choice'>
-          {showReviews && (
-            <UserReviews userReviews={userReviews} />
-          )}
-          {showOrders && (
-            <UserOrders userOrders={userOrders} />
-          )}
-          {showWishlist && (
-            <UserWishlist userWishlist={userWishlist} />
-          )}
+        <div className='user-page-sidebar-and-choice'>
+          <div className='user-page-sidebar-container'>
+            <div className='user-page-links-container'>
+
+              <div className='user-page-sidebar-link'
+                onClick={showUserReviews}>
+                My Reviews
+              </div>
+              <div className='user-page-sidebar-link'
+                onClick={showUserOrders}>
+                My Orders
+              </div>
+              <div className='user-page-sidebar-link'
+                onClick={showUserWishlist}>
+                My Wishlist
+              </div>
+            </div>
+          </div>
+          <div className='user-page-display-choice'>
+            {showReviews && (
+              <UserReviews userReviews={userReviews} />
+            )}
+            {showOrders && (
+              <UserOrders userOrders={userOrders} />
+            )}
+            {showWishlist && (
+              <UserWishlist userWishlist={userWishlist} />
+            )}
+          </div>
         </div>
       </div>
     </>

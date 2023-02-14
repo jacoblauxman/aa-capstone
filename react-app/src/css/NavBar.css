@@ -2,7 +2,7 @@
   top: 0;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   /* width: 100%; */
   height: 80px;
@@ -10,16 +10,16 @@
   border-bottom: 1px solid #E0E0E0;
   box-shadow: 0px 1px 4px 0.5px #E0E0E0;
   background-color: white;
+  padding: 0 3rem;
 }
 
 .navbar-nav {
+  justify-content: space-around;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 80px;
-  padding: 0 10px;
-  padding-right: 25px;
+  /* padding-right: 25px; */
 }
 
 /* !! will add hamburger icon back in with searches/categories !! */
@@ -50,24 +50,28 @@
 
 .navbar-site-title-container {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  flex: 1 2 auto;
+  flex: 1 1;
+  /* border: 2px solid red; */
+  margin-right: 1rem;
 }
 
 .navbar-navlink-title-text {
-  font-size: 1.75rem;
+  font-size: 2.2rem;
   height: 100%;
   text-decoration: none;
   color: black;
-  margin-right: 15px;
+  display: flex;
+  flex: 1 1 auto;
+  /* margin-right: 15px; */
 }
 
 .navbar-search-bar-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25%;
-  flex: 2 1 750px;
-  margin-right: 7px;
+  /* min-width: 25%; */
+  flex: 5 1;
+  margin: 0 2rem;
 }
 
 /* .navbar-search-bar-form-container:hover {
@@ -143,6 +147,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: .5 1 auto;
 }
 
 .navbar-login-icon-container {
@@ -175,6 +180,7 @@
   align-items: center;
   height: 75px;
   width: 75px;
+  flex: .5 1 auto;
 }
 
 .navbar-user-info-profile-navlink {
@@ -184,6 +190,7 @@
   align-items: center;
   flex-direction: column;
   color: black;
+  flex: .5 1;
 }
 
 .navbar-user-info-short-username {
@@ -219,6 +226,8 @@
   align-items: center;
   padding: 10px;
   margin-bottom: 15px;
+  flex: .5 1;
+  height: 100%;
 }
 
 .navbar-logout-button {
@@ -226,8 +235,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  height: 45px;
+  width: 45px;
   border: none;
   background-color: #DBDBDB;
   font-size: .66rem;
@@ -241,12 +250,20 @@
   color: red;
 }
 
+.navbar-shopping-cart-container {
+  display: flex;
+  flex: 0 1;
+  height: 100%;
+  align-items: center;
+}
+
 .navbar-shopping-cart-img {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 2px;
   width: 100%;
+  flex: 1 1;
 }
 
 .navbar-cart-icon {

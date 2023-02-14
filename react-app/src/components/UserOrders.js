@@ -10,9 +10,9 @@ function UserOrders({ userOrders }) {
 
   return (
     <>
-      <div className='user-page-user-reviews-container'>
+      <div className='user-page-user-reviews-container user-orders-page-container'>
         <div className='user-cart-header'>
-          Here is your order history with GameBaux:
+          Your orders from GameBaux:
         </div>
         {userOrders?.length > 0 && userOrders?.map(order => (
           <div key={order?.id} className='reviews-page-single-review-container'>
@@ -24,23 +24,24 @@ function UserOrders({ userOrders }) {
             </div>
             <div className='user-order-items-container'>
               {Object.values(order?.items?.map(item => (
-                <div className='user-order-single-item' key={item.id}>
+                <div className='user-order-single-item order-item' key={item.id}>
                   <div className='single-cart-item-image-container'>
                     <img className='single-cart-item-image' src={item?.item?.image} alt='Cart Item Preview' />
                   </div>
                   <div className='single-cart-item-info'>
-                    <span className='order-product-info'>
-                      {item?.item?.title} - {item?.item?.platform}
-                    </span>
-                    <span className='order-product-price'>
-                      ${item?.item?.price} x Qty {item?.quantity}
-                    </span>
+                    <div className='order-product-info'>
+                      <div className='item-title'>{item?.item?.title}</div>
+                      <div className='order-title'>{item?.item?.platform}</div>
+                    </div>
+                    <div className='order-product-price'>
+                      ${item?.item?.price} <span className='order-item-quantity'>x Qty {item?.quantity}</span>
+                    </div>
                   </div>
                 </div>
               )))}
             </div>
             <div className='order-total'>
-              <span class>Order Total</span><span>{cartTotal(order?.items)}</span>
+              <span className='order-total-text'>Order Total</span><span className='order-total-value'>${cartTotal(order?.items)}</span>
             </div>
           </div>
         ))}
