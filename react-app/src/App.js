@@ -17,6 +17,7 @@ import NotFound from './components/404';
 import { SearchContext, SearchProvider } from './components/SearchContext';
 import Splash from './components/Splash';
 import ComingSoon from './components/ComingSoon';
+import Footer from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -103,6 +104,7 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </SearchProvider>
   );
