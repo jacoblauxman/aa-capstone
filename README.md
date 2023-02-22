@@ -95,7 +95,7 @@ This is a fullstack clone project bringing together the backend and frontend to 
 
 ### Built With
 
-* [![React][React.js]][React-url]
+* React: https://reactjs.org/
 * Redux: https://redux.js.org/
 * Flask: https://flask.palletsprojects.com/en/2.2.x/
 * Flask-SQLAlchemy: https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/
