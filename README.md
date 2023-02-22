@@ -117,10 +117,11 @@ Below is how you can get the project started in a local environment
 
 You will need to define a .env file to setup a database filepath / SECRET_KEY
 * Ex: .env
-  ```
+
+```
 SECRET_KEY=your_key_here
 DATABASE_URL=sqlite:///dev.db
-  ```
+```
 
 ### Installation
 
