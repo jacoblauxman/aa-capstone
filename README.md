@@ -86,7 +86,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-This is a fullstack clone project bringing together the backend and frontend to approximate a recreation of AirBnB and some of their site's main features
+This is a fullstack e-commerce site inspired and based off 'GameStop', with an emphasis on core app features needed for a complete user experience
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
