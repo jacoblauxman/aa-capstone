@@ -174,8 +174,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-Jacob Lauxman - jlauxman@gmail.com
-Jacob Lauxman - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com - [LinkedIn](https://www.linkedin.com/in/jacob-lauxman-a3170b261/) - [Portfolio Site](https://jacoblauxman.com/)
+Jacob Lauxman - jlauxman@gmail.com - [LinkedIn](https://www.linkedin.com/in/jacob-lauxman-a3170b261/) - [Portfolio Site](https://jacoblauxman.com/)
+
+<!-- Jacob Lauxman - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com - [LinkedIn](https://www.linkedin.com/in/jacob-lauxman-a3170b261/) - [Portfolio Site](https://jacoblauxman.com/) -->
 
 Project Link: [https://github.com/jacoblauxman/aa-capstone](https://github.com/jacoblauxman/aa-capstone)
 
