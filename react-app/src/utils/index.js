@@ -89,3 +89,27 @@ export const reviewSample = reviewArr => {
 
   return selected
 }
+
+export const leadBannerImgs = [
+  {
+    url: 'https://res.cloudinary.com/dixbzsdnm/image/upload/v1686600824/aa-capstone-gamebaux/PokemonTCGPaldeaEvolved_NA_1736x224_Full_Blade_D_1_j7l0rv.webp'
+  },
+  {
+    url: 'https://res.cloudinary.com/dixbzsdnm/image/upload/v1686600827/aa-capstone-gamebaux/Trade_Evergreen_1736x224_Full_Blade_D_1_vbnkqt.webp'
+  },
+  {
+    url: 'https://res.cloudinary.com/dixbzsdnm/image/upload/v1686600829/aa-capstone-gamebaux/HP_PS5InStock_1736x224_Full_Blade_D_crzcog.webp'
+  },
+]
+
+export const bottomBannerImgs = [
+  {
+    url: 'https://res.cloudinary.com/dixbzsdnm/image/upload/v1686610742/aa-capstone-gamebaux/B1G1VideoGames_WK20_1736x224_Full_Blade_D_tvx4ua.webp'
+  },
+  {
+    url: 'https://res.cloudinary.com/dixbzsdnm/image/upload/v1686610745/aa-capstone-gamebaux/DP_SonyDaysOfPlay_1736x224_Full_Blade_D_1_bokqpe.webp'
+  },
+  {
+    url: 'https://res.cloudinary.com/dixbzsdnm/image/upload/v1686610749/aa-capstone-gamebaux/NarutoXBoruto_CS_1736x224_FullBlade_D_1_s0ywn8.webp'
+  },
+]

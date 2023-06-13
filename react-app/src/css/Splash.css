@@ -1,35 +1,135 @@
 .splash-container {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   max-width: 100%;
   background-color: white;
+}
 
+.splash-lead-banner-section {
+  /* width: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
+.splash-bottom-banner-section {
+  display: flex;
+  justify-content: center;
+  /* width: 80%; */
+  /* padding: 0 3rem; */
+}
+
+
+
+.splash-game-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.splash-game-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+  border-radius: 20px;
+  border: 1px solid rgb(245, 245, 245);
+  min-height: fit-content;
+  cursor: pointer;
+  transition: .5s ease-in-out;
+}
+
+.splash-game-container:hover {
+  box-shadow: 0px 0px 5px 5px rgb(240, 240, 240);
+}
+
+.splash-game-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0 1rem;
+  max-height: 4.5rem;
+}
+
+.splash-game-available {
+  font-weight: 300;
+  color: gray;
+  font-size: .9rem;
+}
+
+.splash-game-title {
+  display: flex;
+  padding: 0;
+  margin: 0 0 .5rem;
+}
+
+
+.splash-game-image {
+  max-width: 600px;
+  width: 550px;
+  height: 350px;
+  border-radius: 0px 0px 20px 20px;
+}
+
+
+
+.splash-brands-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #F2F4F7;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  /* justify-content: center; */
+  align-items: center;
+  width: 100%;
+  /* min-width: fit-content; */
 }
 
 .splash-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-weight: 425;
-  font-size: 1.5rem;
-  padding: 10px;
+  font-weight: bold;
+  font-size: 1.75rem;
   width: 100%;
   margin-bottom: 1rem;
 }
 
-.splash-platforms-container {
+.splash-header-gray {
+  color: #727272;
+  margin-left: .75rem;
+}
+
+/* .splash-platforms-container {
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
-  margin: 1rem;
-  justify-content: space-evenly
+   margin: 1rem 3rem;
+   justify-content: center;
+   padding: 0rem 3rem;
+} */
+
+.splash-platforms-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
 }
 
 .splash-platform-img {
-  max-width: 350px;
+  max-width: 250px;
   display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  border: 1px solid #CFD4DA;
+  object-fit: contain;
+  transition: 200ms ease-in-out;
+  margin: .5rem;
+}
+
+.splash-platform-img:hover {
+  border: 1px solid gray;
 }
 
 .splash-categories-container {
@@ -44,16 +144,56 @@
 .splash-cat-img {
   max-width: 450px;
   display: flex;
+  outline: none;
+  border-radius: 20px;
+  border: 1px solid rgb(230, 230, 230);
+  /* box-shadow: 0px 0px 2px 2px rgb(245, 245, 245); */
+  transition: .5s all ease-in-out;
+}
+
+.splash-cat-img:hover {
+  /* transform: scale(1.03); */
+  box-shadow: 0px 0px 5px 5px rgb(240, 240, 240)
 }
 
 .splash-link-container {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .splash-nav {
   text-decoration: none;
   color: black;
+  font-weight: bold;
 }
+
+
+
+.splash-categories-section {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  /* width: 100%; */
+}
+
+.splash-new-releases-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 10rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  /* width: fit; */
+  cursor: pointer;
+}
+
+.splash-new-release-img {
+  object-fit: contain;
+  height: 250px;
+  width: 100%;
+}
+
 
 .splash-cat-text {
   margin-top: 1rem;
@@ -61,11 +201,11 @@
 
 .splash-banners-container {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
   align-items: center;
   object-fit: contain;
-  padding: .5rem;
+  /* padding: .5rem; */
   flex: 1 1
 }
 

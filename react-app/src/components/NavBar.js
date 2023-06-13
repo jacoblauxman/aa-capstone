@@ -88,6 +88,27 @@ const NavBar = () => {
             </button>
           </form>
         </div>
+        {/* TESTING */}
+        <div className='navbar-shopping-cart-container'>
+          <NavLink to='/comingsoon' exact={true} className='navbar-shopping-cart-link'>
+            <div className='shopping-cart-img'>
+              <img className='pro-rewards-icon' src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1671746904/aa-capstone-gamebaux/svgs/trade-in-icon_b9spmg.svg`} alt='Trade-In Icon' />
+            </div>
+            <div className='shopping-cart-label'>
+              Trade-In
+            </div>
+          </NavLink>
+        </div>
+        <div className='navbar-shopping-cart-container'>
+          <NavLink to='/comingsoon' exact={true} className='navbar-shopping-cart-link'>
+            <div className='shopping-cart-img'>
+              <img className='pro-rewards-icon' src={`https://res.cloudinary.com/dixbzsdnm/image/upload/v1686601395/aa-capstone-gamebaux/svgs/rewards-icon_1_pj4cnw.svg`} alt='Rewards Icon' />
+            </div>
+            <div className='shopping-cart-label'>
+              Pro Rewards
+            </div>
+          </NavLink>
+        </div>
         <div className='navbar-user-info-login-info'>
           {user && user?.id && (
             <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active' className='navbar-user-info-profile-navlink'>

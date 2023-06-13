@@ -1,0 +1,44 @@
+.banner-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex: 1 1 auto; */
+  /* object-fit: contain; */
+  /* padding: 1rem; */
+  cursor: pointer;
+  width: 100%;
+}
+
+.bottom-banner-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.01)
+}
+
+.banner-image {
+  max-height: 250px;
+  height: 250px;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* .fa-circle-arrow-left {
+  height: 40px;
+  width: 40px;
+  font-size: 4rem;
+  color: red;
+  display: absolute;
+  z-index: 40000;
+} */
