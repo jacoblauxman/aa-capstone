@@ -29,7 +29,6 @@ export default function Splash() {
 
   const sendSearch = (e) => {
     e.preventDefault()
-    console.log(e.target.alt)
     const search = { 'search': e.target.alt }
     setSearchString(search.search)
     dispatch(fetchSearchItems(search))
@@ -49,12 +48,13 @@ export default function Splash() {
             <img className='splash-game-image' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1686611030/BOTW-Share_icon_n5ukqt.jpg' />
           </div>
         </NavLink>
-        <div className='splash-game-container'>
+        <div className='splash-game-container'
+          id='Elden' onClick={sendSearch}>
           <div className='splash-game-header'>
             <p className='splash-game-available'>AVAILABLE NOW | MUST PLAY</p>
             <h3 className='splash-game-title'>Elden Ring</h3>
           </div>
-          <img className='splash-game-image' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1686610935/aa-capstone-gamebaux/elden-ring-900x506_ay2r3o.jpg' />
+          <img className='splash-game-image' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1686610935/aa-capstone-gamebaux/elden-ring-900x506_ay2r3o.jpg' alt='Elden Ring' />
         </div>
       </section>
       <section className='splash-brands-section'>
@@ -135,10 +135,10 @@ export default function Splash() {
             </NavLink>
           </div>
         </div>
-        
+
         <section
           className='splash-new-releases-container'
-          onClick={() => history.push('/items')}>
+          onClick={sendSoon}>
           < img className='splash-new-release-img' alt='New Releases' src='https://res.cloudinary.com/dixbzsdnm/image/upload/v1686603390/aa-capstone-gamebaux/HP_NewReleasesEvergreen_1736x224_FullBlade_D_hsf0gt.webp' />
         </section>
 
